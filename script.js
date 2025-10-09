@@ -162,7 +162,7 @@ if (typeof AI_CONFIG === 'undefined') {
     var AI_CONFIG = {
         apiUrl: 'https://ark.cn-beijing.volces.com/api/v3/chat/completions',
         apiKey: 'c8737ecd-bd2c-40c9-a24e-1f5602a37aea',
-        model: 'doubao-1-5-pro-32k-250115',
+        model: 'doubao-1-5-vision-pro-250328',
         systemPrompt: `你是一个专业的个人网站AI助手。你的任务是帮助访客了解网站主人 ZHY。
 
 关于 ZHY 的信息：
@@ -272,7 +272,9 @@ async function callDoubaoAPI(userMessage) {
     });
 
     if (!response.ok) {
-        throw new Error(`API 请求失败: ${response.status}`);
+        const errorData = await response.text();
+        console.error('API 响应错误:', response.status, errorData);
+        throw new Error(`API 请求失败: ${response.status} - ${errorData}`);
     }
 
     const data = await response.json();
