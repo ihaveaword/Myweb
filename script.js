@@ -1,3 +1,180 @@
+// ========== Matrix 代码雨效果 ==========
+function initMatrixRain() {
+    const canvas = document.getElementById('matrixCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    // 设置canvas尺寸
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    // 字符集 - 包含数字、字母和一些特殊字符
+    const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+    const charArray = chars.split('');
+    
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    
+    // 每列的Y位置
+    const drops = [];
+    for (let i = 0; i < columns; i++) {
+        drops[i] = Math.random() * -100;
+    }
+    
+    function draw() {
+        // 半透明黑色背景，产生拖尾效果
+        ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00ff00';
+        ctx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+            // 随机字符
+            const text = charArray[Math.floor(Math.random() * charArray.length)];
+            const x = i * fontSize;
+            const y = drops[i] * fontSize;
+            
+            ctx.fillText(text, x, y);
+            
+            // 随机重置
+            if (y > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            
+            drops[i]++;
+        }
+    }
+    
+    // 启动动画
+    setInterval(draw, 33);
+    
+    // 窗口大小改变时重新设置canvas
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
+
+// ========== 系统启动动画序列 ==========
+function showBootSequence() {
+    const bootMessages = [
+        '> Initializing system...',
+        '> Loading kernel modules...',
+        '> Mounting file systems...',
+        '> Starting network services...',
+        '> Loading user interface...',
+        '> System ready. Welcome!',
+    ];
+    
+    const bootContainer = document.createElement('div');
+    bootContainer.id = 'boot-screen';
+    bootContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0a0a0a;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0 20%;
+        font-family: 'Courier New', monospace;
+        color: #00ff00;
+        font-size: 14px;
+    `;
+    
+    document.body.appendChild(bootContainer);
+    
+    let delay = 0;
+    bootMessages.forEach((message, index) => {
+        setTimeout(() => {
+            const line = document.createElement('div');
+            line.textContent = message;
+            line.style.cssText = `
+                opacity: 0;
+                animation: systemBoot 0.3s ease-out forwards;
+                margin: 5px 0;
+            `;
+            bootContainer.appendChild(line);
+            
+            // 最后一条消息后添加进度条
+            if (index === bootMessages.length - 1) {
+                setTimeout(() => {
+                    const progressContainer = document.createElement('div');
+                    progressContainer.style.cssText = `
+                        width: 100%;
+                        height: 20px;
+                        border: 2px solid #00ff00;
+                        margin-top: 20px;
+                        position: relative;
+                        overflow: hidden;
+                    `;
+                    
+                    const progressBar = document.createElement('div');
+                    progressBar.className = 'loading-bar';
+                    progressBar.style.cssText = `
+                        height: 100%;
+                        background: #00ff00;
+                        box-shadow: 0 0 10px #00ff00;
+                    `;
+                    
+                    progressContainer.appendChild(progressBar);
+                    bootContainer.appendChild(progressContainer);
+                    
+                    // 动画完成后移除启动画面
+                    setTimeout(() => {
+                        bootContainer.style.opacity = '0';
+                        bootContainer.style.transition = 'opacity 0.5s';
+                        setTimeout(() => {
+                            bootContainer.remove();
+                        }, 500);
+                    }, 2000);
+                }, 300);
+            }
+        }, delay);
+        delay += 400;
+    });
+}
+
+// ========== 导航链接波纹效果 ==========
+function addRippleEffect() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            ripple.className = 'nav-link-ripple';
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(0, 255, 0, 0.5);
+                width: 0;
+                height: 0;
+                transform: translate(-50%, -50%);
+                animation: ripple 0.6s ease-out;
+            `;
+            
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+}
+
 // ========== 终端打字机效果 ==========
 function typeWriter(element, text, speed = 50) {
     let i = 0;
@@ -16,13 +193,26 @@ function typeWriter(element, text, speed = 50) {
 
 // 为hero区域添加打字机效果
 document.addEventListener('DOMContentLoaded', () => {
+    // 显示启动动画
+    showBootSequence();
+    
+    // 初始化Matrix代码雨
+    setTimeout(() => {
+        initMatrixRain();
+    }, 3000);
+    
+    // 添加波纹效果
+    setTimeout(() => {
+        addRippleEffect();
+    }, 3000);
+    
     const heroSubtitle = document.querySelector('.hero-subtitle');
     if (heroSubtitle) {
         const originalText = heroSubtitle.textContent;
         heroSubtitle.textContent = '';
         setTimeout(() => {
             typeWriter(heroSubtitle, originalText, 30);
-        }, 500);
+        }, 3500);
     }
     
     // 添加光标闪烁效果到输入框
