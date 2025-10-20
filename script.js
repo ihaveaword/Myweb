@@ -1,30 +1,91 @@
+// ========== 终端打字机效果 ==========
+function typeWriter(element, text, speed = 50) {
+    let i = 0;
+    element.textContent = '';
+    
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    
+    type();
+}
+
+// 为hero区域添加打字机效果
+document.addEventListener('DOMContentLoaded', () => {
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    if (heroSubtitle) {
+        const originalText = heroSubtitle.textContent;
+        heroSubtitle.textContent = '';
+        setTimeout(() => {
+            typeWriter(heroSubtitle, originalText, 30);
+        }, 500);
+    }
+    
+    // 添加光标闪烁效果到输入框
+    const chatInput = document.getElementById('chatInput');
+    if (chatInput) {
+        chatInput.addEventListener('focus', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'cursorBlink 1s infinite';
+            }, 10);
+        });
+    }
+});
+
+// ========== ASCII Art 加载动画 ==========
+function showLoadingAnimation() {
+    const asciiFrames = [
+        '[ ⣾ ] Loading...',
+        '[ ⣽ ] Loading...',
+        '[ ⣻ ] Loading...',
+        '[ ⢿ ] Loading...',
+        '[ ⡿ ] Loading...',
+        '[ ⣟ ] Loading...',
+        '[ ⣯ ] Loading...',
+        '[ ⣷ ] Loading...'
+    ];
+    
+    let frameIndex = 0;
+    return setInterval(() => {
+        console.clear();
+        console.log(asciiFrames[frameIndex]);
+        frameIndex = (frameIndex + 1) % asciiFrames.length;
+    }, 100);
+}
+
+// 在页面加载时显示终端欢迎信息
+console.log('%c' + `
+╔═══════════════════════════════════════╗
+║  Welcome to ZHY's Terminal Website   ║
+║  Type: help for available commands   ║
+║  Status: ONLINE | Version: 1.0.0     ║
+╚═══════════════════════════════════════╝
+`, 'color: #00ff00; font-family: monospace;');
+
 // ========== 主题切换功能 ==========
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
 
-// 检查本地存储的主题设置
-const currentTheme = localStorage.getItem('theme') || 'light';
+// 检查本地存储的主题设置 (终端主题默认为dark)
+const currentTheme = localStorage.getItem('theme') || 'dark';
 html.setAttribute('data-theme', currentTheme);
-updateThemeIcon(currentTheme);
 
 themeToggle.addEventListener('click', () => {
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
+    console.log('> theme toggle clicked');
+    // 终端风格不需要切换主题,可以添加其他效果
+    // 例如切换CRT扫描线效果的强度
+    document.body.classList.toggle('no-scanlines');
 });
 
 function updateThemeIcon(theme) {
     const icon = themeToggle.querySelector('i');
-    if (theme === 'dark') {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-    } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-    }
+    // 保持终端图标
+    icon.className = 'fas fa-terminal';
 }
 
 // ========== 导航栏滚动效果 ==========

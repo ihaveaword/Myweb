@@ -1,38 +1,47 @@
 /* ========== 全局变量 ========== */
 :root {
-    /* 亮色主题 */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8f9fa;
-    --bg-tertiary: #e9ecef;
-    --text-primary: #212529;
-    --text-secondary: #6c757d;
-    --accent-color: #6366f1;
-    --accent-hover: #4f46e5;
-    --border-color: #dee2e6;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
-    --navbar-bg: rgba(255, 255, 255, 0.9);
-    --chat-user-bg: #6366f1;
-    --chat-ai-bg: #f1f3f5;
+    /* 经典终端配色 - 黑底绿字 */
+    --terminal-bg: #0a0a0a;
+    --terminal-fg: #00ff00;
+    --terminal-green: #00ff00;
+    --terminal-green-dim: #00cc00;
+    --terminal-green-bright: #00ff41;
+    --terminal-shadow: rgba(0, 255, 0, 0.5);
+    --terminal-glow: 0 0 5px rgba(0, 255, 0, 0.5);
+    
+    /* 主题色 */
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --bg-tertiary: #111111;
+    --text-primary: #00ff00;
+    --text-secondary: #00cc00;
+    --accent-color: #00ff00;
+    --accent-hover: #00ff41;
+    --border-color: #00ff00;
+    --shadow-sm: 0 0 10px rgba(0, 255, 0, 0.3);
+    --shadow-md: 0 0 20px rgba(0, 255, 0, 0.4);
+    --shadow-lg: 0 0 30px rgba(0, 255, 0, 0.5);
+    --navbar-bg: rgba(0, 0, 0, 0.95);
+    --chat-user-bg: #001a00;
+    --chat-ai-bg: #000f00;
 }
 
-/* 暗色主题 */
+/* 暗色主题保持一致 */
 [data-theme="dark"] {
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #242424;
-    --bg-tertiary: #2d2d2d;
-    --text-primary: #e9ecef;
-    --text-secondary: #adb5bd;
-    --accent-color: #818cf8;
-    --accent-hover: #6366f1;
-    --border-color: #404040;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
-    --navbar-bg: rgba(26, 26, 26, 0.9);
-    --chat-user-bg: #6366f1;
-    --chat-ai-bg: #2d2d2d;
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --bg-tertiary: #111111;
+    --text-primary: #00ff00;
+    --text-secondary: #00cc00;
+    --accent-color: #00ff00;
+    --accent-hover: #00ff41;
+    --border-color: #00ff00;
+    --shadow-sm: 0 0 10px rgba(0, 255, 0, 0.3);
+    --shadow-md: 0 0 20px rgba(0, 255, 0, 0.4);
+    --shadow-lg: 0 0 30px rgba(0, 255, 0, 0.5);
+    --navbar-bg: rgba(0, 0, 0, 0.95);
+    --chat-user-bg: #001a00;
+    --chat-ai-bg: #000f00;
 }
 
 /* ========== 基础样式 ========== */
@@ -47,11 +56,57 @@ html {
 }
 
 body {
-    font-family: 'Inter', 'Noto Sans SC', sans-serif;
+    font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* CRT 扫描线效果 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* CRT 闪烁效果 */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 0, 0.02);
+    pointer-events: none;
+    z-index: 9998;
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.97; }
+    50% { opacity: 1; }
+    100% { opacity: 0.97; }
+}
+
+/* 绿色荧光文字效果 */
+body {
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 }
 
 .container {
@@ -68,14 +123,15 @@ body {
     right: 0;
     background-color: var(--navbar-bg);
     backdrop-filter: blur(10px);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 0 var(--terminal-green);
+    border-bottom: 2px solid var(--terminal-green);
     z-index: 1000;
     transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
     background-color: var(--bg-primary);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 2px 0 var(--terminal-green), var(--shadow-md);
 }
 
 .nav-container {
@@ -92,6 +148,18 @@ body {
     font-weight: 700;
     color: var(--accent-color);
     text-decoration: none;
+    font-family: 'Courier New', monospace;
+    text-shadow: var(--terminal-glow);
+}
+
+.nav-logo a::before {
+    content: '[ ';
+    color: var(--terminal-green-dim);
+}
+
+.nav-logo a::after {
+    content: ' ]';
+    color: var(--terminal-green-dim);
 }
 
 .nav-menu {
@@ -106,6 +174,17 @@ body {
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
+    font-family: 'Courier New', monospace;
+}
+
+.nav-link::before {
+    content: '> ';
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover::before {
+    opacity: 1;
 }
 
 .nav-link::after {
@@ -116,6 +195,7 @@ body {
     width: 0;
     height: 2px;
     background-color: var(--accent-color);
+    box-shadow: var(--terminal-glow);
     transition: width 0.3s ease;
 }
 
@@ -132,18 +212,21 @@ body {
 .theme-toggle,
 .mobile-menu-toggle {
     background: none;
-    border: none;
+    border: 1px solid var(--terminal-green);
     color: var(--text-primary);
     font-size: 1.2rem;
     cursor: pointer;
     padding: 0.5rem;
-    border-radius: 8px;
+    border-radius: 3px;
     transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
 }
 
 .theme-toggle:hover,
 .mobile-menu-toggle:hover {
-    background-color: var(--bg-tertiary);
+    background-color: var(--terminal-green);
+    color: var(--bg-primary);
+    box-shadow: var(--terminal-glow);
 }
 
 .mobile-menu-toggle {
@@ -158,8 +241,10 @@ body {
     justify-content: center;
     align-items: center;
     padding: 8rem 20px 4rem;
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    background-color: var(--bg-primary);
     position: relative;
+    border: 2px solid var(--terminal-green);
+    box-shadow: inset 0 0 50px rgba(0, 255, 0, 0.1);
 }
 
 .hero-container {
@@ -182,14 +267,17 @@ body {
     width: 100%;
     max-width: 380px;
     height: auto;
-    border-radius: 20px;
-    box-shadow: var(--shadow-lg);
+    border-radius: 0;
+    border: 3px solid var(--terminal-green);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), inset 0 0 20px rgba(0, 255, 0, 0.1);
     object-fit: cover;
     transition: transform 0.3s ease;
+    filter: contrast(1.1) brightness(0.9);
 }
 
 .hero-image img:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.8);
 }
 
 .hero-content {
@@ -200,6 +288,7 @@ body {
 .hero-title {
     font-size: 3.5rem;
     margin-bottom: 1rem;
+    font-family: 'Courier New', monospace;
 }
 
 .greeting {
@@ -210,18 +299,41 @@ body {
     margin-bottom: 0.5rem;
 }
 
+.greeting::before {
+    content: '$ ';
+    color: var(--terminal-green);
+}
+
 .name {
     display: block;
-    background: linear-gradient(135deg, var(--accent-color), #a855f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--terminal-green-bright);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { 
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.8),
+                     0 0 20px rgba(0, 255, 0, 0.5);
+    }
+    50% { 
+        text-shadow: 0 0 20px rgba(0, 255, 0, 1),
+                     0 0 30px rgba(0, 255, 0, 0.7);
+    }
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
+    font-size: 1.3rem;
+    color: var(--terminal-green);
     margin-bottom: 2rem;
+    line-height: 1.8;
+    font-family: 'Courier New', monospace;
+    opacity: 0.8;
+}
+
+.hero-subtitle::before {
+    content: '> ';
+    color: var(--terminal-green-bright);
 }
 
 .hero-cta {
@@ -231,36 +343,59 @@ body {
 }
 
 .btn {
-    padding: 0.875rem 2rem;
-    border-radius: 8px;
+    padding: 1rem 2rem;
+    border-radius: 0;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     transition: all 0.3s ease;
-    border: none;
+    border: 2px solid var(--terminal-green);
     cursor: pointer;
     font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn-primary {
-    background-color: var(--accent-color);
-    color: white;
+    background: transparent;
+    color: var(--terminal-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.btn-primary::before {
+    content: '[';
+    color: var(--terminal-green-bright);
+}
+
+.btn-primary::after {
+    content: ']';
+    color: var(--terminal-green-bright);
 }
 
 .btn-primary:hover {
-    background-color: var(--accent-hover);
+    background: var(--terminal-green);
+    color: var(--terminal-bg);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
-    background-color: transparent;
-    color: var(--accent-color);
-    border: 2px solid var(--accent-color);
+    background: transparent;
+    color: var(--terminal-green);
+    border: 2px solid var(--terminal-green-dark);
+}
+
+.btn-secondary::before {
+    content: '< ';
+}
+
+.btn-secondary::after {
+    content: ' >';
 }
 
 .btn-secondary:hover {
-    background-color: var(--accent-color);
-    color: white;
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
     transform: translateY(-2px);
 }
 
@@ -269,13 +404,15 @@ body {
     bottom: 2rem;
     animation: bounce 2s infinite;
     font-size: 2rem;
-    color: var(--text-secondary);
+    color: var(--terminal-green);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
 }
 
 /* ========== 照片轮播区域 ========== */
 .carousel-section {
     padding: 4rem 0;
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-primary);
+    border-top: 2px solid var(--terminal-green-dark);
 }
 
 .carousel-container {
@@ -283,8 +420,9 @@ body {
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    border-radius: 16px;
-    box-shadow: var(--shadow-lg);
+    border-radius: 0;
+    border: 3px solid var(--terminal-green);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
 }
 
 .carousel-track {
@@ -306,6 +444,7 @@ body {
     width: 100%;
     height: 500px;
     object-fit: cover;
+    filter: contrast(1.2) brightness(0.85) sepia(0.1) hue-rotate(90deg);
 }
 
 .slide-caption {
@@ -313,44 +452,61 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-    color: white;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    color: var(--terminal-green-bright);
     padding: 2rem;
     font-size: 1.5rem;
     font-weight: 600;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+.slide-caption::before {
+    content: '> ';
+    color: var(--terminal-green);
 }
 
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.9);
-    border: none;
+    background-color: rgba(10, 10, 10, 0.9);
+    border: 2px solid var(--terminal-green);
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    color: var(--text-primary);
+    color: var(--terminal-green);
     transition: all 0.3s ease;
     z-index: 10;
+    font-family: 'Courier New', monospace;
 }
 
 .carousel-btn:hover {
-    background-color: var(--accent-color);
-    color: white;
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
     transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
 }
 
 .carousel-btn.prev {
     left: 1rem;
 }
 
+.carousel-btn.prev::before {
+    content: '<';
+}
+
 .carousel-btn.next {
     right: 1rem;
+}
+
+.carousel-btn.next::before {
+    content: '>';
 }
 
 .carousel-indicators {
@@ -364,18 +520,19 @@ body {
 }
 
 .carousel-indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
+    width: 12px;
+    height: 12px;
+    border-radius: 0;
+    background-color: rgba(0, 255, 0, 0.3);
+    border: 1px solid var(--terminal-green);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .carousel-indicator.active {
-    background-color: white;
+    background-color: var(--terminal-green);
     width: 30px;
-    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
 }
 
 /* ========== 通用区块样式 ========== */
@@ -385,30 +542,60 @@ body {
     margin-bottom: 3rem;
     position: relative;
     padding-bottom: 1rem;
+    color: var(--terminal-green-bright);
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+.section-title::before {
+    content: '=== ';
+    color: var(--terminal-green);
 }
 
 .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(135deg, var(--accent-color), #a855f7);
-    border-radius: 2px;
+    content: ' ===';
+    color: var(--terminal-green);
 }
 
 .section-subtitle {
     text-align: center;
-    color: var(--text-secondary);
+    color: var(--terminal-green);
     margin-bottom: 2rem;
     font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+    opacity: 0.7;
+}
+
+.section-subtitle::before {
+    content: '// ';
+    color: var(--terminal-green-dark);
 }
 
 /* ========== 关于我区域 ========== */
 .about {
     padding: 6rem 0;
+    background-color: var(--bg-secondary);
+    border-top: 2px solid var(--terminal-green-dark);
+    position: relative;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 0, 0.03) 2px,
+        rgba(0, 255, 0, 0.03) 4px
+    );
+    pointer-events: none;
 }
 
 .about-content {
@@ -416,24 +603,45 @@ body {
     grid-template-columns: 1fr 2fr;
     gap: 3rem;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 .about-image img {
     width: 100%;
-    border-radius: 16px;
-    box-shadow: var(--shadow-lg);
+    border-radius: 0;
+    border: 3px solid var(--terminal-green);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    filter: contrast(1.1) brightness(0.9);
 }
 
 .about-text h3 {
     font-size: 1.75rem;
     margin-bottom: 1rem;
-    color: var(--accent-color);
+    color: var(--terminal-green-bright);
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+}
+
+.about-text h3::before {
+    content: '> ';
+    color: var(--terminal-green);
 }
 
 .about-text p {
     margin-bottom: 1rem;
-    color: var(--text-secondary);
+    color: var(--terminal-green);
     line-height: 1.8;
+    font-family: 'Courier New', monospace;
+    opacity: 0.9;
+    padding-left: 20px;
+    border-left: 3px solid var(--terminal-green-dark);
+}
+
+.about-text p::before {
+    content: '// ';
+    color: var(--terminal-green-dark);
+    margin-left: -20px;
 }
 
 .skills {
@@ -445,17 +653,31 @@ body {
 
 .skill-tag {
     padding: 0.5rem 1rem;
-    background-color: var(--bg-tertiary);
-    color: var(--accent-color);
-    border-radius: 20px;
+    background-color: transparent;
+    color: var(--terminal-green);
+    border: 1px solid var(--terminal-green);
+    border-radius: 0;
     font-size: 0.9rem;
     font-weight: 500;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+}
+
+.skill-tag::before {
+    content: '#';
+}
+
+.skill-tag:hover {
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
 }
 
 /* ========== 作品集区域 ========== */
 .portfolio {
     padding: 6rem 0;
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-primary);
+    border-top: 2px solid var(--terminal-green-dark);
 }
 
 .portfolio-grid {
@@ -465,22 +687,25 @@ body {
 }
 
 .portfolio-item {
-    background-color: var(--bg-primary);
-    border-radius: 12px;
+    background-color: rgba(0, 255, 0, 0.05);
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    border: 2px solid var(--terminal-green-dark);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .portfolio-item:hover {
     transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+    border-color: var(--terminal-green);
 }
 
 .portfolio-image {
     position: relative;
     overflow: hidden;
     height: 250px;
+    border-bottom: 2px solid var(--terminal-green-dark);
 }
 
 .portfolio-image img {
@@ -488,6 +713,7 @@ body {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    filter: contrast(1.2) brightness(0.8) sepia(0.2) hue-rotate(90deg);
 }
 
 .portfolio-item:hover .portfolio-image img {
@@ -501,11 +727,24 @@ body {
 .portfolio-info h3 {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
+    color: var(--terminal-green-bright);
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.portfolio-info h3::before {
+    content: '$ ./';
+    color: var(--terminal-green);
+    font-size: 0.9em;
+    margin-right: 5px;
 }
 
 .portfolio-info p {
-    color: var(--text-secondary);
+    color: var(--terminal-green);
     margin-bottom: 1rem;
+    font-family: 'Courier New', monospace;
+    opacity: 0.8;
 }
 
 .portfolio-tags {
@@ -516,15 +755,30 @@ body {
 
 .portfolio-tags span {
     padding: 0.25rem 0.75rem;
-    background-color: var(--bg-tertiary);
-    color: var(--accent-color);
-    border-radius: 12px;
+    background-color: transparent;
+    color: var(--terminal-green);
+    border: 1px solid var(--terminal-green);
+    border-radius: 0;
     font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+}
+
+.portfolio-tags span::before {
+    content: '#';
+}
+
+.portfolio-tags span:hover {
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
 }
 
 /* ========== AI对话界面 ========== */
 .ai-chat {
     padding: 6rem 0;
+    background-color: var(--bg-secondary);
+    border-top: 2px solid var(--terminal-green-dark);
 }
 
 .quick-questions {
@@ -537,28 +791,37 @@ body {
 
 .quick-question {
     padding: 0.75rem 1.5rem;
-    background-color: var(--bg-tertiary);
-    border: 2px solid transparent;
-    border-radius: 25px;
+    background-color: transparent;
+    border: 2px solid var(--terminal-green-dark);
+    border-radius: 0;
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 0.95rem;
-    color: var(--text-primary);
+    color: var(--terminal-green);
+    font-family: 'Courier New', monospace;
+}
+
+.quick-question::before {
+    content: '? ';
+    color: var(--terminal-green-bright);
 }
 
 .quick-question:hover {
-    background-color: var(--accent-color);
-    color: white;
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
+    border-color: var(--terminal-green);
     transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
 }
 
 .chat-container {
     max-width: 900px;
     margin: 0 auto;
-    background-color: var(--bg-secondary);
-    border-radius: 16px;
+    background-color: var(--bg-primary);
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 0 40px rgba(0, 255, 0, 0.4), inset 0 0 30px rgba(0, 255, 0, 0.1);
+    border: 3px solid var(--terminal-green);
 }
 
 .chat-messages {
@@ -583,17 +846,21 @@ body {
 .message-avatar {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background-color: var(--accent-color);
-    color: white;
+    border-radius: 0;
+    background-color: rgba(0, 255, 0, 0.2);
+    border: 2px solid var(--terminal-green);
+    color: var(--terminal-green-bright);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
 }
 
 .user-message .message-avatar {
-    background-color: #10b981;
+    background-color: rgba(0, 255, 0, 0.3);
+    border-color: var(--terminal-green-bright);
 }
 
 .message-content {
@@ -601,48 +868,70 @@ body {
 }
 
 .message-text {
-    background-color: var(--chat-ai-bg);
+    background-color: rgba(0, 255, 0, 0.05);
     padding: 1rem 1.25rem;
-    border-radius: 12px;
+    border-radius: 0;
     line-height: 1.6;
+    border: 1px solid var(--terminal-green-dark);
+    color: var(--terminal-green);
+    font-family: 'Courier New', monospace;
 }
 
 .user-message .message-text {
-    background-color: var(--chat-user-bg);
-    color: white;
-    border-radius: 12px 12px 0 12px;
+    background-color: rgba(0, 255, 0, 0.1);
+    color: var(--terminal-green-bright);
+    border: 1px solid var(--terminal-green);
+    border-radius: 0;
+}
+
+.user-message .message-text::before {
+    content: '> ';
+    color: var(--terminal-green-bright);
 }
 
 .ai-message .message-text {
-    border-radius: 12px 12px 12px 0;
+    border-radius: 0;
 }
 
 .message-time {
     font-size: 0.75rem;
-    color: var(--text-secondary);
+    color: var(--terminal-green-dark);
     margin-top: 0.5rem;
     padding: 0 0.25rem;
+    font-family: 'Courier New', monospace;
+}
+
+.message-time::before {
+    content: '[';
+}
+
+.message-time::after {
+    content: ']';
 }
 
 /* 代码块样式 */
 .message-text pre {
-    background-color: #282c34;
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 0;
     overflow-x: auto;
     margin: 0.5rem 0;
+    border: 1px solid var(--terminal-green-dark);
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
 }
 
 .message-text code {
     font-family: 'Courier New', monospace;
     font-size: 0.9rem;
+    color: var(--terminal-green);
 }
 
 .message-text :not(pre) > code {
-    background-color: var(--bg-tertiary);
+    background-color: rgba(0, 255, 0, 0.1);
     padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    color: var(--accent-color);
+    border-radius: 0;
+    color: var(--terminal-green-bright);
+    border: 1px solid var(--terminal-green-dark);
 }
 
 /* 正在输入指示器 */
@@ -656,17 +945,19 @@ body {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    background-color: var(--chat-ai-bg);
+    background-color: rgba(0, 255, 0, 0.05);
     padding: 1rem 1.25rem;
-    border-radius: 12px 12px 12px 0;
+    border-radius: 0;
+    border: 1px solid var(--terminal-green-dark);
 }
 
 .typing-dots span {
     width: 8px;
     height: 8px;
-    border-radius: 50%;
-    background-color: var(--text-secondary);
+    border-radius: 0;
+    background-color: var(--terminal-green);
     animation: typingDot 1.4s infinite;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.6);
 }
 
 .typing-dots span:nth-child(2) {
@@ -679,9 +970,20 @@ body {
 
 /* 聊天输入区域 */
 .chat-input-container {
-    background-color: var(--bg-primary);
+    background-color: rgba(0, 255, 0, 0.05);
     padding: 1.5rem;
-    border-top: 1px solid var(--border-color);
+    border-top: 2px solid var(--terminal-green);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.chat-input-container::before {
+    content: '$';
+    color: var(--terminal-green-bright);
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .chat-controls {
@@ -691,74 +993,118 @@ body {
 }
 
 .control-btn {
-    background: none;
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
+    background: transparent;
+    border: 1px solid var(--terminal-green-dark);
+    color: var(--terminal-green);
     padding: 0.5rem 1rem;
-    border-radius: 8px;
+    border-radius: 0;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    font-family: 'Courier New', monospace;
 }
 
 .control-btn:hover {
-    background-color: var(--bg-tertiary);
-    color: var(--accent-color);
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
 .chat-input-wrapper {
     display: flex;
     gap: 0.75rem;
     align-items: flex-end;
+    flex: 1;
 }
 
 .chat-input {
     flex: 1;
     padding: 0.875rem 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
-    font-family: inherit;
+    border: 2px solid var(--terminal-green-dark);
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--terminal-green);
+    font-family: 'Courier New', monospace;
     font-size: 1rem;
     resize: none;
     max-height: 120px;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .chat-input:focus {
     outline: none;
-    border-color: var(--accent-color);
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.chat-input::placeholder {
+    color: var(--terminal-green-dark);
 }
 
 .send-btn {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
+    background-color: transparent;
+    color: var(--terminal-green);
+    border: 2px solid var(--terminal-green);
     padding: 0.875rem 1.5rem;
-    border-radius: 12px;
+    border-radius: 0;
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.send-btn::before {
+    content: '[';
+}
+
+.send-btn::after {
+    content: ']';
 }
 
 .send-btn:hover {
-    background-color: var(--accent-hover);
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
     transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
 }
 
 .send-btn:disabled {
-    background-color: var(--text-secondary);
+    background-color: transparent;
+    border-color: var(--terminal-green-dark);
+    color: var(--terminal-green-dark);
     cursor: not-allowed;
     transform: none;
+    opacity: 0.3;
 }
 
 /* ========== 页脚区域 ========== */
 .footer {
     background-color: var(--bg-secondary);
     padding: 4rem 0 2rem;
+    border-top: 3px solid var(--terminal-green);
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--terminal-green) 0px,
+        var(--terminal-green) 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    opacity: 0.3;
 }
 
 .footer-content {
@@ -766,16 +1112,33 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 3rem;
     margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-section h3 {
     margin-bottom: 1rem;
-    color: var(--accent-color);
+    color: var(--terminal-green-bright);
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.footer-section h3::before {
+    content: '[';
+    color: var(--terminal-green);
+}
+
+.footer-section h3::after {
+    content: ']';
+    color: var(--terminal-green);
 }
 
 .footer-section p,
 .footer-section ul {
-    color: var(--text-secondary);
+    color: var(--terminal-green);
+    font-family: 'Courier New', monospace;
+    opacity: 0.8;
 }
 
 .footer-section ul {
@@ -786,14 +1149,20 @@ body {
     margin-bottom: 0.5rem;
 }
 
+.footer-section ul li::before {
+    content: '> ';
+    color: var(--terminal-green-dark);
+}
+
 .footer-section a {
-    color: var(--text-secondary);
+    color: var(--terminal-green);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .footer-section a:hover {
-    color: var(--accent-color);
+    color: var(--terminal-green-bright);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
 }
 
 .subscribe-form {
@@ -805,24 +1174,39 @@ body {
 .subscribe-form input {
     flex: 1;
     padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+    border: 2px solid var(--terminal-green-dark);
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--terminal-green);
+    font-family: 'Courier New', monospace;
+}
+
+.subscribe-form input:focus {
+    outline: none;
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.subscribe-form input::placeholder {
+    color: var(--terminal-green-dark);
 }
 
 .subscribe-form button {
     padding: 0.75rem 1.5rem;
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
+    background-color: transparent;
+    color: var(--terminal-green);
+    border: 2px solid var(--terminal-green);
+    border-radius: 0;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
 }
 
 .subscribe-form button:hover {
-    background-color: var(--accent-hover);
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
 }
 
 .social-links {
@@ -835,9 +1219,10 @@ body {
 .social-link {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    background-color: var(--bg-tertiary);
-    color: var(--text-primary);
+    border-radius: 0;
+    background-color: transparent;
+    color: var(--terminal-green);
+    border: 2px solid var(--terminal-green-dark);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -846,16 +1231,30 @@ body {
 }
 
 .social-link:hover {
-    background-color: var(--accent-color);
-    color: white;
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
     transform: translateY(-5px);
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-    color: var(--text-secondary);
+    border-top: 2px solid var(--terminal-green-dark);
+    color: var(--terminal-green);
+    font-family: 'Courier New', monospace;
+}
+
+.footer-bottom::before {
+    content: '[SYSTEM] ';
+    color: var(--terminal-green-dark);
+}
+
+.footer-bottom::after {
+    content: ' | Uptime: 99.9% | Status: ONLINE';
+    color: var(--terminal-green-dark);
+    font-size: 0.9em;
 }
 
 .footer-links {
@@ -865,6 +1264,19 @@ body {
     justify-content: center;
 }
 
+.footer-links a {
+    color: var(--terminal-green);
+    font-family: 'Courier New', monospace;
+}
+
+.footer-links a::before {
+    content: '[ ';
+}
+
+.footer-links a::after {
+    content: ' ]';
+}
+
 /* ========== 滚动条样式 ========== */
 ::-webkit-scrollbar {
     width: 10px;
@@ -872,15 +1284,18 @@ body {
 
 ::-webkit-scrollbar-track {
     background: var(--bg-secondary);
+    border: 1px solid var(--terminal-green-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--text-secondary);
-    border-radius: 5px;
+    background: var(--terminal-green-dark);
+    border-radius: 0;
+    border: 1px solid var(--terminal-green);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-color);
+    background: var(--terminal-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
 }
 
 /* ========== 动画 ========== */
@@ -951,6 +1366,16 @@ body {
     }
 }
 
+@keyframes cursorBlink {
+    0%, 50% { border-right: 2px solid var(--terminal-green); }
+    51%, 100% { border-right: 2px solid transparent; }
+}
+
+/* 无扫描线模式 */
+body.no-scanlines::before {
+    display: none;
+}
+
 /* ========== 响应式设计 ========== */
 @media (max-width: 768px) {
     .nav-menu {
@@ -962,8 +1387,10 @@ body {
         width: 100%;
         text-align: center;
         transition: 0.3s;
-        box-shadow: var(--shadow-lg);
+        box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
         padding: 2rem 0;
+        border-top: 2px solid var(--terminal-green);
+        border-bottom: 2px solid var(--terminal-green);
     }
 
     .nav-menu.active {
