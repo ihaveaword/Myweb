@@ -10,11 +10,20 @@ function calculateTotal(items) {
 }
 
 function displayMessage(msg) {
-    console.log('Message: ' + msg);
+    // 同事添加了时间戳功能
+    const timestamp = new Date().toISOString();
+    console.log(`[${timestamp}] Message: ${msg}`);
 }
 
 function getUserName() {
-    return 'Guest';
+    // 同事改进了用户名功能
+    const name = localStorage.getItem('username') || 'Guest';
+    return name;
+}
+
+function formatPrice(price) {
+    // 同事添加了新功能：格式化价格
+    return `¥${price.toFixed(2)}`;
 }
 
 // 导出函数
