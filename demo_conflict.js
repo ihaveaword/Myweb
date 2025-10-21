@@ -9,13 +9,7 @@ function calculateTotal(items) {
     return total;
 }
 
-function displayMessage(msg) {
-    console.log('Message: ' + msg);
-}
-
-function getUserName() {
-    return 'Guest';
-}
+// 你删除了 displayMessage 和 getUserName 函数，认为它们不需要了
 
 // 导出函数
 module.exports = {
