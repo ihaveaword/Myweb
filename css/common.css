@@ -21,8 +21,10 @@
     --terminal-shadow: rgba(0, 255, 0, 0.5);
     --terminal-glow: 0 0 5px rgba(0, 255, 0, 0.5);
     
-    /* 自定义绿色 I 型光标 */
-    --cursor-ibeam: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 20 24"><g fill="none" stroke="%2300ff00" stroke-width="2" stroke-linecap="round"><line x1="10" y1="2" x2="10" y2="22"/><line x1="6" y1="2" x2="14" y2="2"/><line x1="6" y1="22" x2="14" y2="22"/></g></svg>') 10 12, text;
+    /* 自定义绿色光标集合 */
+    --cursor-default: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect x="0" y="0" width="12" height="18" fill="%2300ff00" opacity="0.8"/></svg>'), auto;
+    --cursor-pointer: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect x="0" y="0" width="14" height="18" fill="%2300ff41" opacity="1"/><rect x="2" y="2" width="10" height="14" fill="%23000" opacity="0.3"/></svg>'), pointer;
+    --cursor-text: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect x="8" y="0" width="2" height="18" fill="%2300ff00"/></svg>'), text;
     
     /* 主题色 */
     --bg-primary: #000000;
@@ -64,8 +66,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* 自定义绿色 I 型光标 */
-    cursor: var(--cursor-ibeam);
+    /* 自定义绿色光标 */
+    cursor: var(--cursor-default);
 }
 
 html {
@@ -544,7 +546,7 @@ textarea,
 select,
 [role="button"],
 [onclick] {
-    cursor: var(--cursor-ibeam);
+    cursor: var(--cursor-pointer);
 }
 
 /* 文本选择光标 */
@@ -552,7 +554,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea {
-    cursor: text;
+    cursor: var(--cursor-text);
 }
 
 /* 禁用状态光标 */

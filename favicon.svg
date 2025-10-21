@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100">
+  <defs>
+    <!-- 定义圆角裁剪路径 -->
+    <clipPath id="roundedCorners">
+      <rect x="0" y="0" width="100" height="100" rx="15" ry="15"/>
+    </clipPath>
+    
+    <!-- 光晕效果 -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 使用圆角裁剪的组 -->
+  <g clip-path="url(#roundedCorners)">
+    <!-- 黑色背景 -->
+    <rect width="100" height="100" fill="#000000"/>
+    
+    <!-- 嵌入照片 -->
+    <image x="0" y="0" width="100" height="100" xlink:href="favicon.jpg" preserveAspectRatio="xMidYMid slice"/>
+  </g>
+  
+  <!-- 圆角边框 -->
+  <rect x="2" y="2" width="96" height="96" rx="15" ry="15" fill="none" stroke="#00ff00" stroke-width="3" filter="url(#glow)"/>
+</svg>
