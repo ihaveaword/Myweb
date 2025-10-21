@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试页面 - 验证重构</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            padding: 2rem;
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 2px solid #00ff00;
+        }
+        .test-item {
+            margin: 0.5rem 0;
+        }
+        .success {
+            color: #00ff00;
+        }
+        .error {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>重构后文件加载测试</h1>
+    
+    <div class="test-section">
+        <h2>CSS 文件检测</h2>
+        <div id="css-test" class="test-item">检测中...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>JavaScript 文件检测</h2>
+        <div id="js-test" class="test-item">检测中...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>功能测试</h2>
+        <div id="function-test" class="test-item">检测中...</div>
+    </div>
+    
+    <script>
+        // 检测 CSS
+        const cssTest = document.getElementById('css-test');
+        const cssFiles = Array.from(document.styleSheets).map(sheet => {
+            try {
+                return sheet.href || '(inline)';
+            } catch(e) {
+                return '(无法访问)';
+            }
+        });
+        cssTest.innerHTML = `
+            <div>检测到 ${cssFiles.length} 个样式表：</div>
+            ${cssFiles.map(file => `<div>✓ ${file}</div>`).join('')}
+        `;
+        
+        // 检测 JS
+        const jsTest = document.getElementById('js-test');
+        const scripts = Array.from(document.scripts).map(s => s.src || '(inline)');
+        jsTest.innerHTML = `
+            <div>检测到 ${scripts.length} 个脚本：</div>
+            ${scripts.map(file => `<div>✓ ${file}</div>`).join('')}
+        `;
+        
+        // 功能测试
+        const functionTest = document.getElementById('function-test');
+        const tests = [];
+        
+        // 测试 common.js 的函数
+        tests.push(`initMatrixRain: ${typeof initMatrixRain === 'function' ? '✓' : '✗'}`);
+        tests.push(`showBootSequence: ${typeof showBootSequence === 'function' ? '✓' : '✗'}`);
+        tests.push(`typeWriter: ${typeof typeWriter === 'function' ? '✓' : '✗'}`);
+        tests.push(`openStudentPage: ${typeof openStudentPage === 'function' ? '✓' : '✗'}`);
+        
+        functionTest.innerHTML = tests.map(t => `<div>${t}</div>`).join('');
+    </script>
+    
+    <!-- 加载实际的文件 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

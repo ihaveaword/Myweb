@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>效果诊断页面</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Fira Code', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1, h2 { 
+            margin: 2rem 0 1rem;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .section {
+            background: rgba(0, 255, 0, 0.05);
+            border: 2px solid #00ff00;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+        .test-item {
+            padding: 1rem;
+            margin: 1rem 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-left: 3px solid #00ff00;
+        }
+        .success { color: #00ff00; }
+        .error { color: #ff0000; }
+        .warning { color: #ffaa00; }
+        
+        /* Portfolio 3D 测试 */
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            perspective: 1000px;
+            margin: 2rem 0;
+        }
+        .test-card {
+            background: rgba(0, 255, 0, 0.05);
+            border: 2px solid #00ff00;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .test-card:hover {
+            transform: rotateY(5deg) rotateX(5deg) translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+        }
+        
+        /* 启动动画测试 */
+        .boot-sequence {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: #00ff00;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+            z-index: 10000;
+            animation: fadeOut 1s ease-out 3s forwards;
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+        .boot-line {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        button {
+            background: transparent;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            padding: 1rem 2rem;
+            font-family: 'Fira Code', monospace;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+        
+        pre {
+            background: #000;
+            padding: 1rem;
+            border: 1px solid #00ff00;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 启动动画测试 -->
+    <div class="boot-sequence" id="bootSequence">
+        <div class="boot-line" style="animation-delay: 0s;">╔═══════════════════════════════════════╗</div>
+        <div class="boot-line" style="animation-delay: 0.3s;">║  System Boot Test                    ║</div>
+        <div class="boot-line" style="animation-delay: 0.6s;">║  Checking Effects...                 ║</div>
+        <div class="boot-line" style="animation-delay: 0.9s;">╚═══════════════════════════════════════╝</div>
+    </div>
+
+    <div class="container">
+        <h1>🔍 页面效果诊断工具</h1>
+        
+        <!-- 文件加载检测 -->
+        <div class="section">
+            <h2>1. 文件加载检测</h2>
+            <div class="test-item">
+                <strong>CSS 文件:</strong>
+                <div id="cssFiles"></div>
+            </div>
+            <div class="test-item">
+                <strong>JS 文件:</strong>
+                <div id="jsFiles"></div>
+            </div>
+        </div>
+
+        <!-- 函数可用性检测 -->
+        <div class="section">
+            <h2>2. 函数可用性检测</h2>
+            <div id="functionTests"></div>
+            <button onclick="testShowBootSequence()">测试启动动画</button>
+        </div>
+
+        <!-- Portfolio 3D 效果测试 -->
+        <div class="section">
+            <h2>3. Portfolio 3D 倾斜效果测试</h2>
+            <p>将鼠标悬停在下面的卡片上，应该看到它们向右上方倾斜：</p>
+            <div class="test-grid">
+                <div class="test-card">
+                    <h3>测试卡片 1</h3>
+                    <p>悬停测试</p>
+                </div>
+                <div class="test-card">
+                    <h3>测试卡片 2</h3>
+                    <p>悬停测试</p>
+                </div>
+                <div class="test-card">
+                    <h3>测试卡片 3</h3>
+                    <p>悬停测试</p>
+                </div>
+            </div>
+            <div class="test-item">
+                <strong>CSS 3D Transform 支持:</strong>
+                <span id="transformSupport"></span>
+            </div>
+        </div>
+
+        <!-- 浏览器缓存检测 -->
+        <div class="section">
+            <h2>4. 浏览器缓存检测</h2>
+            <div class="test-item">
+                <strong>当前时间戳:</strong> <span id="timestamp"></span>
+            </div>
+            <div class="test-item">
+                <strong>检查是否加载了旧文件 (styles.css / script.js):</strong>
+                <div id="oldFiles"></div>
+            </div>
+            <button onclick="location.reload(true)">强制刷新页面</button>
+            <button onclick="clearCacheAndReload()">清除缓存并刷新</button>
+        </div>
+
+        <!-- 控制台日志 -->
+        <div class="section">
+            <h2>5. 控制台日志</h2>
+            <pre id="consoleLog"></pre>
+            <button onclick="document.getElementById('consoleLog').textContent = ''">清除日志</button>
+        </div>
+
+        <!-- 修复建议 -->
+        <div class="section">
+            <h2>6. 修复建议</h2>
+            <div id="suggestions"></div>
+        </div>
+    </div>
+
+    <script>
+        // 捕获控制台日志
+        const originalLog = console.log;
+        const originalError = console.error;
+        const logElement = document.getElementById('consoleLog');
+        
+        console.log = function(...args) {
+            logElement.textContent += args.join(' ') + '\n';
+            originalLog.apply(console, args);
+        };
+        console.error = function(...args) {
+            logElement.textContent += '[ERROR] ' + args.join(' ') + '\n';
+            originalError.apply(console, args);
+        };
+
+        // 1. 检测 CSS 文件
+        function detectCSSFiles() {
+            const cssFiles = [];
+            const links = document.getElementsByTagName('link');
+            for (let link of links) {
+                if (link.rel === 'stylesheet' && link.href.includes('.css')) {
+                    cssFiles.push(link.href);
+                }
+            }
+            
+            let html = '<ul>';
+            cssFiles.forEach(file => {
+                const fileName = file.split('/').pop();
+                if (fileName === 'common.css' || fileName === 'index.css') {
+                    html += `<li class="success">✓ ${file}</li>`;
+                } else if (fileName === 'styles.css') {
+                    html += `<li class="error">✗ 检测到旧文件: ${file}</li>`;
+                } else {
+                    html += `<li>${file}</li>`;
+                }
+            });
+            html += '</ul>';
+            document.getElementById('cssFiles').innerHTML = html;
+        }
+
+        // 2. 检测 JS 文件
+        function detectJSFiles() {
+            const jsFiles = [];
+            const scripts = document.getElementsByTagName('script');
+            for (let script of scripts) {
+                if (script.src && script.src.includes('.js')) {
+                    jsFiles.push(script.src);
+                }
+            }
+            
+            let html = '<ul>';
+            jsFiles.forEach(file => {
+                const fileName = file.split('/').pop();
+                if (fileName === 'common.js' || fileName === 'index.js') {
+                    html += `<li class="success">✓ ${file}</li>`;
+                } else if (fileName === 'script.js') {
+                    html += `<li class="error">✗ 检测到旧文件: ${file}</li>`;
+                } else {
+                    html += `<li>${file}</li>`;
+                }
+            });
+            html += '</ul>';
+            document.getElementById('jsFiles').innerHTML = html;
+        }
+
+        // 3. 检测函数可用性
+        function testFunctions() {
+            const functions = [
+                'showBootSequence',
+                'initMatrixRain',
+                'typeWriter',
+                'addRippleEffect'
+            ];
+            
+            let html = '';
+            functions.forEach(funcName => {
+                const exists = typeof window[funcName] === 'function';
+                const status = exists ? 
+                    `<span class="success">✓ 可用</span>` : 
+                    `<span class="error">✗ 不可用</span>`;
+                html += `<div class="test-item">${funcName}: ${status}</div>`;
+            });
+            
+            document.getElementById('functionTests').innerHTML = html;
+        }
+
+        // 4. 测试启动动画
+        function testShowBootSequence() {
+            if (typeof showBootSequence === 'function') {
+                showBootSequence();
+                console.log('✅ 启动动画已触发');
+            } else {
+                console.error('❌ showBootSequence 函数不存在');
+                alert('启动动画函数不可用！请检查 common.js 是否正确加载。');
+            }
+        }
+
+        // 5. 检测 CSS 3D Transform 支持
+        function checkTransformSupport() {
+            const testDiv = document.createElement('div');
+            const transforms = [
+                'transform',
+                'WebkitTransform',
+                'MozTransform',
+                'msTransform'
+            ];
+            
+            let supported = false;
+            for (let transform of transforms) {
+                if (testDiv.style[transform] !== undefined) {
+                    supported = true;
+                    break;
+                }
+            }
+            
+            document.getElementById('transformSupport').innerHTML = supported ?
+                '<span class="success">✓ 支持</span>' :
+                '<span class="error">✗ 不支持</span>';
+        }
+
+        // 6. 显示时间戳
+        function showTimestamp() {
+            document.getElementById('timestamp').textContent = new Date().toLocaleString('zh-CN');
+        }
+
+        // 7. 检测旧文件
+        function checkOldFiles() {
+            const hasOldCSS = Array.from(document.styleSheets).some(sheet => 
+                sheet.href && sheet.href.includes('styles.css')
+            );
+            const hasOldJS = Array.from(document.scripts).some(script => 
+                script.src && script.src.includes('script.js')
+            );
+            
+            let html = '';
+            if (hasOldCSS) {
+                html += '<div class="error">✗ 检测到旧的 styles.css 正在加载！</div>';
+            }
+            if (hasOldJS) {
+                html += '<div class="error">✗ 检测到旧的 script.js 正在加载！</div>';
+            }
+            if (!hasOldCSS && !hasOldJS) {
+                html = '<div class="success">✓ 未检测到旧文件</div>';
+            }
+            
+            document.getElementById('oldFiles').innerHTML = html;
+        }
+
+        // 8. 清除缓存并刷新
+        function clearCacheAndReload() {
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => caches.delete(name));
+                });
+            }
+            window.location.reload(true);
+        }
+
+        // 9. 生成修复建议
+        function generateSuggestions() {
+            let suggestions = [];
+            
+            // 检查是否有旧文件
+            const hasOldFiles = 
+                Array.from(document.styleSheets).some(sheet => sheet.href && sheet.href.includes('styles.css')) ||
+                Array.from(document.scripts).some(script => script.src && script.src.includes('script.js'));
+            
+            if (hasOldFiles) {
+                suggestions.push({
+                    level: 'error',
+                    text: '删除根目录的 styles.css 和 script.js 旧文件'
+                });
+            }
+            
+            // 检查函数可用性
+            if (typeof showBootSequence !== 'function') {
+                suggestions.push({
+                    level: 'error',
+                    text: 'common.js 未正确加载或 showBootSequence 函数不存在'
+                });
+            }
+            
+            if (suggestions.length === 0) {
+                suggestions.push({
+                    level: 'success',
+                    text: '所有检查通过！如果效果仍不显示，请尝试清除浏览器缓存。'
+                });
+            }
+            
+            let html = '<ul>';
+            suggestions.forEach(s => {
+                html += `<li class="${s.level}">${s.text}</li>`;
+            });
+            html += '</ul>';
+            
+            document.getElementById('suggestions').innerHTML = html;
+        }
+
+        // 初始化所有检测
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('🔍 开始诊断...');
+            detectCSSFiles();
+            detectJSFiles();
+            testFunctions();
+            checkTransformSupport();
+            showTimestamp();
+            checkOldFiles();
+            generateSuggestions();
+            console.log('✅ 诊断完成');
+        });
+    </script>
+
+    <!-- 加载实际的 JS 文件进行测试 -->
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

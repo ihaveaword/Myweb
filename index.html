@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人网站 | Personal Website</title>
     
+    <!-- Favicon - 多尺寸支持 -->
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon.ico/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="favicon.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico/favicon-16x16.png">
+    <link rel="manifest" href="favicon.ico/manifest.json">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="favicon.ico/ms-icon-144x144.png">
+    <meta name="theme-color" content="#00ff00">
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -14,8 +33,9 @@
     <!-- Highlight.js for code highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Custom CSS - 先加载公共样式，再加载页面专用样式 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -27,6 +47,7 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link">./home</a></li>
                 <li><a href="#about" class="nav-link">./about</a></li>
+                <li><a href="#student-life" class="nav-link">./memories</a></li>
                 <li><a href="#portfolio" class="nav-link">./work</a></li>
                 <li><a href="#ai-chat" class="nav-link">./ai</a></li>
                 <li><a href="#contact" class="nav-link">./contact</a></li>
@@ -114,6 +135,51 @@
                         <span class="skill-tag">CSS/SASS</span>
                         <span class="skill-tag">Node.js</span>
                         <span class="skill-tag">AI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学生时代区域 -->
+    <section id="student-life" class="student-life">
+        <div class="container">
+            <h2 class="section-title">cd ./memories/student_days/</h2>
+            <p class="section-subtitle">// My journey through the years of learning and growth</p>
+            
+            <div class="student-preview">
+                <div class="memory-card" onclick="openStudentPage()">
+                    <div class="memory-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Academic Journey</h3>
+                    <p>// Click to explore my student life timeline</p>
+                    <div class="memory-stats">
+                        <span><i class="fas fa-book"></i> Years of Study</span>
+                        <span><i class="fas fa-trophy"></i> Achievements</span>
+                        <span><i class="fas fa-users"></i> Memories</span>
+                    </div>
+                    <button class="explore-btn">
+                        <i class="fas fa-terminal"></i> ./explore.sh
+                    </button>
+                </div>
+                
+                <div class="preview-grid">
+                    <div class="preview-item" data-category="study">
+                        <i class="fas fa-book-open"></i>
+                        <span>Academic Life</span>
+                    </div>
+                    <div class="preview-item" data-category="activities">
+                        <i class="fas fa-running"></i>
+                        <span>Activities</span>
+                    </div>
+                    <div class="preview-item" data-category="friends">
+                        <i class="fas fa-user-friends"></i>
+                        <span>Friendships</span>
+                    </div>
+                    <div class="preview-item" data-category="achievements">
+                        <i class="fas fa-medal"></i>
+                        <span>Achievements</span>
                     </div>
                 </div>
             </div>
@@ -276,6 +342,8 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
-    <script src="script.js"></script>
+    <!-- Custom JS - 先加载公共脚本，再加载页面专用脚本 -->
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>
