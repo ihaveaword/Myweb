@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 测试页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .chat-box {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 200px;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        .user-message {
+            background: #667eea;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+        .ai-message {
+            background: #e9ecef;
+            color: #333;
+        }
+        .input-box {
+            display: flex;
+            gap: 10px;
+        }
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .loading {
+            text-align: center;
+            color: #667eea;
+            font-style: italic;
+        }
+        .info-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .info-box strong {
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 豆包 AI 测试</h1>
+        
+        <div id="status" class="status info">
+            ⏳ 正在检测配置...
+        </div>
+
+        <div class="chat-box" id="chatBox">
+            <div class="message ai-message">
+                你好！我是 AI 助手，发送消息来测试我吧！
+            </div>
+        </div>
+
+        <div class="input-box">
+            <input type="text" id="messageInput" placeholder="输入测试消息，例如：你好" />
+            <button onclick="sendTestMessage()" id="sendBtn">发送</button>
+        </div>
+
+        <div class="info-box">
+            <strong>配置信息：</strong><br>
+            API 密钥：c8737ecd-bd2c-40c9-a24e-****（已配置）<br>
+            模型：doubao-1-5-pro-32k-250115<br>
+            状态：<span id="configStatus">检测中...</span>
+        </div>
+    </div>
+
+    <script>
+        // AI 配置
+        const AI_CONFIG = {
+            apiUrl: 'https://ark.cn-beijing.volces.com/api/v3/chat/completions',
+            apiKey: 'c8737ecd-bd2c-40c9-a24e-1f5602a37aea',
+            model: 'doubao-1-5-vision-pro-250328'
+        };
+
+        const statusDiv = document.getElementById('status');
+        const chatBox = document.getElementById('chatBox');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const configStatus = document.getElementById('configStatus');
+
+        // 检测配置
+        window.addEventListener('load', () => {
+            if (AI_CONFIG.apiKey && AI_CONFIG.apiKey !== 'YOUR_ARK_API_KEY_HERE') {
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = '✅ API 密钥已配置！可以开始测试';
+                configStatus.innerHTML = '<span style="color: green;">✅ 已就绪</span>';
+            } else {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = '❌ API 密钥未配置';
+                configStatus.innerHTML = '<span style="color: red;">❌ 未配置</span>';
+            }
+        });
+
+        // 发送测试消息
+        async function sendTestMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // 添加用户消息
+            addMessage(message, 'user');
+            messageInput.value = '';
+            sendBtn.disabled = true;
+
+            // 显示加载状态
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'loading';
+            loadingDiv.id = 'loading';
+            loadingDiv.textContent = '🤖 AI 正在思考...';
+            chatBox.appendChild(loadingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            try {
+                // 调用 API
+                const response = await fetch(AI_CONFIG.apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${AI_CONFIG.apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: AI_CONFIG.model,
+                        messages: [
+                            {
+                                role: 'system',
+                                content: '你是一个友好的AI助手。'
+                            },
+                            {
+                                role: 'user',
+                                content: message
+                            }
+                        ],
+                        temperature: 0.7,
+                        max_tokens: 500
+                    })
+                });
+
+                // 移除加载提示
+                const loading = document.getElementById('loading');
+                if (loading) loading.remove();
+
+                if (!response.ok) {
+                    throw new Error(`API 错误: ${response.status} ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                const aiReply = data.choices[0].message.content;
+                
+                // 添加 AI 回复
+                addMessage(aiReply, 'ai');
+                
+                // 更新状态
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = '✅ AI 正常工作！API 调用成功';
+
+            } catch (error) {
+                // 移除加载提示
+                const loading = document.getElementById('loading');
+                if (loading) loading.remove();
+
+                // 显示错误
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `❌ 错误: ${error.message}<br><small>请检查 API 密钥是否正确，或查看浏览器控制台获取详细信息</small>`;
+                
+                addMessage('抱歉，AI 调用失败。请检查配置。', 'ai');
+                console.error('API 调用错误:', error);
+            } finally {
+                sendBtn.disabled = false;
+            }
+        }
+
+        // 添加消息到聊天框
+        function addMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}-message`;
+            messageDiv.textContent = text;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // 回车发送
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendTestMessage();
+            }
+        });
+    </script>
+</body>
+</html>

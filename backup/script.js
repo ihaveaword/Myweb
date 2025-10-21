@@ -730,6 +730,17 @@ document.querySelectorAll('.portfolio-item, .about-content, .quick-question').fo
     observer.observe(el);
 });
 
+// ========== 学生时代页面跳转 ==========
+function openStudentPage() {
+    // 添加淡出效果
+    document.body.style.transition = 'opacity 0.3s ease';
+    document.body.style.opacity = '0';
+    
+    setTimeout(() => {
+        window.location.href = 'student-life.html';
+    }, 300);
+}
+
 // ========== 初始化 ==========
 console.log('🎉 欢迎访问我的个人网站！');
 console.log('💡 这个网站使用纯HTML、CSS和JavaScript构建');
