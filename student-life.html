@@ -35,10 +35,29 @@
     <link rel="stylesheet" href="css/student-life.css">
 </head>
 <body>
-    <!-- 返回按钮 -->
-    <div class="back-button" onclick="goBack()">
-        <i class="fas fa-arrow-left"></i> cd ../
-    </div>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">&lt; ZHY /&gt;</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页 | Home</a></li>
+                <li><a href="student-life.html" class="active">学生时代 | Student Life</a></li>
+                <li><a href="certificates.html">证书荣誉 | Certificates</a></li>
+                <li><a href="index.html#portfolio">作品集 | Portfolio</a></li>
+                <li><a href="index.html#contact">联系 | Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="切换主题">
+                    <i class="fas fa-adjust"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="菜单">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
     <!-- 页面标题 -->
     <header class="student-header">
@@ -54,19 +73,19 @@
     <nav class="timeline-nav">
         <div class="container">
             <button class="timeline-btn active" data-period="all">
-                <i class="fas fa-list"></i> All Memories
+                <i class="fas fa-list"></i> 全部回忆
             </button>
             <button class="timeline-btn" data-period="elementary">
-                <i class="fas fa-child"></i> Elementary
+                <i class="fas fa-child"></i> 小学时代
             </button>
             <button class="timeline-btn" data-period="middle">
-                <i class="fas fa-user-graduate"></i> Middle School
+                <i class="fas fa-user-graduate"></i> 初中时代
             </button>
             <button class="timeline-btn" data-period="high">
-                <i class="fas fa-school"></i> High School
+                <i class="fas fa-school"></i> 高中时代
             </button>
             <button class="timeline-btn" data-period="university">
-                <i class="fas fa-university"></i> University
+                <i class="fas fa-university"></i> 大学时代
             </button>
         </div>
     </nav>
@@ -88,48 +107,48 @@
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <h2>University Life</h2>
+                            <h2>大学生活</h2>
                             <span class="timeline-date">2020 - 2024</span>
                         </div>
                         <div class="memory-grid">
                             <div class="memory-box">
                                 <i class="fas fa-code"></i>
-                                <h3>First Programming Course</h3>
-                                <p>Discovered my passion for coding in CS101. Built my first website and fell in love with web development.</p>
+                                <h3>编程启蒙</h3>
+                                <p>在CS101课程中发现了对编程的热情。完成了第一个网站项目，从此爱上了Web开发。</p>
                                 <div class="memory-tags">
-                                    <span>Python</span>
-                                    <span>Web Dev</span>
-                                    <span>Passion</span>
+                                    <span>#Python</span>
+                                    <span>#Web开发</span>
+                                    <span>#热情</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-trophy"></i>
-                                <h3>Hackathon Victory</h3>
-                                <p>Won 1st place in university hackathon with a team of 4. Built an AI-powered study assistant in 24 hours.</p>
+                                <h3>黑客松冠军</h3>
+                                <p>与3位队友在校园黑客松中获得第一名。24小时内开发了一个AI学习助手。</p>
                                 <div class="memory-tags">
-                                    <span>Teamwork</span>
-                                    <span>AI/ML</span>
-                                    <span>Champion</span>
+                                    <span>#团队协作</span>
+                                    <span>#人工智能</span>
+                                    <span>#冠军</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-users"></i>
-                                <h3>Tech Club President</h3>
-                                <p>Led the computer science club, organized workshops and coding competitions for 200+ members.</p>
+                                <h3>科技社团主席</h3>
+                                <p>担任计算机科学社团主席，为200多名成员组织了多场技术讲座和编程竞赛。</p>
                                 <div class="memory-tags">
-                                    <span>Leadership</span>
-                                    <span>Community</span>
-                                    <span>Teaching</span>
+                                    <span>#领导力</span>
+                                    <span>#社区</span>
+                                    <span>#教学</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-project-diagram"></i>
-                                <h3>Capstone Project</h3>
-                                <p>Developed a full-stack web application for campus resource management. Grade: A+</p>
+                                <h3>毕业设计</h3>
+                                <p>开发了校园资源管理的全栈Web应用。成绩：优秀（A+）</p>
                                 <div class="memory-tags">
-                                    <span>Full-Stack</span>
-                                    <span>React</span>
-                                    <span>Node.js</span>
+                                    <span>#全栈开发</span>
+                                    <span>#React</span>
+                                    <span>#Node.js</span>
                                 </div>
                             </div>
                         </div>
@@ -146,48 +165,48 @@
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <h2>High School Adventures</h2>
+                            <h2>高中时光</h2>
                             <span class="timeline-date">2017 - 2020</span>
                         </div>
                         <div class="memory-grid">
                             <div class="memory-box">
                                 <i class="fas fa-medal"></i>
-                                <h3>Math Olympiad</h3>
-                                <p>Represented school in regional mathematics competition. Won silver medal.</p>
+                                <h3>数学奥林匹克</h3>
+                                <p>代表学校参加区域数学竞赛，荣获银牌。</p>
                                 <div class="memory-tags">
-                                    <span>Mathematics</span>
-                                    <span>Competition</span>
-                                    <span>Achievement</span>
+                                    <span>#数学</span>
+                                    <span>#竞赛</span>
+                                    <span>#成就</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-basketball-ball"></i>
-                                <h3>Basketball Team Captain</h3>
-                                <p>Led our team to inter-school championship finals. Made lifelong friends.</p>
+                                <h3>篮球队队长</h3>
+                                <p>带领球队打进校际锦标赛决赛，结交了一生的朋友。</p>
                                 <div class="memory-tags">
-                                    <span>Sports</span>
-                                    <span>Teamwork</span>
-                                    <span>Friendship</span>
+                                    <span>#体育</span>
+                                    <span>#团队</span>
+                                    <span>#友谊</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-microscope"></i>
-                                <h3>Science Fair Winner</h3>
-                                <p>Created a renewable energy project. Won best innovation award.</p>
+                                <h3>科学展览获奖</h3>
+                                <p>创作了一个可再生能源项目，获得最佳创新奖。</p>
                                 <div class="memory-tags">
-                                    <span>Science</span>
-                                    <span>Innovation</span>
-                                    <span>Environment</span>
+                                    <span>#科学</span>
+                                    <span>#创新</span>
+                                    <span>#环保</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-heart"></i>
-                                <h3>Volunteer Work</h3>
-                                <p>Tutored underprivileged students every weekend. Most rewarding experience.</p>
+                                <h3>志愿服务</h3>
+                                <p>每个周末为贫困学生辅导功课，最有意义的经历。</p>
                                 <div class="memory-tags">
-                                    <span>Community</span>
-                                    <span>Teaching</span>
-                                    <span>Impact</span>
+                                    <span>#社区</span>
+                                    <span>#教学</span>
+                                    <span>#影响</span>
                                 </div>
                             </div>
                         </div>
@@ -204,48 +223,48 @@
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <h2>Middle School Days</h2>
+                            <h2>初中岁月</h2>
                             <span class="timeline-date">2014 - 2017</span>
                         </div>
                         <div class="memory-grid">
                             <div class="memory-box">
                                 <i class="fas fa-desktop"></i>
-                                <h3>First Computer</h3>
-                                <p>Got my first computer. Spent countless hours learning how it works and breaking things.</p>
+                                <h3>第一台电脑</h3>
+                                <p>拥有了人生第一台电脑。花了无数时间研究它的工作原理，拆拆装装。</p>
                                 <div class="memory-tags">
-                                    <span>Technology</span>
-                                    <span>Curiosity</span>
-                                    <span>Learning</span>
+                                    <span>#科技</span>
+                                    <span>#好奇心</span>
+                                    <span>#学习</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-music"></i>
-                                <h3>School Band</h3>
-                                <p>Played guitar in the school band. Performed at annual cultural festival.</p>
+                                <h3>校园乐队</h3>
+                                <p>在学校乐队中弹吉他，在年度文化节上演出。</p>
                                 <div class="memory-tags">
-                                    <span>Music</span>
-                                    <span>Performance</span>
-                                    <span>Arts</span>
+                                    <span>#音乐</span>
+                                    <span>#演出</span>
+                                    <span>#艺术</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-camera"></i>
-                                <h3>Photography Club</h3>
-                                <p>Discovered passion for photography. Captured school events and nature.</p>
+                                <h3>摄影社团</h3>
+                                <p>发现了对摄影的热爱，记录校园活动和自然风光。</p>
                                 <div class="memory-tags">
-                                    <span>Photography</span>
-                                    <span>Creativity</span>
-                                    <span>Art</span>
+                                    <span>#摄影</span>
+                                    <span>#创意</span>
+                                    <span>#艺术</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-flag"></i>
-                                <h3>Class Representative</h3>
-                                <p>Elected class monitor for 3 consecutive years. Learned leadership skills.</p>
+                                <h3>班级代表</h3>
+                                <p>连续三年当选班长，学到了宝贵的领导能力。</p>
                                 <div class="memory-tags">
-                                    <span>Leadership</span>
-                                    <span>Responsibility</span>
-                                    <span>Trust</span>
+                                    <span>#领导力</span>
+                                    <span>#责任</span>
+                                    <span>#信任</span>
                                 </div>
                             </div>
                         </div>
@@ -262,48 +281,48 @@
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <h2>Elementary School Memories</h2>
+                            <h2>小学回忆</h2>
                             <span class="timeline-date">2008 - 2014</span>
                         </div>
                         <div class="memory-grid">
                             <div class="memory-box">
                                 <i class="fas fa-star"></i>
-                                <h3>First Day of School</h3>
-                                <p>Met my best friend on the first day. Still best friends today!</p>
+                                <h3>开学第一天</h3>
+                                <p>在开学第一天遇到了我的挚友，至今仍是最好的朋友！</p>
                                 <div class="memory-tags">
-                                    <span>Friendship</span>
-                                    <span>Beginning</span>
-                                    <span>Joy</span>
+                                    <span>#友谊</span>
+                                    <span>#开始</span>
+                                    <span>#快乐</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-paint-brush"></i>
-                                <h3>Art Competition</h3>
-                                <p>Won first prize in school art competition. My painting was displayed in the hall.</p>
+                                <h3>美术比赛</h3>
+                                <p>在校园美术比赛中获得一等奖，画作被挂在大厅展示。</p>
                                 <div class="memory-tags">
-                                    <span>Art</span>
-                                    <span>Achievement</span>
-                                    <span>Creativity</span>
+                                    <span>#艺术</span>
+                                    <span>#成就</span>
+                                    <span>#创造力</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-running"></i>
-                                <h3>Sports Day Champion</h3>
-                                <p>Won gold in 100m sprint. Still have the medal!</p>
+                                <h3>运动会冠军</h3>
+                                <p>在100米短跑中获得金牌，奖牌至今还珍藏着！</p>
                                 <div class="memory-tags">
-                                    <span>Sports</span>
-                                    <span>Victory</span>
-                                    <span>Pride</span>
+                                    <span>#体育</span>
+                                    <span>#胜利</span>
+                                    <span>#骄傲</span>
                                 </div>
                             </div>
                             <div class="memory-box">
                                 <i class="fas fa-book-reader"></i>
-                                <h3>Reading Club</h3>
-                                <p>Read 100+ books in 6 years. Developed love for stories and imagination.</p>
+                                <h3>阅读俱乐部</h3>
+                                <p>6年里阅读了100多本书，培养了对故事和想象力的热爱。</p>
                                 <div class="memory-tags">
-                                    <span>Reading</span>
-                                    <span>Imagination</span>
-                                    <span>Knowledge</span>
+                                    <span>#阅读</span>
+                                    <span>#想象力</span>
+                                    <span>#知识</span>
                                 </div>
                             </div>
                         </div>
@@ -314,27 +333,27 @@
 
             <!-- 统计数据 -->
             <div class="stats-section">
-                <h2 class="section-title">// Student Life Statistics</h2>
+                <h2 class="section-title">// 学生时代统计</h2>
                 <div class="stats-grid">
                     <div class="stat-box">
                         <i class="fas fa-calendar-alt"></i>
                         <div class="stat-number" data-target="16">0</div>
-                        <div class="stat-label">Years of Learning</div>
+                        <div class="stat-label">学习年数</div>
                     </div>
                     <div class="stat-box">
                         <i class="fas fa-trophy"></i>
                         <div class="stat-number" data-target="15">0</div>
-                        <div class="stat-label">Awards & Achievements</div>
+                        <div class="stat-label">获奖成就</div>
                     </div>
                     <div class="stat-box">
                         <i class="fas fa-users"></i>
                         <div class="stat-number" data-target="500">0</div>
-                        <div class="stat-label">Friends Made</div>
+                        <div class="stat-label">结交好友</div>
                     </div>
                     <div class="stat-box">
                         <i class="fas fa-smile"></i>
                         <div class="stat-number" data-target="999">0</div>
-                        <div class="stat-label">Unforgettable Moments</div>
+                        <div class="stat-label">难忘瞬间</div>
                     </div>
                 </div>
             </div>
@@ -345,8 +364,8 @@
     <!-- 页脚 -->
     <footer class="student-footer">
         <div class="container">
-            <p>$ echo "These memories shaped who I am today"</p>
-            <p class="footer-note">// End of student_days.log | Press any key to continue...</p>
+            <p>$ echo "这些回忆塑造了今天的我"</p>
+            <p class="footer-note">// 文件结束 student_days.log | 按任意键继续...</p>
         </div>
     </footer>
 
