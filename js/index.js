@@ -13,12 +13,45 @@ if (typeof AI_CONFIG === 'undefined') {
         systemPrompt: `你是一个专业的个人网站AI助手。你的任务是帮助访客了解网站主人 ZHY。
 
 关于 ZHY 的信息：
-- 职业：前端开发者、网络工程师、创意工作者
-- 技能：JavaScript, React, Vue.js, HTML/CSS, UI/UX设计, Node.js, 网络工程, AI应用开发
-- 项目经验：数据可视化平台、电商平台设计、移动应用开发
-- 联系方式：example@email.com, +86 138 0000 0000
+- 职业：研究生，信息与通信工程专业，计算机视觉研究者
+- 学校：华北电力大学 (GPA 90.264, 排名 5/39)
+- 研究方向：视觉语言模型(VLM)、开放词汇目标检测(OVD)、多模态学习
 
-请用友好、专业的语气回答问题。如果问题与 ZHY 相关，提供准确的信息；如果是技术问题，可以展示你的专业知识。保持回答简洁明了。`,
+核心技能：
+  * 视觉语言模型: CLIP, YOLO-World, Vision Transformer，擅长多模态数据处理、模型微调和推理
+  * 目标检测: YOLO系列(v5/v8/v11), Faster R-CNN, DETR，具备开放词汇检测(OVD)课题经验
+  * 深度学习: 熟悉PyTorch生态 (torchvision, torchaudio)，了解TensorFlow, Mindspore
+  * 开发环境: 熟练Linux/MacOS系统，使用Docker容器化，Conda/venv环境管理，Tmux终端复用
+  * 版本控制: 精通Git，熟练使用GitHub/GitLab工作流，Lazygit，飞书团队协作
+  * 开发工具: VS Code, PyCharm作为IDE，Jupyter Notebook进行实验验证
+  * 数据处理: OpenCV/Pillow图像增强预处理，Labelme/CVAT数据标注
+  * 可视化: Matplotlib, OpenCV(cv2)进行图像、数据和实验结果可视化
+  * 编程语言: Python (主力开发语言), C (用于模型部署与性能优化)
+
+证书与荣誉时间线（从新到旧）：
+【2025年】
+  • HCIP-AI-Ascend Developer 认证 - 华为认证ICT高级工程师，AI-Ascend开发方向
+  • 第八届全国大学生嵌入式芯片与系统设计竞赛 北部赛区三等奖 - 担任队长，负责代码设计、模型权重导出部署、小车调试
+  • 全国计算机等级考试三级 - 网络技术方向，成绩优秀
+【2024年】
+  • 第十二届全国大学生新一代信息通信技术大赛 河北省二等奖 - 担任队员，负责撰写方案设计书
+  • 研究生学业奖学金 - GPA 90.264，专业排名 5/39
+【2023年】
+  • 全国计算机等级考试二级 - MS Office 高级应用
+【2021年】
+  • 大学英语六级 (CET-6) - 成绩 445 分
+【2020年】
+  • 大学英语四级 (CET-4) - 成绩 532 分
+
+统计：3项专业认证 + 2项竞赛获奖 + 1项学术荣誉 + 2项语言证书
+
+联系方式: z13503876281@163.com
+GitHub: https://github.com/ihaveaword
+CSDN: https://blog.csdn.net/ZHY0091
+
+当访客询问证书、荣誉、获奖等相关问题时，请按照时间线详细展示以上成就，并说明他可以点击导航栏的"./certificates"查看完整的可视化证书页面。
+
+请用友好、专业的语气回答问题。如果问题与 ZHY 相关，提供准确详细的信息；如果是技术问题，可以展示专业知识。保持回答简洁但信息丰富。`,
         temperature: 0.7,
         maxTokens: 1000,
         maxHistory: 10
@@ -30,9 +63,9 @@ let conversationHistory = [];
 
 // AI 回复数据库（备用/离线模式）
 const aiResponses = {
-    '介绍一下你自己': '你好！我是ZHY，华北电力大学信息与通信工程专业的研究生。我专注于计算机视觉和AI开发，特别是视觉语言模型(VLM)、目标检测(OVD)等领域。我是华为认证的HCIP-AI Ascend开发者，热爱将理论知识转化为实际应用。',
-    '你的技能和专长是什么？': '我的核心技能包括：\n\n• **AI & 计算机视觉**: Computer Vision, Object Detection (OVD), VLM & VLP, Ascend C开发\n• **编程开发**: Python, PyTorch/TensorFlow, HTML/CSS/JavaScript\n• **通信与网络**: 通信原理, 数字信号处理, 计算机网络\n• **认证**: HCIP-AI Ascend Developer, CET-6\n\n我的GPA达到90.264，专业排名5/39。',
-    '展示你的证书和荣誉': '我很高兴向你展示我获得的证书和荣誉！\n\n🏆 **专业认证**:\n• HCIP-AI-Ascend Developer (华为)\n• 全国计算机等级证书\n\n🎓 **学术荣誉**:\n• 研究生学业奖学金 (GPA 90.264, 排名5/39)\n\n🌐 **语言证书**:\n• 大学英语六级 (CET-6)\n\n点击导航栏的 "./certificates" 查看完整的证书详情和时间线！',
+    '介绍一下你自己': '你好！我是ZHY，华北电力大学信息与通信工程专业的研究生。我专注于计算机视觉和AI开发，特别是视觉语言模型(VLM)、开放词汇目标检测(OVD)等前沿领域。我是华为认证的HCIP-AI Ascend开发者，热爱将理论知识转化为实际应用。',
+    '你的技能和专长是什么？': '我的核心技能包括：\n\n• **视觉语言模型**: CLIP, YOLO-World, Vision Transformer (ViT)等，擅长多模态数据处理、模型微调和推理\n• **目标检测**: 精通YOLO系列(v5/v8/v11)、Faster R-CNN、DETR，具备OVD课题经验\n• **深度学习框架**: 熟悉PyTorch生态，了解TensorFlow/Mindspore\n• **开发环境**: 熟练Linux/MacOS、Docker容器化、Conda/venv环境管理、Tmux\n• **版本控制**: 精通Git、GitHub/GitLab、飞书协作、Lazygit\n• **开发工具**: VS Code、PyCharm、Jupyter Notebook\n• **数据处理**: OpenCV、Pillow图像处理，Labelme、CVAT数据标注\n• **可视化**: Matplotlib、OpenCV (cv2)\n• **编程语言**: Python (主力)、C (模型部署优化)\n\nGPA 90.264，专业排名5/39。',
+    '展示你的证书和荣誉': '我很高兴向你展示我的成就时间线！这些证书和荣誉记录了我的成长轨迹：\n\n📅 **2025年**\n• 🏆 HCIP-AI-Ascend Developer 认证 - 华为认证ICT高级工程师，专注于AI-Ascend开发方向\n• 🥉 第八届全国大学生嵌入式芯片与系统设计竞赛 北部赛区三等奖 - 担任队长，负责代码设计、模型权重导出部署、小车调试等\n• 📜 全国计算机等级考试三级 - 网络技术方向，成绩优秀\n\n📅 **2024年**\n• 🥈 第十二届全国大学生新一代信息通信技术大赛 河北省二等奖 - 担任队员，负责撰写方案设计书\n• 🎓 研究生学业奖学金 - GPA 90.264，专业排名 5/39，展现了扎实的学术功底\n\n📅 **2023年**\n• 📜 全国计算机等级考试二级 - MS Office 高级应用，为数据处理打下基础\n\n📅 **2021年**\n• 🌐 大学英语六级 (CET-6) - 成绩 445 分，具备良好的英语阅读能力\n\n📅 **2020年**\n• 🌐 大学英语四级 (CET-4) - 成绩 532 分，英语基础扎实\n\n💡 **总计**: 3项专业认证 + 2项竞赛获奖 + 1项学术荣誉 + 2项语言证书\n\n想了解更多详情？点击导航栏的 "ls ./certificates" 查看完整的证书展示页面，那里有更详细的介绍和可视化时间线！',
     '如何联系你？': '很高兴你想要联系我！你可以通过以下方式与我取得联系：\n\n📧 **邮箱**: z13503876281@163.com\n🎓 **学校**: 华北电力大学\n� **地点**: 北京, 中国\n🐙 **GitHub**: https://github.com/ihaveaword\n📝 **CSDN**: https://blog.csdn.net/ZHY0091\n\n我通常在24小时内回复邮件。期待与你交流！',
     'default': '这是一个很好的问题！作为ZHY的AI助手，我可以回答关于他的技能、项目、证书和联系方式的问题。\n\n你可以问我：\n• 关于他的专业背景和研究方向\n• 他的技能和专长\n• 他获得的证书和荣誉\n• 如何联系他\n\n或者你可以点击上面的快速问题按钮来开始对话！'
 };
