@@ -560,6 +560,7 @@ body {
 .timeline-item:nth-child(7) { animation-delay: 0.7s; }
 .timeline-item:nth-child(8) { animation-delay: 0.8s; }
 .timeline-item:nth-child(9) { animation-delay: 0.9s; }
+.timeline-item:nth-child(10) { animation-delay: 1.0s; }
 
 .timeline-marker {
     position: absolute;
