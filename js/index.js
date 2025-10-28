@@ -474,3 +474,33 @@ function initSubscribeForm() {
         subscribeForm.reset();
     });
 }
+
+// ========== 复制到剪贴板功能 ==========
+function copyToClipboard(text, type) {
+    navigator.clipboard.writeText(text).then(() => {
+        // 创建提示消息
+        const toast = document.createElement('div');
+        toast.className = 'copy-toast';
+        toast.innerHTML = `<i class="fas fa-check"></i> ${type === 'email' ? 'Email' : 'Text'} copied!`;
+        document.body.appendChild(toast);
+        
+        // 显示动画
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 10);
+        
+        // 3秒后移除
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            }, 300);
+        }, 3000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        alert('Copy failed. Please try again.');
+    });
+}
+
+// 将函数暴露到全局作用域，以便 HTML onclick 可以调用
+window.copyToClipboard = copyToClipboard;

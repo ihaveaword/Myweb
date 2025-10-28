@@ -192,7 +192,7 @@
     width: 50px;
     height: 50px;
     border-radius: 0;
-    cursor: pointer;
+    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -242,7 +242,7 @@
     border-radius: 0;
     background-color: rgba(0, 255, 0, 0.3);
     border: 1px solid var(--terminal-green);
-    cursor: pointer;
+    
     transition: all 0.3s ease;
 }
 
@@ -352,6 +352,149 @@
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
 }
 
+/* 技能分类 */
+.skills-categories {
+    margin-top: 2rem;
+    display: grid;
+    gap: 2rem;
+}
+
+.skill-category {
+    background-color: rgba(0, 255, 0, 0.03);
+    border: 2px solid var(--terminal-green-dark);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+    border-color: var(--terminal-green);
+    background-color: rgba(0, 255, 0, 0.05);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+.category-title {
+    color: var(--terminal-green-bright);
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.category-title::before {
+    content: '[';
+    color: var(--terminal-green);
+}
+
+.category-title::after {
+    content: ']';
+    color: var(--terminal-green);
+}
+
+.category-title i {
+    color: var(--terminal-green);
+}
+
+.skill-items {
+    display: grid;
+    gap: 1rem;
+}
+
+.skill-item {
+    padding: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--terminal-green-dark);
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+    border-left-color: var(--terminal-green);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.skill-name {
+    color: var(--terminal-green);
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.skill-name::before {
+    content: '> ';
+    color: var(--terminal-green-dim);
+}
+
+.skill-level {
+    color: var(--terminal-green-dim);
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--terminal-green-dark);
+}
+
+.skill-bar {
+    height: 6px;
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 1px solid var(--terminal-green-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        var(--terminal-green-dark) 0%, 
+        var(--terminal-green) 50%, 
+        var(--terminal-green-bright) 100%);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    position: relative;
+    transition: width 1s ease;
+    animation: progress-glow 2s ease-in-out infinite;
+}
+
+@keyframes progress-glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+    }
+}
+
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 100%);
+    animation: shine-bar 2s linear infinite;
+}
+
+@keyframes shine-bar {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
 /* ========== 学生时代预览区域 ========== */
 .student-life {
     padding: 6rem 0;
@@ -393,7 +536,7 @@
     border: 3px solid var(--terminal-green);
     padding: 3rem;
     text-align: center;
-    cursor: pointer;
+    
     transition: all 0.5s ease;
     position: relative;
     overflow: hidden;
@@ -492,7 +635,7 @@
     padding: 1rem 2rem;
     font-family: 'Courier New', monospace;
     font-size: 1.1rem;
-    cursor: pointer;
+    
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -527,7 +670,7 @@
     border: 2px solid var(--terminal-green-dark);
     padding: 2rem;
     text-align: center;
-    cursor: pointer;
+    
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -692,6 +835,121 @@
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
 }
 
+/* 项目详情 */
+.portfolio-details {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 255, 0, 0.03);
+    border-left: 3px solid var(--terminal-green-dark);
+}
+
+.project-highlights {
+    font-size: 0.9rem;
+    color: var(--terminal-green-bright);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: 'Courier New', monospace;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-list li {
+    font-size: 0.85rem;
+    color: var(--terminal-green);
+    padding: 0.25rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-family: 'Courier New', monospace;
+    opacity: 0.9;
+}
+
+.feature-list li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--terminal-green-dim);
+}
+
+/* 项目链接 */
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--terminal-green-dark);
+}
+
+.project-link {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: var(--terminal-green);
+    border: 2px solid var(--terminal-green-dark);
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.project-link:hover {
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+.project-link i {
+    font-size: 1rem;
+}
+
+/* 项目状态徽章 */
+.project-status {
+    margin-top: 1rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
+    font-weight: 600;
+}
+
+.status-badge.in-progress {
+    background-color: rgba(255, 165, 0, 0.2);
+    color: #ffa500;
+    border: 2px solid #ffa500;
+    animation: pulse-orange 2s infinite;
+}
+
+.status-badge.planned {
+    background-color: rgba(0, 191, 255, 0.2);
+    color: #00bfff;
+    border: 2px solid #00bfff;
+}
+
+@keyframes pulse-orange {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(255, 165, 0, 0.8);
+    }
+}
+
 /* ========== AI对话界面 ========== */
 .ai-chat {
     padding: 6rem 0;
@@ -712,7 +970,7 @@
     background-color: transparent;
     border: 2px solid var(--terminal-green-dark);
     border-radius: 0;
-    cursor: pointer;
+    
     transition: all 0.3s ease;
     font-size: 0.95rem;
     color: var(--terminal-green);
@@ -933,7 +1191,7 @@
     color: var(--terminal-green);
     padding: 0.5rem 1rem;
     border-radius: 0;
-    cursor: pointer;
+    
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -985,7 +1243,7 @@
     border: 2px solid var(--terminal-green);
     padding: 0.875rem 1.5rem;
     border-radius: 0;
-    cursor: pointer;
+    
     transition: all 0.3s ease;
     font-size: 1.1rem;
     font-family: 'Courier New', monospace;
@@ -1100,6 +1358,113 @@
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
 }
 
+/* 联系信息项 */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 255, 0, 0.03);
+    border-left: 2px solid var(--terminal-green-dark);
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    background-color: rgba(0, 255, 0, 0.08);
+    border-left-color: var(--terminal-green);
+}
+
+.contact-item i {
+    color: var(--terminal-green);
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.contact-text {
+    flex: 1;
+    color: var(--terminal-green);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.copy-btn {
+    background: transparent;
+    border: 1px solid var(--terminal-green-dark);
+    color: var(--terminal-green);
+    padding: 0.25rem 0.5rem;
+    
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.copy-btn:hover {
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.footer-description {
+    margin: 1rem 0;
+    line-height: 1.6;
+}
+
+.contact-buttons {
+    margin-top: 1rem;
+}
+
+.contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    color: var(--terminal-green);
+    border: 2px solid var(--terminal-green);
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+/* 复制提示消息 */
+.copy-toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: rgba(0, 255, 0, 0.95);
+    color: var(--terminal-bg);
+    padding: 1rem 1.5rem;
+    border-radius: 0;
+    border: 2px solid var(--terminal-green-bright);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.copy-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.copy-toast i {
+    font-size: 1.2rem;
+}
+
 .subscribe-form {
     display: flex;
     gap: 0.5rem;
@@ -1132,7 +1497,7 @@
     color: var(--terminal-green);
     border: 2px solid var(--terminal-green);
     border-radius: 0;
-    cursor: pointer;
+    
     transition: all 0.3s ease;
     font-family: 'Courier New', monospace;
     text-transform: uppercase;

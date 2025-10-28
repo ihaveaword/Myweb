@@ -251,7 +251,7 @@ body::after {
     border: 1px solid var(--terminal-green);
     color: var(--text-primary);
     font-size: 1.2rem;
-    cursor: pointer;
+    /* cursor 继承自全局设置，无需重复声明 */
     padding: 0.5rem;
     border-radius: 3px;
     transition: all 0.3s ease;
@@ -277,7 +277,7 @@ body::after {
     font-weight: 500;
     transition: all 0.3s ease;
     border: 2px solid var(--terminal-green);
-    cursor: pointer;
+    /* cursor 继承自全局 var(--cursor-pointer)，无需重复声明 */
     font-size: 1rem;
     font-family: 'Courier New', monospace;
     text-transform: uppercase;
