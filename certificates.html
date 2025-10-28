@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>证书与荣誉 | Certificates & Honors - ZHY</title>
+    <meta name="description" content="展示获得的专业认证、荣誉证书和学术成就">
+    <meta name="keywords" content="HCIP-AI, 证书, 荣誉, 认证, 华北电力大学">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico/favicon-16x16.png">
+    
+    <!-- 样式表 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/certificates.css">
+    
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Matrix 代码雨背景 -->
+    <canvas id="matrix-bg" class="matrix-bg"></canvas>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">&lt; ZHY /&gt;</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页 | Home</a></li>
+                <li><a href="student-life.html">学生时代 | Student Life</a></li>
+                <li><a href="certificates.html" class="active">证书荣誉 | Certificates</a></li>
+                <li><a href="index.html#portfolio">作品集 | Portfolio</a></li>
+                <li><a href="index.html#contact">联系 | Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" aria-label="切换主题">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-toggle" aria-label="菜单">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题区域 -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">
+                <span class="title-prefix">$ cat</span>
+                <span class="title-main">certificates.log</span>
+            </h1>
+            <p class="page-subtitle">> 专业认证与学术荣誉档案</p>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <i class="fas fa-certificate"></i>
+                    <span class="stat-label">专业认证</span>
+                    <span class="stat-value" id="cert-count">4</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-trophy"></i>
+                    <span class="stat-label">荣誉奖项</span>
+                    <span class="stat-value" id="honor-count">3</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="stat-label">学术成就</span>
+                    <span class="stat-value" id="academic-count">2</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 筛选器 -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i> 全部
+                </button>
+                <button class="filter-btn" data-filter="professional">
+                    <i class="fas fa-certificate"></i> 专业认证
+                </button>
+                <button class="filter-btn" data-filter="academic">
+                    <i class="fas fa-graduation-cap"></i> 学术荣誉
+                </button>
+                <button class="filter-btn" data-filter="competition">
+                    <i class="fas fa-trophy"></i> 竞赛获奖
+                </button>
+                <button class="filter-btn" data-filter="language">
+                    <i class="fas fa-language"></i> 语言证书
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 证书展示区域 -->
+    <section class="certificates-section">
+        <div class="container">
+            <div class="certificates-grid">
+                
+                <!-- HCIP-AI 认证 -->
+                <div class="cert-card" data-category="professional" data-year="2024">
+                    <div class="cert-header">
+                        <div class="cert-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="cert-badge verified">
+                            <i class="fas fa-check-circle"></i> 已认证
+                        </div>
+                    </div>
+                    <div class="cert-body">
+                        <h3 class="cert-title">HCIP-AI-Ascend Developer</h3>
+                        <p class="cert-issuer">
+                            <i class="fas fa-building"></i> 华为技术有限公司
+                        </p>
+                        <p class="cert-date">
+                            <i class="fas fa-calendar"></i> 获得时间: 2024年
+                        </p>
+                        <p class="cert-id">
+                            <i class="fas fa-fingerprint"></i> 证书编号: HCIP-********
+                        </p>
+                        <div class="cert-description">
+                            <p>华为认证ICT高级工程师 - 人工智能Ascend开发方向</p>
+                            <ul class="cert-skills">
+                                <li>Ascend AI处理器架构</li>
+                                <li>MindSpore深度学习框架</li>
+                                <li>AI模型开发与优化</li>
+                                <li>昇腾AI全栈开发</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="cert-footer">
+                        <button class="cert-btn view-btn">
+                            <i class="fas fa-eye"></i> 查看证书
+                        </button>
+                        <button class="cert-btn verify-btn">
+                            <i class="fas fa-shield-alt"></i> 验证真伪
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 研究生学业奖学金 -->
+                <div class="cert-card" data-category="academic" data-year="2024">
+                    <div class="cert-header">
+                        <div class="cert-icon academic">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="cert-badge gold">
+                            <i class="fas fa-medal"></i> 一等奖
+                        </div>
+                    </div>
+                    <div class="cert-body">
+                        <h3 class="cert-title">研究生学业奖学金</h3>
+                        <p class="cert-issuer">
+                            <i class="fas fa-university"></i> 华北电力大学
+                        </p>
+                        <p class="cert-date">
+                            <i class="fas fa-calendar"></i> 2024-2025学年
+                        </p>
+                        <div class="cert-description">
+                            <p>GPA: 90.264 | 排名: 5/39</p>
+                            <p class="achievement-highlight">表彰在信息与通信工程专业的优异学业成绩</p>
+                        </div>
+                    </div>
+                    <div class="cert-footer">
+                        <button class="cert-btn view-btn">
+                            <i class="fas fa-eye"></i> 查看详情
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CET-6 英语六级 -->
+                <div class="cert-card" data-category="language" data-year="2023">
+                    <div class="cert-header">
+                        <div class="cert-icon language">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div class="cert-badge passed">
+                            <i class="fas fa-check"></i> 通过
+                        </div>
+                    </div>
+                    <div class="cert-body">
+                        <h3 class="cert-title">大学英语六级考试 (CET-6)</h3>
+                        <p class="cert-issuer">
+                            <i class="fas fa-building"></i> 全国大学英语四、六级考试委员会
+                        </p>
+                        <p class="cert-date">
+                            <i class="fas fa-calendar"></i> 获得时间: 2023年
+                        </p>
+                        <div class="cert-description">
+                            <p>全国大学英语六级考试合格证书</p>
+                        </div>
+                    </div>
+                    <div class="cert-footer">
+                        <button class="cert-btn view-btn">
+                            <i class="fas fa-eye"></i> 查看成绩
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 计算机等级证书 -->
+                <div class="cert-card" data-category="professional" data-year="2022">
+                    <div class="cert-header">
+                        <div class="cert-icon tech">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="cert-badge passed">
+                            <i class="fas fa-check"></i> 优秀
+                        </div>
+                    </div>
+                    <div class="cert-body">
+                        <h3 class="cert-title">全国计算机等级考试</h3>
+                        <p class="cert-issuer">
+                            <i class="fas fa-building"></i> 教育部考试中心
+                        </p>
+                        <p class="cert-date">
+                            <i class="fas fa-calendar"></i> 获得时间: 2022年
+                        </p>
+                        <div class="cert-description">
+                            <p>计算机等级考试合格证书</p>
+                        </div>
+                    </div>
+                    <div class="cert-footer">
+                        <button class="cert-btn view-btn">
+                            <i class="fas fa-eye"></i> 查看证书
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 添加更多证书的占位卡片 -->
+                <div class="cert-card add-new">
+                    <div class="add-new-content">
+                        <i class="fas fa-plus-circle"></i>
+                        <h3>持续更新中...</h3>
+                        <p>更多证书与荣誉正在路上</p>
+                        <span class="update-hint">Last Updated: 2024.10</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 时间线视图 -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-prefix">$ history</span>
+                成就时间线
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item" data-year="2024">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2024</span>
+                        <h4>HCIP-AI-Ascend Developer 认证</h4>
+                        <p>华为认证ICT高级工程师</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="2024">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2024</span>
+                        <h4>研究生学业奖学金</h4>
+                        <p>GPA 90.264, 排名 5/39</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="2023">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2023</span>
+                        <h4>大学英语六级 (CET-6)</h4>
+                        <p>通过全国大学英语六级考试</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="2022">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2022</span>
+                        <h4>计算机等级证书</h4>
+                        <p>全国计算机等级考试</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于</h3>
+                    <p>华北电力大学信息与通信工程专业研究生，专注于计算机视觉与深度学习研究。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">返回首页</a></li>
+                        <li><a href="student-life.html">学生时代</a></li>
+                        <li><a href="index.html#portfolio">我的作品</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系方式</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>z13503876281@163.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/ihaveaword" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZHY. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 证书查看模态框 -->
+    <div id="certModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <h3 id="modalTitle">证书详情</h3>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="证书图片">
+                <div id="modalInfo" class="modal-info"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 脚本 -->
+    <script src="js/common.js"></script>
+    <script src="js/certificates.js"></script>
+</body>
+</html>

@@ -278,7 +278,7 @@ body::after {
     transition: all 0.3s ease;
     border: 2px solid var(--terminal-green);
     /* cursor 继承自全局 var(--cursor-pointer)，无需重复声明 */
-    font-size: 1rem;
+    font-size: 0.89rem;
     font-family: 'Courier New', monospace;
     text-transform: uppercase;
     letter-spacing: 1px;

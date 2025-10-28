@@ -1,0 +1,909 @@
+/* ==================== 证书与荣誉页面样式 ====================
+ * 终端风格的证书展示系统
+ * 支持筛选、搜索和模态框查看
+ * 易于扩展新证书内容
+ * ================================================= */
+
+/* ========== 导航栏样式修正 ========== */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.95);
+    border-bottom: 2px solid var(--terminal-green);
+}
+
+.navbar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand a {
+    color: var(--terminal-green);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-family: 'Fira Code', monospace;
+    font-weight: bold;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin: 0;
+}
+
+.nav-menu a {
+    color: var(--terminal-green-dim);
+    text-decoration: none;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--terminal-green-bright);
+}
+
+.nav-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--terminal-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.nav-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.theme-toggle,
+.mobile-menu-toggle {
+    background: transparent;
+    border: 1px solid var(--terminal-green);
+    color: var(--terminal-green);
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.theme-toggle i,
+.mobile-menu-toggle i {
+    font-size: 1rem;
+}
+
+.theme-toggle:hover,
+.mobile-menu-toggle:hover {
+    background: var(--terminal-green);
+    color: var(--bg-primary);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+/* ========== 页面布局 ========== */
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Matrix 背景画布 */
+.matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* 内容区域 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== 页面标题区域 ========== */
+.page-header {
+    padding: 120px 0 60px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+    margin-bottom: 40px;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-family: 'Fira Code', monospace;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+.title-prefix {
+    color: var(--terminal-green-dim);
+    margin-right: 15px;
+}
+
+.title-main {
+    color: var(--terminal-green);
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: var(--terminal-green-dim);
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* 统计条 */
+.stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 40px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 30px;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    background: rgba(0, 255, 0, 0.1);
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+.stat-item i {
+    font-size: 2rem;
+    color: var(--terminal-green);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--terminal-green-dim);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--terminal-green);
+    font-family: 'Fira Code', monospace;
+}
+
+/* ========== 筛选器区域 ========== */
+.filter-section {
+    padding: 30px 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.filter-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-btn {
+    padding: 12px 24px;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: var(--terminal-green);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-btn:hover {
+    background: rgba(0, 255, 0, 0.1);
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: var(--terminal-green-bright);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+    color: var(--terminal-green-bright);
+    font-weight: bold;
+}
+
+/* ========== 证书卡片网格 ========== */
+.certificates-section {
+    padding: 40px 0 80px;
+}
+
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* 证书卡片 */
+.cert-card {
+    background: rgba(0, 255, 0, 0.03);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 12px;
+    padding: 25px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.cert-card:hover::before {
+    left: 100%;
+}
+
+.cert-card:hover {
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    transform: translateY(-8px);
+    background: rgba(0, 255, 0, 0.05);
+}
+
+/* 隐藏状态（筛选时） */
+.cert-card.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    display: none;
+}
+
+/* 卡片头部 */
+.cert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cert-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 255, 0, 0.1);
+    border: 2px solid var(--terminal-green);
+    border-radius: 50%;
+    font-size: 1.8rem;
+    color: var(--terminal-green);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.cert-icon.academic {
+    background: rgba(0, 200, 255, 0.1);
+    border-color: #00c8ff;
+    color: #00c8ff;
+}
+
+.cert-icon.language {
+    background: rgba(255, 200, 0, 0.1);
+    border-color: #ffc800;
+    color: #ffc800;
+}
+
+.cert-icon.tech {
+    background: rgba(255, 0, 200, 0.1);
+    border-color: #ff00c8;
+    color: #ff00c8;
+}
+
+/* 徽章 */
+.cert-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Fira Code', monospace;
+}
+
+.cert-badge.verified {
+    background: rgba(0, 255, 0, 0.2);
+    color: var(--terminal-green);
+    border: 1px solid var(--terminal-green);
+}
+
+.cert-badge.gold {
+    background: rgba(255, 200, 0, 0.2);
+    color: #ffc800;
+    border: 1px solid #ffc800;
+}
+
+.cert-badge.passed {
+    background: rgba(0, 200, 255, 0.2);
+    color: #00c8ff;
+    border: 1px solid #00c8ff;
+}
+
+/* 卡片主体 */
+.cert-body {
+    margin-bottom: 20px;
+}
+
+.cert-title {
+    font-size: 1.4rem;
+    color: var(--terminal-green-bright);
+    margin-bottom: 15px;
+    font-family: 'Fira Code', monospace;
+    font-weight: 600;
+}
+
+.cert-issuer,
+.cert-date,
+.cert-id {
+    font-size: 0.95rem;
+    color: var(--terminal-green-dim);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cert-description {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0, 255, 0, 0.03);
+    border-left: 3px solid var(--terminal-green);
+    border-radius: 4px;
+}
+
+.cert-description p {
+    color: var(--terminal-green-dim);
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.achievement-highlight {
+    color: var(--terminal-green) !important;
+    font-weight: bold;
+}
+
+.cert-skills {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.cert-skills li {
+    padding: 5px 0;
+    color: var(--terminal-green-dim);
+    position: relative;
+    padding-left: 20px;
+}
+
+.cert-skills li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--terminal-green);
+}
+
+/* 卡片底部按钮 */
+.cert-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.cert-btn {
+    flex: 1;
+    padding: 10px 20px;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: var(--terminal-green);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.cert-btn:hover {
+    background: rgba(0, 255, 0, 0.15);
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+/* 添加新证书卡片 */
+.cert-card.add-new {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    border-style: dashed;
+    cursor: pointer;
+}
+
+.add-new-content {
+    text-align: center;
+}
+
+.add-new-content i {
+    font-size: 4rem;
+    color: var(--terminal-green-dim);
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.add-new-content h3 {
+    color: var(--terminal-green);
+    margin-bottom: 10px;
+    font-family: 'Fira Code', monospace;
+}
+
+.add-new-content p {
+    color: var(--terminal-green-dim);
+    margin-bottom: 15px;
+}
+
+.update-hint {
+    font-size: 0.85rem;
+    color: var(--terminal-green-dim);
+    font-family: 'Fira Code', monospace;
+    opacity: 0.7;
+}
+
+.cert-card.add-new:hover {
+    background: rgba(0, 255, 0, 0.08);
+}
+
+.cert-card.add-new:hover i {
+    opacity: 1;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* ========== 时间线区域 ========== */
+.timeline-section {
+    padding: 80px 0;
+    border-top: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-family: 'Fira Code', monospace;
+    margin-bottom: 50px;
+    text-align: center;
+    color: var(--terminal-green);
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        transparent,
+        rgba(0, 255, 0, 0.5),
+        transparent
+    );
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+.timeline-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: var(--terminal-green);
+    border: 3px solid var(--bg-primary);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.timeline-content {
+    width: 45%;
+    padding: 20px;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 10px;
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-left: auto;
+}
+
+.timeline-year {
+    display: inline-block;
+    background: var(--terminal-green);
+    color: var(--bg-primary);
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: 'Fira Code', monospace;
+}
+
+.timeline-content h4 {
+    color: var(--terminal-green-bright);
+    margin-bottom: 8px;
+    font-family: 'Fira Code', monospace;
+}
+
+.timeline-content p {
+    color: var(--terminal-green-dim);
+    font-size: 0.95rem;
+}
+
+/* ========== 模态框 ========== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    border: 2px solid var(--terminal-green);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 255, 0, 0.5);
+    animation: slideUp 0.4s ease;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(--terminal-green);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--terminal-green-bright);
+    transform: rotate(90deg);
+}
+
+.modal-header {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.modal-header h3 {
+    color: var(--terminal-green);
+    font-family: 'Fira Code', monospace;
+    font-size: 1.8rem;
+}
+
+.modal-body {
+    color: var(--terminal-green-dim);
+}
+
+.modal-body img {
+    max-width: 100%;
+    border: 2px solid var(--terminal-green);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.modal-info {
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.8;
+}
+
+/* ========== 页脚 ========== */
+.footer {
+    background: rgba(0, 255, 0, 0.02);
+    border-top: 1px solid rgba(0, 255, 0, 0.2);
+    padding: 60px 0 30px;
+    margin-top: 80px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    color: var(--terminal-green);
+    margin-bottom: 20px;
+    font-family: 'Fira Code', monospace;
+}
+
+.footer-section p,
+.footer-section ul {
+    color: var(--terminal-green-dim);
+    line-height: 1.8;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: var(--terminal-green-dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--terminal-green-bright);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.contact-item i {
+    color: var(--terminal-green);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    color: var(--terminal-green-dim);
+    font-size: 0.9rem;
+}
+
+/* ========== 动画 ========== */
+@keyframes glowPulse {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(0, 255, 0, 0.8),
+                     0 0 30px rgba(0, 255, 0, 0.6);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* ========== 响应式设计 ========== */
+@media (max-width: 1024px) {
+    .certificates-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+    
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-marker {
+        left: 30px;
+    }
+    
+    .timeline-content {
+        width: calc(100% - 80px);
+        margin-left: 80px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 导航栏移动端样式 */
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(0, 0, 0, 0.98);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        transition: left 0.3s ease;
+        border-top: 2px solid var(--terminal-green);
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .stats-bar {
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+    
+    .stat-item {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .certificates-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-controls {
+        flex-direction: column;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .timeline-content {
+        width: calc(100% - 60px);
+        margin-left: 60px !important;
+    }
+    
+    .modal-content {
+        padding: 20px;
+        max-width: 95%;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1rem;
+    }
+    
+    .cert-title {
+        font-size: 1.2rem;
+    }
+    
+    .cert-footer {
+        flex-direction: column;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
