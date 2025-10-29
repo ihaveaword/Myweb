@@ -157,11 +157,29 @@
     display: block;
 }
 
+.carousel-slide a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.carousel-slide a:hover img {
+    filter: contrast(1.2) brightness(0.95) sepia(0.1) hue-rotate(90deg);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+.carousel-slide a:hover .slide-caption {
+    background: linear-gradient(to top, rgba(0, 255, 0, 0.2), transparent);
+}
+
 .carousel-slide img {
     width: 100%;
     height: 500px;
     object-fit: cover;
     filter: contrast(1.2) brightness(0.85) sepia(0.1) hue-rotate(90deg);
+    transition: all 0.3s ease;
 }
 
 .slide-caption {
@@ -176,6 +194,13 @@
     font-weight: 600;
     font-family: 'Courier New', monospace;
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+    transition: all 0.3s ease;
+}
+
+.slide-caption i {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    opacity: 0.8;
 }
 
 .slide-caption::before {
@@ -281,9 +306,15 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 3rem;
-    align-items: center;
+    align-items: start; /* 改为顶部对齐 */
     position: relative;
     z-index: 1;
+}
+
+.about-image {
+    position: sticky;
+    top: 100px; /* 图片向上固定 */
+    align-self: start;
 }
 
 .about-image img {
@@ -323,6 +354,28 @@
     margin-left: -20px;
 }
 
+/* 英文段落样式 */
+.about-text p.text-en {
+    opacity: 0.75;
+    font-size: 0.9em;
+    margin-bottom: 2rem;
+    border-left-color: var(--terminal-green-dark);
+    background: rgba(0, 255, 0, 0.03);
+    padding: 0.5rem 1rem 0.5rem 20px;
+    border-radius: 2px;
+}
+
+.about-text p.text-en::before {
+    content: '/* ';
+    color: var(--terminal-green-dark);
+    margin-left: -20px;
+}
+
+.about-text p.text-en::after {
+    content: ' */';
+    color: var(--terminal-green-dark);
+}
+
 .skills {
     display: flex;
     flex-wrap: wrap;
@@ -354,9 +407,10 @@
 
 /* 技能分类 */
 .skills-categories {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     display: grid;
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr); /* 两列布局 */
+    gap: 1.5rem;
 }
 
 .skill-category {
@@ -364,12 +418,15 @@
     border: 2px solid var(--terminal-green-dark);
     padding: 1.5rem;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .skill-category:hover {
     border-color: var(--terminal-green);
     background-color: rgba(0, 255, 0, 0.05);
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    transform: translateY(-2px);
 }
 
 .category-title {
@@ -1658,6 +1715,16 @@
 
     .about-content {
         grid-template-columns: 1fr;
+    }
+
+    .about-image {
+        position: relative;
+        top: 0;
+        margin-bottom: 2rem;
+    }
+
+    .skills-categories {
+        grid-template-columns: 1fr; /* 移动端单列 */
     }
 
     .student-preview {
