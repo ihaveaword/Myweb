@@ -252,12 +252,160 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// ========== 页面滚动进度指示器 ==========
+// ========== 交互优化功能 ==========
+
+// 回到顶部按钮
+const backToTopBtn = document.getElementById('backToTop');
+const timelineProgress = document.getElementById('timelineProgress');
+
+// 滚动事件处理
 window.addEventListener('scroll', function() {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (winScroll / height) * 100;
     
-    // 可以在这里添加进度条显示
-    console.log('Scroll progress:', Math.round(scrolled) + '%');
+    // 更新进度条
+    if (timelineProgress) {
+        timelineProgress.style.width = scrolled + '%';
+    }
+    
+    // 显示/隐藏回到顶部按钮
+    if (backToTopBtn) {
+        if (winScroll > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    }
 });
+
+// 回到顶部按钮点击事件
+if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// 为时间线项目添加交错动画
+const timelineItems = document.querySelectorAll('.timeline-item');
+timelineItems.forEach((item, index) => {
+    item.style.animationDelay = `${index * 0.2}s`;
+});
+
+// 增强的卡片交互
+const memoryBoxes = document.querySelectorAll('.memory-box');
+memoryBoxes.forEach(box => {
+    box.addEventListener('mouseenter', function() {
+        // 移除过度的震动效果，保持优雅
+        this.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    });
+    
+    box.addEventListener('mouseleave', function() {
+        // 鼠标离开时保持平滑过渡
+        this.style.transition = 'all 0.5s ease-out';
+    });
+    
+    // 点击卡片时的轻微反馈
+    box.addEventListener('click', function() {
+        this.style.transform = 'translateY(-6px) scale(0.99)';
+        setTimeout(() => {
+            this.style.transform = '';
+        }, 200);
+    });
+});
+
+// 移除过度震动的CSS动画
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes gentle-float {
+        0%, 100% { transform: translateY(-8px) scale(1.02); }
+        50% { transform: translateY(-10px) scale(1.02); }
+    }
+    
+    .memory-box:hover {
+        animation: gentle-float 3s ease-in-out infinite;
+    }
+`;
+document.head.appendChild(style);
+
+// 统计数字动画增强
+const statBoxes = document.querySelectorAll('.stat-box');
+statBoxes.forEach((box, index) => {
+    box.addEventListener('mouseenter', function() {
+        const number = this.querySelector('.stat-number');
+        if (number) {
+            number.style.animation = 'number-pulse 0.6s ease-in-out';
+        }
+    });
+    
+    box.addEventListener('mouseleave', function() {
+        const number = this.querySelector('.stat-number');
+        if (number) {
+            number.style.animation = '';
+        }
+    });
+});
+
+// 添加数字脉动动画
+const numberPulseStyle = document.createElement('style');
+numberPulseStyle.textContent = `
+    @keyframes number-pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+`;
+document.head.appendChild(numberPulseStyle);
+
+// ========== 照片画廊筛选功能 ==========
+function initPhotoGallery() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const photoItems = document.querySelectorAll('.photo-item');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+
+            // 更新按钮状态
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            // 筛选照片
+            photoItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                
+                if (filter === 'all' || category === filter) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.classList.remove('hidden');
+                    }, 10);
+                } else {
+                    item.classList.add('hidden');
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 400);
+                }
+            });
+        });
+    });
+
+    // 添加照片项点击效果
+    photoItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // 为将来的照片查看功能预留
+            const photoTitle = this.querySelector('h4')?.textContent || '照片';
+            console.log(`点击了照片: ${photoTitle}`);
+            
+            // 简单的点击反馈
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+}
+
+// 初始化照片画廊
+initPhotoGallery();

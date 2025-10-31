@@ -94,31 +94,27 @@
     <main class="student-main">
         <div class="container">
             
-            <!-- 时间线 -->
-            <div class="timeline">
-                
-                <!-- 大学时期 -->
-                <div class="timeline-item" data-period="university" data-year="2020-2024">
-                    <div class="timeline-marker">
-                        <div class="marker-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="marker-line"></div>
+            <!-- 大学时期 - 独立板块 -->
+            <section class="university-section" data-period="university">
+                <div class="university-header">
+                    <div class="header-decoration">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h2>大学生活</h2>
-                            <span class="timeline-date">2020 - 2024</span>
-                        </div>
-                        <div class="memory-grid">
+                    <div class="header-content">
+                        <h1 class="university-title">大学时光</h1>
+                        <p class="university-subtitle">UNIVERSITY DAYS · 2020 - 2024</p>
+                        <div class="header-line"></div>
+                    </div>
+                </div>
+                <div class="memory-grid">
                             <div class="memory-box">
                                 <i class="fas fa-user-tie"></i>
                                 <h3>扬帆舵手</h3>
                                 <p>2024年10月被聘任为电子与通信工程系2024级本科生扬帆舵手，获得系级通报表扬。</p>
                                 <div class="memory-tags">
-                                    <span>#领导力</span>
-                                    <span>#学生工作</span>
-                                    <span>#表扬</span>
+                                    <span>领导力</span>
+                                    <span>学生工作</span>
+                                    <span>表扬</span>
                                 </div>
                             </div>
                             <div class="memory-box">
@@ -126,9 +122,9 @@
                                 <h3>校友会工作室</h3>
                                 <p>电子与通信工程系校友会工作室通报表扬，担任校友工作室部员。</p>
                                 <div class="memory-tags">
-                                    <span>#校友工作</span>
-                                    <span>#优秀</span>
-                                    <span>#团队</span>
+                                    <span>校友工作</span>
+                                    <span>优秀</span>
+                                    <span>团队</span>
                                 </div>
                             </div>
                             <div class="memory-box">
@@ -136,9 +132,9 @@
                                 <h3>配音大赛决赛</h3>
                                 <p>晋级"声临万象，音为梦响"第九届配音大赛决赛，展现艺术才华。</p>
                                 <div class="memory-tags">
-                                    <span>#配音</span>
-                                    <span>#艺术</span>
-                                    <span>#决赛</span>
+                                    <span>配音</span>
+                                    <span>艺术</span>
+                                    <span>决赛</span>
                                 </div>
                             </div>
                             <div class="memory-box">
@@ -146,9 +142,9 @@
                                 <h3>VALSE 会议与学会会员</h3>
                                 <p>2025年6月参加视觉与学习青年学者研讨会（VALSE），成为中国图像图形学会会员。</p>
                                 <div class="memory-tags">
-                                    <span>#学术会议</span>
-                                    <span>#计算机视觉</span>
-                                    <span>#学会会员</span>
+                                    <span>学术会议</span>
+                                    <span>计算机视觉</span>
+                                    <span>学会会员</span>
                                 </div>
                             </div>
                             <div class="memory-box">
@@ -156,9 +152,9 @@
                                 <h3>心理中心助理</h3>
                                 <p>2024-2025学年心理中心办公室学生助理，获评优秀，服务同学心理健康。</p>
                                 <div class="memory-tags">
-                                    <span>#心理健康</span>
-                                    <span>#志愿服务</span>
-                                    <span>#优秀</span>
+                                    <span>心理健康</span>
+                                    <span>志愿服务</span>
+                                    <span>优秀</span>
                                 </div>
                             </div>
                             <div class="memory-box">
@@ -166,9 +162,9 @@
                                 <h3>学生组织骨干</h3>
                                 <p>担任研究生管理服务部干部，广播台宣传部部员，参与多项校园活动组织。</p>
                                 <div class="memory-tags">
-                                    <span>#学生干部</span>
-                                    <span>#组织能力</span>
-                                    <span>#服务</span>
+                                    <span>学生干部</span>
+                                    <span>组织能力</span>
+                                    <span>服务</span>
                                 </div>
                             </div>
                             <div class="memory-box">
@@ -196,9 +192,9 @@
                                     </li>
                                 </div>
                                 <div class="memory-tags">
-                                    <span>#新媒体</span>
-                                    <span>#文案创作</span>
-                                    <span>#编辑</span>
+                                    <span>新媒体</span>
+                                    <span>文案创作</span>
+                                    <span>编辑</span>
                                 </div>
                             </div>
                             <div class="memory-box">
@@ -214,7 +210,11 @@
                         </div>
                     </div>
                 </div>
+            </section>
 
+            <!-- 时间线 - 其他时期 -->
+            <div class="timeline">
+                
                 <!-- 高中时期 -->
                 <div class="timeline-item" data-period="high" data-year="2017-2020">
                     <div class="timeline-marker">
@@ -225,7 +225,7 @@
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <h2>High School Adventures</h2>
+                            <h2>高中时光</h2>
                             <span class="timeline-date">2017 - 2020</span>
                         </div>
                         <div class="memory-grid">
@@ -282,9 +282,9 @@
                                 <h3>第一台电脑</h3>
                                 <p>拥有了人生第一台电脑。花了无数时间研究它的工作原理，拆拆装装。</p>
                                 <div class="memory-tags">
-                                    <span>#科技</span>
-                                    <span>#好奇心</span>
-                                    <span>#学习</span>
+                                    <span>科技</span>
+                                    <span>好奇心</span>
+                                    <span>学习</span>
                                 </div>
                             </div>
                             <div class="memory-box">
@@ -292,9 +292,9 @@
                                 <h3>摄影社团</h3>
                                 <p>发现了对摄影的热爱，记录校园活动和自然风光。</p>
                                 <div class="memory-tags">
-                                    <span>#摄影</span>
-                                    <span>#创意</span>
-                                    <span>#艺术</span>
+                                    <span>摄影</span>
+                                    <span>创意</span>
+                                    <span>艺术</span>
                                 </div>
                             </div>
                             <div class="memory-box">
@@ -302,9 +302,9 @@
                                 <h3>班级代表</h3>
                                 <p>连续两年当选班长，学到了宝贵的领导能力。</p>
                                 <div class="memory-tags">
-                                    <span>#领导力</span>
-                                    <span>#责任</span>
-                                    <span>#信任</span>
+                                    <span>领导力</span>
+                                    <span>责任</span>
+                                    <span>信任</span>
                                 </div>
                             </div>
                         </div>
@@ -324,6 +324,7 @@
                             <h2>小学时光</h2>
                             <span class="timeline-date">2008 - 2014</span>
                         </div>
+                        <div class="memory-grid">
                             <div class="memory-box">
                                 <i class="fas fa-paint-brush"></i>
                                 <h3>艺术比赛</h3>
@@ -360,9 +361,116 @@
 
             </div>
 
+            <!-- 照片画廊 -->
+            <div class="photo-gallery-section">
+                <h2 class="section-title">// Visual Memories Gallery</h2>
+                <p class="gallery-subtitle">那些年，那些难忘的瞬间</p>
+                
+                <!-- 画廊分类筛选 -->
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-images"></i> 全部照片
+                    </button>
+                    <button class="filter-btn" data-filter="university">
+                        <i class="fas fa-graduation-cap"></i> 大学时光
+                    </button>
+                    <button class="filter-btn" data-filter="high">
+                        <i class="fas fa-school"></i> 高中岁月
+                    </button>
+                    <button class="filter-btn" data-filter="activities">
+                        <i class="fas fa-running"></i> 活动瞬间
+                    </button>
+                    <button class="filter-btn" data-filter="friends">
+                        <i class="fas fa-user-friends"></i> 友谊时光
+                    </button>
+                </div>
+
+                <!-- 照片网格 -->
+                <div class="photo-grid" id="photoGrid">
+                    <!-- 占位照片卡片 -->
+                    <div class="photo-item" data-category="university">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <span>大学生活照片</span>
+                            <p>即将上传...</p>
+                        </div>
+                        <div class="photo-info">
+                            <h4>大学生活</h4>
+                            <span class="photo-date">2020-2024</span>
+                        </div>
+                    </div>
+
+                    <div class="photo-item" data-category="high">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <span>高中时光照片</span>
+                            <p>即将上传...</p>
+                        </div>
+                        <div class="photo-info">
+                            <h4>高中时光</h4>
+                            <span class="photo-date">2017-2020</span>
+                        </div>
+                    </div>
+
+                    <div class="photo-item" data-category="activities">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <span>活动瞬间照片</span>
+                            <p>即将上传...</p>
+                        </div>
+                        <div class="photo-info">
+                            <h4>活动瞬间</h4>
+                            <span class="photo-date">精彩时刻</span>
+                        </div>
+                    </div>
+
+                    <div class="photo-item" data-category="friends">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <span>友谊合影照片</span>
+                            <p>即将上传...</p>
+                        </div>
+                        <div class="photo-info">
+                            <h4>友谊合影</h4>
+                            <span class="photo-date">珍贵回忆</span>
+                        </div>
+                    </div>
+
+                    <div class="photo-item" data-category="university">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <span>毕业照片</span>
+                            <p>即将上传...</p>
+                        </div>
+                        <div class="photo-info">
+                            <h4>毕业时刻</h4>
+                            <span class="photo-date">2024</span>
+                        </div>
+                    </div>
+
+                    <div class="photo-item" data-category="activities">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <span>比赛获奖照片</span>
+                            <p>即将上传...</p>
+                        </div>
+                        <div class="photo-info">
+                            <h4>获奖时刻</h4>
+                            <span class="photo-date">荣誉瞬间</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 照片上传提示 -->
+                <div class="upload-hint">
+                    <i class="fas fa-info-circle"></i>
+                    <span>照片正在整理中，敬请期待更多精彩回忆...</span>
+                </div>
+            </div>
+
             <!-- 统计数据 -->
             <div class="stats-section">
-                <h2 class="section-title">// Student Life Statistics</h2>
+                <h2 class="section-title">// 学生时代数据统计</h2>
                 <div class="stats-grid">
                     <div class="stat-box">
                         <i class="fas fa-calendar-alt"></i>
@@ -397,6 +505,14 @@
             <p class="footer-note">// End of student_days.log | Press any key to continue...</p>
         </div>
     </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" aria-label="回到顶部">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- 时间线进度条 -->
+    <div class="timeline-progress" id="timelineProgress"></div>
 
     <!-- Scripts - 先加载公共脚本，再加载页面专用脚本 -->
     <script src="js/common.js"></script>
