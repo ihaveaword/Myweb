@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (animated) return;
         
         statNumbers.forEach(stat => {
-            const target = parseInt(stat.getAttribute('data-count'));
+            const target = parseInt(stat.getAttribute('data-target')); // 改为 data-target
             let current = 0;
             const increment = target / 100; // 100步完成
             const duration = 2000; // 2秒完成
