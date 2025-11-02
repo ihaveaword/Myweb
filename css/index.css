@@ -464,27 +464,7 @@
 
 .category-title i {
     color: var(--terminal-green);
-}
-
-/* 为不同技能分类的图标添加独特颜色 */
-.skill-category:nth-child(1) .category-title i {
-    color: #9b59b6; /* VLM & Object Detection - 紫色 */
-    filter: drop-shadow(0 0 8px rgba(155, 89, 182, 0.6));
-}
-
-.skill-category:nth-child(2) .category-title i {
-    color: #3498db; /* Frameworks & Languages - 蓝色 */
-    filter: drop-shadow(0 0 8px rgba(52, 152, 219, 0.6));
-}
-
-.skill-category:nth-child(3) .category-title i {
-    color: #e74c3c; /* Dev Tools & Environment - 红色 */
-    filter: drop-shadow(0 0 8px rgba(231, 76, 60, 0.6));
-}
-
-.skill-category:nth-child(4) .category-title i {
-    color: #f39c12; /* Data & Visualization - 橙色 */
-    filter: drop-shadow(0 0 8px rgba(243, 156, 18, 0.6));
+    filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.6));
 }
 
 .skill-items {
@@ -734,22 +714,7 @@
 .memory-stats i {
     font-size: 1.5rem;
     color: var(--terminal-green-bright);
-}
-
-/* 为每个统计图标添加不同颜色 */
-.memory-stats span:nth-child(1) i {
-    color: #3498db; /* 书本 - 蓝色 */
-    filter: drop-shadow(0 0 6px rgba(52, 152, 219, 0.6));
-}
-
-.memory-stats span:nth-child(2) i {
-    color: #ffc800; /* 奖杯 - 金色 */
-    filter: drop-shadow(0 0 6px rgba(255, 200, 0, 0.6));
-}
-
-.memory-stats span:nth-child(3) i {
-    color: #ff69b4; /* 用户 - 粉色 */
-    filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.6));
+    filter: drop-shadow(0 0 6px rgba(0, 255, 0, 0.6));
 }
 
 .explore-btn {
@@ -829,56 +794,48 @@
 }
 
 /* 荣誉证书项特殊样式（可点击） */
-/* 为不同类别添加特定样式 */
-/* Academic Life - 蓝色 */
+/* 为不同类别添加特定样式 - 统一绿色主题 */
+/* Academic Life */
 .preview-item[data-category="study"] {
     cursor: pointer;
 }
 
 .preview-item[data-category="study"] i {
-    color: #00bfff;
-    text-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+    color: var(--terminal-green-bright);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
 }
 
 .preview-item[data-category="study"]:hover {
-    border-color: #00bfff;
-    background: rgba(0, 191, 255, 0.1);
-    box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+    border-color: var(--terminal-green);
+    background: rgba(0, 255, 0, 0.08);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
-/* Activities - 橙色 */
-.preview-item[data-category="activities"] {
-    cursor: pointer;
-}
-
+/* Activities (仅展示，不可点击) */
 .preview-item[data-category="activities"] i {
-    color: #ff8c00;
-    text-shadow: 0 0 10px rgba(255, 140, 0, 0.6);
+    color: var(--terminal-green-bright);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
 }
 
 .preview-item[data-category="activities"]:hover {
-    border-color: #ff8c00;
-    background: rgba(255, 140, 0, 0.1);
-    box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
+    border-color: var(--terminal-green);
+    background: rgba(0, 255, 0, 0.08);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
-/* Friendships - 粉色 */
-.preview-item[data-category="friends"] {
-    cursor: pointer;
-}
-
+/* Friendships (仅展示，不可点击) */
 .preview-item[data-category="friends"] i {
-    color: #ff69b4;
-    text-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+    color: var(--terminal-green-bright);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
 }
 
 .preview-item[data-category="friends"]:hover {
-    border-color: #ff69b4;
-    background: rgba(255, 105, 180, 0.1);
-    box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+    border-color: var(--terminal-green);
+    background: rgba(0, 255, 0, 0.08);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
-/* Achievements - 金色 */
+/* Achievements - 保持金色强调 */
 .preview-item[data-category="achievements"] {
     border-color: var(--terminal-green);
     background: rgba(0, 255, 0, 0.08);
