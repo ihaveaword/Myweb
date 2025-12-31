@@ -118,19 +118,60 @@ function typeWriter(element, text, speed = 50) {
 }
 
 // ========== 主题切换功能 ==========
+// ========== 主题切换功能 ==========
 function initThemeToggle() {
-    const themeToggle = document.getElementById('themeToggle');
+    // 尝试通过ID或Class获取按钮
+    const themeToggle = document.getElementById('themeToggle') || document.querySelector('.theme-toggle');
     if (!themeToggle) return;
 
+    const icon = themeToggle.querySelector('i');
     const html = document.documentElement;
     const currentTheme = localStorage.getItem('theme') || 'dark';
+
+    // 初始化：应用保存的主题和图标
     html.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(icon, currentTheme);
 
     themeToggle.addEventListener('click', () => {
-        console.log('> theme toggle clicked');
-        // 终端风格切换CRT扫描线效果
-        document.body.classList.toggle('no-scanlines');
+        const theme = html.getAttribute('data-theme');
+        const newTheme = theme === 'dark' ? 'light' : 'dark';
+
+        console.log(`> Theme toggling: ${theme} -> ${newTheme}`);
+
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+
+        // 更新按钮图标
+        updateThemeIcon(icon, newTheme);
+
+        // 触发自定义事件，通知其他组件（如侧边栏）
+        const event = new CustomEvent('themeChanged', { detail: { theme: newTheme } });
+        document.dispatchEvent(event);
+
+        // 可选：同时切换CRT扫描线效果（保留原功能）
+        // document.body.classList.toggle('no-scanlines', newTheme === 'light');
     });
+
+    // 监听来自其他组件的主题变更（例如侧边栏）
+    document.addEventListener('themeChanged', (e) => {
+        if (e.detail && e.detail.theme) {
+            updateThemeIcon(icon, e.detail.theme);
+        }
+    });
+
+    function updateThemeIcon(icon, theme) {
+        if (!icon) return;
+        // Dark Mode 显示太阳（提示切到亮色），Light Mode 显示月亮（提示切到暗色）
+        // 或者跟随 certificates.html 的逻辑：Dark -> Moon, Light -> Sun?
+        // 检查 certificates.js 逻辑：
+        // if (theme === 'dark') icon.className = 'fas fa-moon'; else icon.className = 'fas fa-sun';
+        // 遵循 certificates.js 的现有逻辑以保持一致：
+        if (theme === 'dark') {
+            icon.className = 'fas fa-moon';
+        } else {
+            icon.className = 'fas fa-sun';
+        }
+    }
 }
 
 // ========== 导航栏滚动效果 ==========

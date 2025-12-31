@@ -203,6 +203,14 @@ body::after {
     padding: 0 20px;
 }
 
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 20px;
+}
+
 /* ========== 导航栏样式 ========== */
 .navbar {
     position: fixed;
@@ -214,7 +222,7 @@ body::after {
     box-shadow: 0 2px 0 var(--terminal-green);
     border-bottom: 2px solid var(--terminal-green);
     z-index: 1000;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -232,12 +240,13 @@ body::after {
 }
 
 .nav-logo a {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--accent-color);
     text-decoration: none;
     font-family: 'Courier New', monospace;
     text-shadow: var(--terminal-glow);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .nav-logo a::before {
@@ -254,6 +263,38 @@ body::after {
     display: flex;
     list-style: none;
     gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    color: var(--terminal-green-dim);
+    text-decoration: none;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    position: relative;
+    font-weight: normal;
+    /* Override common default if any */
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--terminal-green-bright);
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+/* Optional: Active indicator line from certificates.css if desired, 
+   but user just said 'exactly the same', so adding it is safer */
+.nav-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--terminal-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
 .nav-link {
@@ -583,7 +624,7 @@ body::after {
     }
 
     .nav-logo a {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .section-title {
