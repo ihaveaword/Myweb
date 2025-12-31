@@ -1,95 +1,12 @@
 /* ==================== 证书与荣誉页面交互脚本 ====================
  * 功能：
- * 1. Matrix 代码雨背景效果
- * 2. 证书筛选功能
- * 3. 模态框展示证书详情
- * 4. 主题切换
- * 5. 移动端菜单
- * 6. 统计数据动画
+ * 1. 证书筛选功能
+ * 2. 模态框展示证书详情
+ * 3. 主题切换
+ * 4. 移动端菜单
+ * 5. 统计数据动画
+ * 依赖: common.js (提供 initMatrixRain 等公共函数)
  * ================================================= */
-
-// ========== Matrix 代码雨效果 ==========
-// ========== Matrix 代码雨效果 ==========
-function initMatrixBackground() {
-    const canvas = document.getElementById('matrix-bg');
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    let intervalId = null;
-
-    // 设置画布尺寸
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    // Matrix 字符集
-    const matrix = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/~`';
-    const characters = matrix.split('');
-
-    const fontSize = 14;
-    let columns = canvas.width / fontSize;
-    const drops = [];
-
-    function initDrops() {
-        columns = canvas.width / fontSize;
-        for (let i = 0; i < Math.floor(columns); i++) {
-            drops[i] = 1;
-        }
-    }
-    initDrops();
-
-    // 绘制函数
-    function draw() {
-        // 半透明黑色背景，产生拖尾效果
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#00ff00';
-        ctx.font = fontSize + 'px monospace';
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = characters[Math.floor(Math.random() * characters.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            // 重置下落位置
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-    }
-
-    function startAnimation() {
-        if (!intervalId) {
-            initDrops();
-            intervalId = setInterval(draw, 50);
-        }
-    }
-
-    function stopAnimation() {
-        if (intervalId) {
-            clearInterval(intervalId);
-            intervalId = null;
-        }
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    // 检查当前主题
-    function checkTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        if (currentTheme === 'light') {
-            stopAnimation();
-        } else {
-            startAnimation();
-        }
-    }
-
-    checkTheme();
-    document.addEventListener('themeChanged', checkTheme);
-}
 
 // ========== 证书筛选功能 ==========
 function initCertificateFilter() {
@@ -239,7 +156,8 @@ function initThemeToggle() {
     if (!themeToggle) return;
 
     const icon = themeToggle.querySelector('i');
-    const currentTheme = localStorage.getItem('theme') || 'dark';
+    // 默认主题改为 light（米白极简风格）
+    const currentTheme = localStorage.getItem('theme') || 'light';
 
     // 应用保存的主题
     document.documentElement.setAttribute('data-theme', currentTheme);
@@ -252,6 +170,10 @@ function initThemeToggle() {
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(icon, newTheme);
+        
+        // 触发自定义事件，通知其他组件
+        const event = new CustomEvent('themeChanged', { detail: { theme: newTheme } });
+        document.dispatchEvent(event);
     });
 
     function updateThemeIcon(icon, theme) {
@@ -293,27 +215,11 @@ function initMobileMenu() {
 
 // ========== 滚动动画 ==========
 function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // 观察所有证书卡片
+    // 移除动画，证书直接显示
     const cards = document.querySelectorAll('.cert-card');
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = `all 0.6s ease ${index * 0.1}s`;
-        observer.observe(card);
+    cards.forEach((card) => {
+        card.style.opacity = '1';
+        card.style.transform = 'none';
     });
 }
 
@@ -408,7 +314,10 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('🎓 证书页面初始化中...');
 
     // 初始化各个功能模块
-    initMatrixBackground();
+    // Matrix 代码雨使用 common.js 中的公共函数
+    if (typeof initMatrixRain === 'function') {
+        initMatrixRain();
+    }
     initCertificateFilter();
     initModal();
     initThemeToggle();

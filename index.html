@@ -4,6 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 关键：内联样式必须在所有外部资源之前，防止闪烁 -->
+    <style>
+        /* 浅色主题关键样式 - 在外部CSS加载前生效 */
+        html[data-theme="light"], html[data-theme="light"] body {
+            background-color: #F9F9F9 !important;
+            color: #333333 !important;
+        }
+        /* 深色主题关键样式 */
+        html:not([data-theme="light"]), html:not([data-theme="light"]) body {
+            background-color: #000000;
+            color: #00ff00;
+        }
+    </style>
+    <!-- 主题初始化：在页面渲染前设置 -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <title>ZHY - Computer Vision Researcher | AI Developer | NCEPU</title>
     <meta name="description"
         content="Graduate student at North China Electric Power University, specializing in Computer Vision, VLM, Object Detection. HCIP-AI Ascend Certified Developer.">
@@ -125,44 +145,59 @@
                 </h1>
                 <p class="hero-subtitle">Computer Vision Researcher | AI Developer | HCIP Certified</p>
                 <div class="hero-cta">
-                    <a href="certificates.html" class="btn btn-primary">ls ./certificates</a>
-                    <a href="#ai-chat" class="btn btn-secondary">./ai_chat.sh</a>
+                    <a href="certificates.html" class="btn btn-primary">Certificates</a>
+                    <a href="#ai-chat" class="btn btn-secondary">AI Chat</a>
                 </div>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- 照片轮播区域 -->
-    <section class="carousel-section">
-        <div class="carousel-container">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide active">
-                    <a href="https://github.com/ihaveaword" target="_blank" rel="noopener noreferrer">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200" alt="工作场景1">
-                        <div class="slide-caption">我的工作空间 <i class="fas fa-external-link-alt"></i></div>
-                    </a>
+    <!-- 静态精选集区域 (Static Gallery) -->
+    <section class="static-gallery-section">
+        <div class="container">
+            <div class="gallery-grid">
+                <!-- 创意空间 -->
+                <div class="gallery-card">
+                    <div class="gallery-image-wrapper">
+                        <img src="images/workspace.png" alt="Creative Workspace">
+                        <div class="gallery-overlay">
+                            <span>CREATIVE_SPACE</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>创意空间</h3>
+                        <p>Minimalist Setup</p>
+                    </div>
                 </div>
-                <div class="carousel-slide">
-                    <a href="https://blog.csdn.net/ZHY0091" target="_blank" rel="noopener noreferrer">
-                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200" alt="工作场景2">
-                        <div class="slide-caption">创意时刻 <i class="fas fa-external-link-alt"></i></div>
-                    </a>
+
+                <!-- 工作时刻 -->
+                <div class="gallery-card">
+                    <div class="gallery-image-wrapper">
+                        <img src="images/coding.png" alt="Coding Moments">
+                        <div class="gallery-overlay">
+                            <span>WORK_FLOW</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>我的工作时刻</h3>
+                        <p>Deep Focus Mode</p>
+                    </div>
                 </div>
-                <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200" alt="团队合作">
-                    <div class="slide-caption">团队协作</div>
+
+                <!-- 团队协作 -->
+                <div class="gallery-card">
+                    <div class="gallery-image-wrapper">
+                        <img src="images/collaboration.png" alt="Team Collaboration">
+                        <div class="gallery-overlay">
+                            <span>TEAM_LINK</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>团队协作</h3>
+                        <p>Synergy & Connection</p>
+                    </div>
                 </div>
             </div>
-            <button class="carousel-btn prev" id="prevBtn">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="carousel-btn next" id="nextBtn">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-            <div class="carousel-indicators" id="carouselIndicators"></div>
         </div>
     </section>
 
@@ -175,14 +210,24 @@
                     <img src="images/证件照.jpg" alt="个人照片">
                 </div>
                 <div class="about-text">
-                    <h3>$ cat profile.md</h3>
-                    <p>我是华北电力大学信息与通信工程专业的研究生，对计算机视觉和AI开发充满热情。我的研究重点是视觉语言模型（VLM）、视觉语言预训练（VLP）、目标检测和开放词汇检测（OVD）。</p>
+                    <div class="about-header">
+                        <h3>$ cat profile.md</h3>
+                        <button class="lang-toggle" id="langToggle">
+                            <span class="lang-option active" data-lang="zh">中文</span>
+                            <span class="lang-divider">|</span>
+                            <span class="lang-option" data-lang="en">EN</span>
+                        </button>
+                    </div>
+
+                    <p class="text-zh">
+                        我是华北电力大学信息与通信工程专业的研究生，对计算机视觉和AI开发充满热情。我的研究重点是视觉语言模型（VLM）、视觉语言预训练（VLP）、目标检测和开放词汇检测（OVD）。</p>
                     <p class="text-en">I'm a graduate student majoring in Information and Communication Engineering at
                         North China Electric Power University, with a strong passion for Computer Vision and AI
                         Development. My research focuses on Vision-Language Models (VLM), Vision-Language Pre-training
                         (VLP), Object Detection, and Open-Vocabulary Detection (OVD).</p>
 
-                    <p>本科期间（2020-2024），我在通信原理、数字信号处理和计算机网络等方面打下了坚实的基础。现在作为硕士研究生（2024-2027），我正在深入探索前沿AI技术。我已获得华为HCIP-AI昇腾开发者认证，并持续探索计算机视觉领域的创新解决方案。
+                    <p class="text-zh">
+                        本科期间（2020-2024），我在通信原理、数字信号处理和计算机网络等方面打下了坚实的基础。现在作为硕士研究生（2024-2027），我正在深入探索前沿AI技术。我已获得华为HCIP-AI昇腾开发者认证，并持续探索计算机视觉领域的创新解决方案。
                     </p>
                     <p class="text-en">During my undergraduate studies (2020-2024), I built a solid foundation in
                         communication principles, digital signal processing, and computer networks. Now as a master's
@@ -190,172 +235,84 @@
                         Huawei HCIP-AI Ascend Developer and continuously exploring innovative solutions in computer
                         vision.</p>
 
-                    <p>我的研究生GPA为90.264，专业排名5/39。我致力于将理论知识与实践应用相结合，相信技术不仅应该突破边界，更应该解决现实世界的问题。</p>
+                    <p class="text-zh">我的研究生GPA为90.264，专业排名5/39。我致力于将理论知识与实践应用相结合，相信技术不仅应该突破边界，更应该解决现实世界的问题。</p>
                     <p class="text-en">With a GPA of 90.264 and ranked 5/39 in my graduate program, I'm committed to
                         combining theoretical knowledge with practical implementation. I believe technology should not
                         only push boundaries but also solve real-world problems.</p>
 
                     <!-- 技能分类展示 -->
-                    <div class="skills-categories">
+                    <!-- 技能矩阵 (Tag Matrix) -->
+                    <div class="skills-matrix">
                         <!-- 视觉语言模型 & 目标检测 -->
-                        <div class="skill-category">
-                            <h4 class="category-title">
+                        <div class="matrix-category">
+                            <h4 class="category-title text-zh">
+                                <i class="fas fa-brain"></i> 视觉语言模型 & 目标检测
+                            </h4>
+                            <h4 class="category-title text-en">
                                 <i class="fas fa-brain"></i> VLM & Object Detection
                             </h4>
-                            <div class="skill-items">
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">CLIP, YOLO-World, ViT</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">YOLO (v5/v8/v11), Faster R-CNN, DETR</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Open-Vocabulary Detection (OVD)</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 80%"></div>
-                                    </div>
-                                </div>
+                            <div class="matrix-tags">
+                                <span class="skill-tag primary">CLIP</span>
+                                <span class="skill-tag primary">YOLO-World</span>
+                                <span class="skill-tag primary">ViT</span>
+                                <span class="skill-tag primary">YOLO v5/v8/v11</span>
+                                <span class="skill-tag primary">Faster R-CNN</span>
+                                <span class="skill-tag primary">DETR</span>
+                                <span class="skill-tag secondary">Open-Vocabulary Detection</span>
                             </div>
                         </div>
 
                         <!-- 深度学习框架 & 开发语言 -->
-                        <div class="skill-category">
-                            <h4 class="category-title">
+                        <div class="matrix-category">
+                            <h4 class="category-title text-zh">
+                                <i class="fas fa-code"></i> 框架 & 开发语言
+                            </h4>
+                            <h4 class="category-title text-en">
                                 <i class="fas fa-code"></i> Frameworks & Languages
                             </h4>
-                            <div class="skill-items">
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">PyTorch (torchvision, torchaudio)</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Python (主力语言)</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 90%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">TensorFlow / Mindspore</span>
-                                        <span class="skill-level">Intermediate</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 70%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">C (模型部署与优化)</span>
-                                        <span class="skill-level">Intermediate</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 65%"></div>
-                                    </div>
-                                </div>
+                            <div class="matrix-tags">
+                                <span class="skill-tag primary">PyTorch</span>
+                                <span class="skill-tag secondary">torchvision</span>
+                                <span class="skill-tag secondary">torchaudio</span>
+                                <span class="skill-tag primary">Python</span>
+                                <span class="skill-tag secondary">TensorFlow</span>
+                                <span class="skill-tag secondary">Mindspore</span>
+                                <span class="skill-tag secondary">C/C++</span>
                             </div>
                         </div>
-
                         <!-- 开发工具 & 环境管理 -->
-                        <div class="skill-category">
-                            <h4 class="category-title">
+                        <div class="matrix-category">
+                            <h4 class="category-title text-zh">
+                                <i class="fas fa-tools"></i> 效率工具 & 环境
+                            </h4>
+                            <h4 class="category-title text-en">
                                 <i class="fas fa-tools"></i> Dev Tools & Environment
                             </h4>
-                            <div class="skill-items">
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Linux/MacOS, Docker, Conda/venv</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Git, GitHub/GitLab, Lazygit</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">VS Code, PyCharm, Jupyter</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 90%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Tmux, 飞书</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 80%"></div>
-                                    </div>
-                                </div>
+                            <div class="matrix-tags">
+                                <span class="skill-tag primary">Linux/MacOS</span>
+                                <span class="skill-tag primary">Docker</span>
+                                <span class="skill-tag secondary">Git/GitHub</span>
+                                <span class="skill-tag secondary">Conda</span>
+                                <span class="skill-tag secondary">VS Code</span>
+                                <span class="skill-tag secondary">Tmux</span>
+                                <span class="skill-tag secondary">Feishu</span>
                             </div>
                         </div>
 
                         <!-- 数据处理 & 可视化 -->
-                        <div class="skill-category">
-                            <h4 class="category-title">
+                        <div class="matrix-category">
+                            <h4 class="category-title text-zh">
+                                <i class="fas fa-chart-line"></i> 数据 & 可视化
+                            </h4>
+                            <h4 class="category-title text-en">
                                 <i class="fas fa-chart-line"></i> Data & Visualization
                             </h4>
-                            <div class="skill-items">
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">OpenCV, Pillow (图像增强/预处理)</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Matplotlib, OpenCV (可视化)</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-header">
-                                        <span class="skill-name">Labelme, CVAT (数据标注)</span>
-                                        <span class="skill-level">Advanced</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 80%"></div>
-                                    </div>
-                                </div>
+                            <div class="matrix-tags">
+                                <span class="skill-tag primary">OpenCV</span>
+                                <span class="skill-tag primary">Matplotlib</span>
+                                <span class="skill-tag secondary">Pillow</span>
+                                <span class="skill-tag secondary">Labelme</span>
+                                <span class="skill-tag secondary">CVAT</span>
                             </div>
                         </div>
                     </div>

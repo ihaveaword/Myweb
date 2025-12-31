@@ -4,6 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 关键：内联样式必须在所有外部资源之前，防止闪烁 -->
+    <style>
+        /* 浅色主题关键样式 - 在外部CSS加载前生效 */
+        html[data-theme="light"], html[data-theme="light"] body {
+            background-color: #F9F9F9 !important;
+            color: #333333 !important;
+        }
+        /* 深色主题关键样式 */
+        html:not([data-theme="light"]), html:not([data-theme="light"]) body {
+            background-color: #000000;
+            color: #00ff00;
+        }
+    </style>
+    <!-- 主题初始化：在页面渲染前设置 -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <title>Student Days | Memory Archive</title>
 
     <!-- Favicon - 多尺寸支持 -->
@@ -40,7 +60,7 @@
 
 <body>
     <!-- 导航栏 -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-logo">
                 <a href="index.html">root@ihave:~#</a>
@@ -73,24 +93,24 @@
         </div>
     </header>
 
-    <!-- 时间线导航 -->
-    <nav class="timeline-nav">
+    <!-- 时间线导航 - 目录式导航 -->
+    <nav class="timeline-nav" id="timeline-nav">
         <div class="container">
-            <button class="timeline-btn active" data-period="all">
-                <i class="fas fa-list"></i> All Memories
-            </button>
-            <button class="timeline-btn" data-period="elementary">
-                <i class="fas fa-child"></i> Elementary
-            </button>
-            <button class="timeline-btn" data-period="middle">
-                <i class="fas fa-user-graduate"></i> Middle School
-            </button>
-            <button class="timeline-btn" data-period="high">
-                <i class="fas fa-school"></i> High School
-            </button>
-            <button class="timeline-btn" data-period="university">
+            <a href="#section-university" class="timeline-btn active">
                 <i class="fas fa-university"></i> University
-            </button>
+            </a>
+            <a href="#section-high" class="timeline-btn">
+                <i class="fas fa-school"></i> High School
+            </a>
+            <a href="#section-middle" class="timeline-btn">
+                <i class="fas fa-user-graduate"></i> Middle School
+            </a>
+            <a href="#section-elementary" class="timeline-btn">
+                <i class="fas fa-child"></i> Elementary
+            </a>
+            <a href="#section-gallery" class="timeline-btn">
+                <i class="fas fa-images"></i> Gallery
+            </a>
         </div>
     </nav>
 
@@ -99,7 +119,7 @@
         <div class="container">
 
             <!-- 大学时期 - 独立板块 -->
-            <section class="university-section" data-period="university">
+            <section class="university-section" data-period="university" id="section-university">
                 <div class="university-header">
                     <div class="header-decoration">
                         <i class="fas fa-graduation-cap"></i>
@@ -222,157 +242,146 @@
         </div>
         </section>
 
-        <!-- 时间线 - 其他时期 -->
-        <div class="timeline">
-
-            <!-- 高中时期 -->
-            <div class="timeline-item" data-period="high" data-year="2017-2020">
-                <div class="timeline-marker">
-                    <div class="marker-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="marker-line"></div>
+        <!-- 高中时期 - 独立板块 -->
+        <section class="university-section" data-period="high" id="section-high">
+            <div class="university-header">
+                <div class="header-decoration">
+                    <i class="fas fa-school"></i>
                 </div>
-                <div class="timeline-content">
-                    <div class="timeline-header">
-                        <h2>高中时光</h2>
-                        <span class="timeline-date">2017 - 2020</span>
+                <div class="header-content">
+                    <h1 class="university-title">高中时光</h1>
+                    <p class="university-subtitle">HIGH SCHOOL DAYS · 2017 - 2020</p>
+                    <div class="header-line"></div>
+                </div>
+            </div>
+            <div class="memory-grid">
+                <div class="memory-box">
+                    <i class="fas fa-school"></i>
+                    <h3>考入市重点高中</h3>
+                    <p>通过中考，成功考入市重点高中——五中，开启新的学习旅程。</p>
+                    <div class="memory-tags">
+                        <span>市重点</span>
+                        <span>五中</span>
+                        <span>新起点</span>
                     </div>
-                    <div class="memory-grid">
-                        <div class="memory-box">
-                            <i class="fas fa-school"></i>
-                            <h3>考入市重点高中</h3>
-                            <p>通过中考，成功考入市重点高中——五中，开启新的学习旅程。</p>
-                            <div class="memory-tags">
-                                <span>市重点</span>
-                                <span>五中</span>
-                                <span>新起点</span>
-                            </div>
-                        </div>
-                        <div class="memory-box">
-                            <i class="fas fa-trophy"></i>
-                            <h3>高三年级第一名</h3>
-                            <p>高三时期刻苦努力，第一次拿到年级第一名，这是对自己的肯定和鼓励。</p>
-                            <div class="memory-tags">
-                                <span>学业成就</span>
-                                <span>年级第一</span>
-                                <span>高三</span>
-                            </div>
-                        </div>
-                        <div class="memory-box">
-                            <i class="fas fa-book-reader"></i>
-                            <h3>刻苦学习</h3>
-                            <p>三年高中生活，在学业上不断进步，为大学打下坚实基础。</p>
-                            <div class="memory-tags">
-                                <span>勤奋</span>
-                                <span>进步</span>
-                                <span>成长</span>
-                            </div>
-                        </div>
+                </div>
+                <div class="memory-box">
+                    <i class="fas fa-trophy"></i>
+                    <h3>高三年级第一名</h3>
+                    <p>高三时期刻苦努力，第一次拿到年级第一名，这是对自己的肯定和鼓励。</p>
+                    <div class="memory-tags">
+                        <span>学业成就</span>
+                        <span>年级第一</span>
+                        <span>高三</span>
+                    </div>
+                </div>
+                <div class="memory-box">
+                    <i class="fas fa-book-reader"></i>
+                    <h3>刻苦学习</h3>
+                    <p>三年高中生活，在学业上不断进步，为大学打下坚实基础。</p>
+                    <div class="memory-tags">
+                        <span>勤奋</span>
+                        <span>进步</span>
+                        <span>成长</span>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- 初中时期 -->
-            <div class="timeline-item" data-period="middle" data-year="2014-2017">
-                <div class="timeline-marker">
-                    <div class="marker-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <div class="marker-line"></div>
+        <!-- 初中时期 - 独立板块 -->
+        <section class="university-section" data-period="middle" id="section-middle">
+            <div class="university-header">
+                <div class="header-decoration">
+                    <i class="fas fa-laptop"></i>
                 </div>
-                <div class="timeline-content">
-                    <div class="timeline-header">
-                        <h2>初中岁月</h2>
-                        <span class="timeline-date">2014 - 2017</span>
+                <div class="header-content">
+                    <h1 class="university-title">初中岁月</h1>
+                    <p class="university-subtitle">MIDDLE SCHOOL DAYS · 2014 - 2017</p>
+                    <div class="header-line"></div>
+                </div>
+            </div>
+            <div class="memory-grid">
+                <div class="memory-box">
+                    <i class="fas fa-desktop"></i>
+                    <h3>第一台电脑</h3>
+                    <p>拥有了人生第一台电脑。花了无数时间研究它的工作原理，拆拆装装。</p>
+                    <div class="memory-tags">
+                        <span>科技</span>
+                        <span>好奇心</span>
+                        <span>学习</span>
                     </div>
-                    <div class="memory-grid">
-                        <div class="memory-box">
-                            <i class="fas fa-desktop"></i>
-                            <h3>第一台电脑</h3>
-                            <p>拥有了人生第一台电脑。花了无数时间研究它的工作原理，拆拆装装。</p>
-                            <div class="memory-tags">
-                                <span>科技</span>
-                                <span>好奇心</span>
-                                <span>学习</span>
-                            </div>
-                        </div>
-                        <div class="memory-box">
-                            <i class="fas fa-camera"></i>
-                            <h3>摄影社团</h3>
-                            <p>发现了对摄影的热爱，记录校园活动和自然风光。</p>
-                            <div class="memory-tags">
-                                <span>摄影</span>
-                                <span>创意</span>
-                                <span>艺术</span>
-                            </div>
-                        </div>
-                        <div class="memory-box">
-                            <i class="fas fa-flag"></i>
-                            <h3>班级代表</h3>
-                            <p>连续两年当选班长，学到了宝贵的领导能力。</p>
-                            <div class="memory-tags">
-                                <span>领导力</span>
-                                <span>责任</span>
-                                <span>信任</span>
-                            </div>
-                        </div>
+                </div>
+                <div class="memory-box">
+                    <i class="fas fa-camera"></i>
+                    <h3>摄影社团</h3>
+                    <p>发现了对摄影的热爱，记录校园活动和自然风光。</p>
+                    <div class="memory-tags">
+                        <span>摄影</span>
+                        <span>创意</span>
+                        <span>艺术</span>
+                    </div>
+                </div>
+                <div class="memory-box">
+                    <i class="fas fa-flag"></i>
+                    <h3>班级代表</h3>
+                    <p>连续两年当选班长，学到了宝贵的领导能力。</p>
+                    <div class="memory-tags">
+                        <span>领导力</span>
+                        <span>责任</span>
+                        <span>信任</span>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- 小学时期 -->
-            <div class="timeline-item" data-period="elementary" data-year="2008-2014">
-                <div class="timeline-marker">
-                    <div class="marker-icon">
-                        <i class="fas fa-child"></i>
-                    </div>
-                    <div class="marker-line"></div>
+        <!-- 小学时期 - 独立板块 -->
+        <section class="university-section" data-period="elementary" id="section-elementary">
+            <div class="university-header">
+                <div class="header-decoration">
+                    <i class="fas fa-child"></i>
                 </div>
-                <div class="timeline-content">
-                    <div class="timeline-header">
-                        <h2>小学时光</h2>
-                        <span class="timeline-date">2008 - 2014</span>
+                <div class="header-content">
+                    <h1 class="university-title">小学时光</h1>
+                    <p class="university-subtitle">ELEMENTARY SCHOOL DAYS · 2008 - 2014</p>
+                    <div class="header-line"></div>
+                </div>
+            </div>
+            <div class="memory-grid">
+                <div class="memory-box">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>艺术比赛</h3>
+                    <p>在学校艺术比赛中获得一等奖，我的画作被展示在大厅里。</p>
+                    <div class="memory-tags">
+                        <span>艺术</span>
+                        <span>成就</span>
+                        <span>创造力</span>
                     </div>
-                    <div class="memory-grid">
-                        <div class="memory-box">
-                            <i class="fas fa-paint-brush"></i>
-                            <h3>艺术比赛</h3>
-                            <p>在学校艺术比赛中获得一等奖，我的画作被展示在大厅里。</p>
-                            <div class="memory-tags">
-                                <span>艺术</span>
-                                <span>成就</span>
-                                <span>创造力</span>
-                            </div>
-                        </div>
-                        <div class="memory-box">
-                            <i class="fas fa-running"></i>
-                            <h3>运动会冠军</h3>
-                            <p>100米短跑获得金牌，这枚奖牌我至今还保留着！</p>
-                            <div class="memory-tags">
-                                <span>体育</span>
-                                <span>胜利</span>
-                                <span>骄傲</span>
-                            </div>
-                        </div>
-                        <div class="memory-box">
-                            <i class="fas fa-book-reader"></i>
-                            <h3>阅读俱乐部</h3>
-                            <p>6年时间读了50多本书，培养了对故事和想象力的热爱。</p>
-                            <div class="memory-tags">
-                                <span>阅读</span>
-                                <span>想象力</span>
-                                <span>知识</span>
-                            </div>
-                        </div>
+                </div>
+                <div class="memory-box">
+                    <i class="fas fa-running"></i>
+                    <h3>运动会冠军</h3>
+                    <p>100米短跑获得金牌，这枚奖牌我至今还保留着！</p>
+                    <div class="memory-tags">
+                        <span>体育</span>
+                        <span>胜利</span>
+                        <span>骄傲</span>
+                    </div>
+                </div>
+                <div class="memory-box">
+                    <i class="fas fa-book-reader"></i>
+                    <h3>阅读俱乐部</h3>
+                    <p>6年时间读了50多本书，培养了对故事和想象力的热爱。</p>
+                    <div class="memory-tags">
+                        <span>阅读</span>
+                        <span>想象力</span>
+                        <span>知识</span>
                     </div>
                 </div>
             </div>
-
-        </div>
+        </section>
 
         <!-- 照片画廊 -->
-        <div class="photo-gallery-section">
+        <div class="photo-gallery-section" id="section-gallery">
             <h2 class="section-title">// Visual Memories Gallery</h2>
             <p class="gallery-subtitle">那些年，那些难忘的瞬间</p>
 
@@ -516,10 +525,12 @@
         </div>
     </footer>
 
-    <!-- 回到顶部按钮 -->
-    <button class="back-to-top" id="backToTop" aria-label="回到顶部">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+    <!-- 悬浮回到顶部按钮 -->
+    <div class="floating-controls">
+        <button id="backToTop" class="control-btn" aria-label="回到顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
 
     <!-- 时间线进度条 -->
     <div class="timeline-progress" id="timelineProgress"></div>

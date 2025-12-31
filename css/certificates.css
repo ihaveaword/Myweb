@@ -7,7 +7,12 @@
 /* ========== 导航栏样式修正 ========== */
 .navbar {
     background-color: var(--navbar-bg);
-    border-bottom: 2px solid var(--terminal-green);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
 }
 
 .navbar .container {
@@ -59,7 +64,6 @@
     bottom: -8px;
     left: 0;
     width: 100%;
-    height: 2px;
     height: 2px;
     background: var(--terminal-green);
     box-shadow: 0 0 10px var(--terminal-shadow);
@@ -128,7 +132,6 @@ body {
 .page-header {
     padding: 120px 0 60px;
     text-align: center;
-    border-bottom: 1px solid rgba(var(--glow-rgb), 0.2);
     margin-bottom: 40px;
 }
 
@@ -246,23 +249,23 @@ body {
 
 /* ========== 证书卡片网格 ========== */
 .certificates-section {
-    padding: 40px 0 80px;
+    padding: 30px 0 60px;
 }
 
 .certificates-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
 }
 
 /* 证书卡片 */
 .cert-card {
     background: rgba(var(--glow-rgb), 0.03);
     border: 1px solid rgba(var(--glow-rgb), 0.2);
-    border-radius: 12px;
-    padding: 25px;
-    transition: all 0.4s ease;
+    border-radius: 10px;
+    padding: 16px;
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     opacity: 1;
@@ -286,8 +289,8 @@ body {
 
 .cert-card:hover {
     border-color: var(--terminal-green);
-    box-shadow: 0 0 30px rgba(var(--glow-rgb), 0.3);
-    transform: translateY(-8px);
+    box-shadow: 0 0 20px rgba(var(--glow-rgb), 0.3);
+    transform: translateY(-4px);
     background: rgba(var(--glow-rgb), 0.05);
 }
 
@@ -303,19 +306,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .cert-icon {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--terminal-shadow);
     border: 2px solid var(--terminal-green);
     border-radius: 50%;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: var(--terminal-green);
     box-shadow: 0 0 15px var(--terminal-shadow);
 }
@@ -341,13 +344,13 @@ html[data-theme="dark"] .cert-icon.tech {
 
 /* 徽章 */
 .cert-badge {
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.75rem;
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     font-family: 'Fira Code', monospace;
 }
 
@@ -371,23 +374,23 @@ html[data-theme="dark"] .cert-icon.tech {
 
 /* 卡片主体 */
 .cert-body {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .cert-title {
-    font-size: 1.4rem;
+    font-size: 1.15rem;
     color: var(--terminal-green-bright);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-family: 'Fira Code', monospace;
     font-weight: 600;
 }
 
 /* 证书副标题（英文名称） */
 .cert-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--terminal-green-dim);
     font-style: italic;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     opacity: 0.8;
 }
 
@@ -581,48 +584,47 @@ html[data-theme="dark"] .cert-icon.tech {
 .timeline-item {
     position: relative;
     margin-bottom: 50px;
-    opacity: 0;
-    animation: fadeInUp 0.6s ease forwards;
+    opacity: 1;
 }
 
 .timeline-item:nth-child(1) {
-    animation-delay: 0.1s;
+    animation: none;
 }
 
 .timeline-item:nth-child(2) {
-    animation-delay: 0.2s;
+    animation: none;
 }
 
 .timeline-item:nth-child(3) {
-    animation-delay: 0.3s;
+    animation: none;
 }
 
 .timeline-item:nth-child(4) {
-    animation-delay: 0.4s;
+    animation: none;
 }
 
 .timeline-item:nth-child(5) {
-    animation-delay: 0.5s;
+    animation: none;
 }
 
 .timeline-item:nth-child(6) {
-    animation-delay: 0.6s;
+    animation: none;
 }
 
 .timeline-item:nth-child(7) {
-    animation-delay: 0.7s;
+    animation: none;
 }
 
 .timeline-item:nth-child(8) {
-    animation-delay: 0.8s;
+    animation: none;
 }
 
 .timeline-item:nth-child(9) {
-    animation-delay: 0.9s;
+    animation: none;
 }
 
 .timeline-item:nth-child(10) {
-    animation-delay: 1.0s;
+    animation: none;
 }
 
 .timeline-marker {
@@ -985,4 +987,331 @@ html[data-theme="dark"] .cert-icon.tech {
     .section-title {
         font-size: 1.8rem;
     }
+}
+
+/* =========================================
+   浅色模式极简美学 (Light Mode Minimalist Aesthetic)
+   设计原则：极简主义、排版驱动、无边框、低饱和度、微交互
+   ========================================= */
+
+/* === 基础背景 === */
+[data-theme="light"] body,
+[data-theme="light"] .page-header,
+[data-theme="light"] .main-content {
+    background: var(--bg-primary) !important;
+}
+
+/* === 页面标题 - 排版驱动 === */
+[data-theme="light"] .page-header {
+    padding: 10rem 0 4rem;
+}
+
+[data-theme="light"] .page-title {
+    font-family: var(--font-sans);
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-shadow: none;
+    animation: none;
+}
+
+[data-theme="light"] .title-prefix {
+    display: none;
+}
+
+[data-theme="light"] .title-main {
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .page-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    color: #888;
+}
+
+[data-theme="light"] .page-subtitle::before {
+    display: none;
+}
+
+/* === 统计区域 === */
+[data-theme="light"] .stats-banner {
+    background: #fafafa;
+    border: none !important;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+[data-theme="light"] .stat-item {
+    border: none !important;
+}
+
+[data-theme="light"] .stat-number {
+    font-family: var(--font-sans);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-shadow: none;
+}
+
+[data-theme="light"] .stat-label {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* === 筛选按钮 - 极简风格 === */
+[data-theme="light"] .filter-section {
+    background: transparent;
+    border: none !important;
+}
+
+[data-theme="light"] .filter-btn {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #888;
+    background: transparent;
+    border: none !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+[data-theme="light"] .filter-btn:hover {
+    color: #1a1a1a;
+    background: rgba(0, 0, 0, 0.04);
+    box-shadow: none !important;
+}
+
+[data-theme="light"] .filter-btn.active {
+    color: #1a1a1a;
+    background: rgba(0, 0, 0, 0.06);
+    box-shadow: none !important;
+}
+
+/* === 证书卡片 - 无边框美学 === */
+[data-theme="light"] .cert-card {
+    background: #fff !important;
+    border: none !important;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+[data-theme="light"] .cert-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .cert-header {
+    background: #fafafa;
+    border-bottom: none;
+    padding: 1.5rem;
+}
+
+[data-theme="light"] .cert-icon {
+    background: #fff;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .cert-icon i {
+    color: #1a1a1a;
+    text-shadow: none;
+    filter: none;
+}
+
+[data-theme="light"] .cert-badge {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: none !important;
+    border-radius: 4px;
+}
+
+[data-theme="light"] .cert-body {
+    padding: 1.5rem;
+}
+
+[data-theme="light"] .cert-title {
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-shadow: none;
+}
+
+[data-theme="light"] .cert-issuer,
+[data-theme="light"] .cert-date,
+[data-theme="light"] .cert-id {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: #888;
+}
+
+[data-theme="light"] .cert-description {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    border: none !important;
+    background: transparent !important;
+}
+
+[data-theme="light"] .cert-skills {
+    list-style: none;
+    padding: 0;
+}
+
+[data-theme="light"] .cert-skills li {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: #666;
+    padding: 0.3rem 0;
+}
+
+[data-theme="light"] .cert-skills li::before {
+    content: "•";
+    color: #ccc;
+    margin-right: 0.5rem;
+}
+
+[data-theme="light"] .cert-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #f0f0f0;
+    background: transparent;
+}
+
+[data-theme="light"] .cert-btn {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #666;
+    background: transparent;
+    border: 1px solid #eee !important;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+[data-theme="light"] .cert-btn:hover {
+    color: #1a1a1a;
+    background: #f5f5f5;
+    border-color: #ddd !important;
+}
+
+/* === 添加新证书卡片 === */
+[data-theme="light"] .cert-card.add-new {
+    background: #fafafa !important;
+    border: 2px dashed #e0e0e0 !important;
+}
+
+[data-theme="light"] .cert-card.add-new:hover {
+    border-color: #ccc !important;
+    background: #f5f5f5 !important;
+}
+
+/* === 模态框 === */
+[data-theme="light"] .modal-content {
+    background: #fff !important;
+    border: none !important;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme="light"] .modal-header {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+[data-theme="light"] .modal-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .modal-close {
+    color: #888;
+    border: none;
+    background: transparent;
+}
+
+[data-theme="light"] .modal-close:hover {
+    color: #1a1a1a;
+    background: #f5f5f5;
+}
+
+/* === 时间线 === */
+[data-theme="light"] .timeline-section {
+    background: #fafafa;
+}
+
+[data-theme="light"] .timeline::before {
+    background: linear-gradient(to bottom,
+            transparent,
+            #ddd,
+            transparent);
+}
+
+[data-theme="light"] .timeline-item {
+    border: none !important;
+}
+
+[data-theme="light"] .timeline-item::before {
+    background: #eee;
+}
+
+[data-theme="light"] .timeline-item::after {
+    background: #fff;
+    border: 2px solid #ddd !important;
+    box-shadow: none;
+}
+
+[data-theme="light"] .timeline-content {
+    font-family: var(--font-sans);
+    color: #666;
+}
+
+[data-theme="light"] .timeline-year {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+/* === 页脚 === */
+[data-theme="light"] .footer {
+    background: #fafafa !important;
+    border-top: none !important;
+}
+
+[data-theme="light"] .footer-content {
+    color: #888;
+}
+
+/* === Section 标题 === */
+[data-theme="light"] .section-title {
+    font-family: var(--font-sans);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-shadow: none;
+}
+
+/* === 滚动条 === */
+[data-theme="light"] ::-webkit-scrollbar {
+    width: 6px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 3px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
 }

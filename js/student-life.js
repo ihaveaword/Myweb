@@ -36,31 +36,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ========== 时间线筛选 ==========
-    const filterButtons = document.querySelectorAll('.timeline-btn');
-    const timelineItems = document.querySelectorAll('.timeline-item');
+    // ========== 目录导航跟随主导航状态 ==========
+    const navbar = document.getElementById('navbar');
+    const timelineNav = document.getElementById('timeline-nav');
     
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-period');
-            
-            // 更新按钮状态
-            filterButtons.forEach(btn => btn.classList.remove('active'));
+    if (navbar && timelineNav) {
+        // 监听主导航栏的class变化
+        const observer = new MutationObserver(() => {
+            if (navbar.classList.contains('nav-hidden')) {
+                timelineNav.style.top = '0';
+            } else {
+                timelineNav.style.top = '60px';
+            }
+        });
+        observer.observe(navbar, { attributes: true, attributeFilter: ['class'] });
+    }
+    
+    // ========== 目录导航 - 滚动高亮 ==========
+    const navLinks = document.querySelectorAll('.timeline-nav .timeline-btn');
+    // 包括学校部分和照片墙部分
+    const sections = document.querySelectorAll('.university-section[id], .photo-gallery-section[id]');
+    
+    // 点击导航链接时更新active状态
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // 移除所有active
+            navLinks.forEach(l => l.classList.remove('active'));
+            // 添加当前active
             this.classList.add('active');
-            
-            // 筛选时间线项目
-            timelineItems.forEach(item => {
-                const period = item.getAttribute('data-period');
-                
-                if (filter === 'all' || period === filter) {
-                    item.style.display = 'flex';
-                    item.style.animation = 'fadeInTimeline 0.8s ease forwards';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
         });
     });
+    
+    // 滚动时自动高亮对应导航
+    function updateActiveNav() {
+        let currentSection = '';
+        const scrollPos = window.scrollY + 160; // 考虑固定导航的高度
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentSection) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', updateActiveNav);
+    // 页面加载时也执行一次
+    updateActiveNav();
     
     // ========== 统计数字动画 ==========
     const statNumbers = document.querySelectorAll('.stat-number');

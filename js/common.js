@@ -145,7 +145,6 @@ function typeWriter(element, text, speed = 50) {
 }
 
 // ========== 主题切换功能 ==========
-// ========== 主题切换功能 ==========
 function initThemeToggle() {
     // 尝试通过ID或Class获取按钮
     const themeToggle = document.getElementById('themeToggle') || document.querySelector('.theme-toggle');
@@ -153,7 +152,8 @@ function initThemeToggle() {
 
     const icon = themeToggle.querySelector('i');
     const html = document.documentElement;
-    const currentTheme = localStorage.getItem('theme') || 'dark';
+    // 默认主题改为 light（米白极简风格）
+    const currentTheme = localStorage.getItem('theme') || 'light';
 
     // 初始化：应用保存的主题和图标
     html.setAttribute('data-theme', currentTheme);
@@ -206,12 +206,39 @@ function initNavbarScroll() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
 
+    let lastScroll = 0;
+    const scrollThreshold = 80; // 滚动超过此值才开始隐藏
+
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        const currentScroll = window.scrollY;
+
+        // 添加滚动背景效果
+        if (currentScroll > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
+
+        // 在页面顶部附近时，始终显示导航栏
+        if (currentScroll <= scrollThreshold) {
+            navbar.classList.remove('nav-hidden');
+            navbar.classList.add('nav-visible');
+            lastScroll = currentScroll;
+            return;
+        }
+
+        // 向下滚动：隐藏导航栏
+        if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
+            navbar.classList.add('nav-hidden');
+            navbar.classList.remove('nav-visible');
+        }
+        // 向上滚动：显示导航栏
+        else if (currentScroll < lastScroll) {
+            navbar.classList.remove('nav-hidden');
+            navbar.classList.add('nav-visible');
+        }
+
+        lastScroll = currentScroll;
     });
 }
 

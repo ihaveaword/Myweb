@@ -4,6 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 关键：内联样式必须在所有外部资源之前，防止闪烁 -->
+    <style>
+        /* 浅色主题关键样式 - 在外部CSS加载前生效 */
+        html[data-theme="light"], html[data-theme="light"] body {
+            background-color: #F9F9F9 !important;
+            color: #333333 !important;
+        }
+        /* 深色主题关键样式 */
+        html:not([data-theme="light"]), html:not([data-theme="light"]) body {
+            background-color: #000000;
+            color: #00ff00;
+        }
+    </style>
+    <!-- 主题初始化：在页面渲染前设置 -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <title>证书与荣誉 | Certificates & Honors - ZHY</title>
     <meta name="description" content="展示获得的专业认证、荣誉证书和学术成就">
     <meta name="keywords" content="HCIP-AI, 证书, 荣誉, 认证, 华北电力大学">
@@ -27,7 +47,7 @@
     <canvas id="matrix-bg" class="matrix-bg"></canvas>
 
     <!-- 导航栏 -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-logo">
                 <a href="index.html">root@ihave:~#</a>
@@ -40,8 +60,8 @@
                 <li><a href="index.html#contact">联系 | Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="theme-toggle" aria-label="切换主题">
-                    <i class="fas fa-moon"></i>
+                <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+                    <i class="fas fa-adjust"></i>
                 </button>
                 <button class="mobile-menu-toggle" aria-label="菜单">
                     <i class="fas fa-bars"></i>
@@ -139,12 +159,6 @@
                         </div>
                         <div class="cert-description">
                             <p>国家统一组织的计算机技术与软件专业技术资格（水平）考试认证</p>
-                            <ul class="cert-skills">
-                                <li>网络系统规划与设计</li>
-                                <li>网络工程实施与管理</li>
-                                <li>网络安全与故障排除</li>
-                                <li>网络协议与技术应用</li>
-                            </ul>
                         </div>
                     </div>
                     <div class="cert-footer">
@@ -180,12 +194,6 @@
                         </p>
                         <div class="cert-description">
                             <p>华为认证ICT高级工程师 - 人工智能Ascend开发方向</p>
-                            <ul class="cert-skills">
-                                <li>Ascend AI处理器架构</li>
-                                <li>MindSpore深度学习框架</li>
-                                <li>AI模型开发与优化</li>
-                                <li>昇腾AI全栈开发</li>
-                            </ul>
                         </div>
                     </div>
                     <div class="cert-footer">
@@ -247,13 +255,7 @@
                             <i class="fas fa-calendar"></i> 2024-2025学年
                         </p>
                         <div class="cert-description">
-                            <p class="achievement-highlight">表彰在思想品德、学业成绩、科研能力等方面表现突出的研究生</p>
-                            <ul class="cert-skills">
-                                <li>学业成绩优异</li>
-                                <li>科研能力突出</li>
-                                <li>思想品德优良</li>
-                                <li>综合素质全面</li>
-                            </ul>
+                            <p>表彰在思想品德、学业成绩、科研能力等方面表现突出的研究生</p>
                         </div>
                     </div>
                     <div class="cert-footer">
@@ -285,13 +287,7 @@
                             <i class="fas fa-fingerprint"></i> 证书编号: ADC1120250007342
                         </p>
                         <div class="cert-description">
-                            <p>Ascend Developer Certification - 昇腾人工智能技能认证</p>
-                            <ul class="cert-skills">
-                                <li>AscendC 算子开发</li>
-                                <li>昇腾 AI 处理器编程</li>
-                                <li>算子性能优化</li>
-                                <li>自定义算子实现</li>
-                            </ul>
+                            <p>昇腾人工智能技能认证 - 算子开发方向</p>
                         </div>
                     </div>
                     <div class="cert-footer">
@@ -653,6 +649,13 @@
                 <div id="modalInfo" class="modal-info"></div>
             </div>
         </div>
+    </div>
+
+    <!-- 悬浮回到顶部按钮 -->
+    <div class="floating-controls">
+        <button id="backToTop" class="control-btn" aria-label="回到顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
     </div>
 
     <!-- 脚本 -->

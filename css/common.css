@@ -12,6 +12,9 @@
 /* ========== 全局变量 ========== */
 :root {
     /* 经典终端配色 - 黑底绿字 */
+    --font-mono: 'Courier New', 'Monaco', 'Consolas', monospace;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
     --terminal-bg: #0a0a0a;
     --terminal-fg: #00ff00;
     --terminal-green: #00ff00;
@@ -101,6 +104,45 @@
 
     /* 浅色模式光晕变透明/同色 (Invisible Glows) */
     --glow-rgb: 249, 249, 249;
+
+    /* 浅色模式选区颜色：高端黑白 */
+    ::selection {
+        background: #000000;
+        color: #ffffff;
+    }
+}
+
+/* 浅色模式全局字体切换：无衬线现代体 */
+[data-theme="light"] body {
+    font-family: var(--font-sans) !important;
+    text-shadow: none !important;
+}
+
+/* 浅色模式下滚动条美化 */
+[data-theme="light"] ::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* 浅色模式下保留部分元素的极客等宽字体 (Hybrid Strategy) */
+[data-theme="light"] code,
+[data-theme="light"] pre,
+[data-theme="light"] .nav-brand,
+[data-theme="light"] .message-time,
+[data-theme="light"] .status-badge,
+[data-theme="light"] .project-link,
+[data-theme="light"] .nav-menu a,
+[data-theme="light"] .footer-section h3 {
+    font-family: var(--font-mono) !important;
 }
 
 /* 浅色模式下移除所有绿色光效 */
@@ -145,7 +187,7 @@ html {
 }
 
 body {
-    font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+    font-family: var(--font-mono);
     background-color: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
@@ -246,15 +288,32 @@ body::after {
     right: 0;
     background-color: var(--navbar-bg);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 0 var(--terminal-green);
-    border-bottom: 2px solid var(--terminal-green);
+    /* 用柔和的渐变阴影代替硬边框 */
+    box-shadow: 0 1px 0 rgba(var(--glow-rgb), 0.3),
+                0 4px 20px rgba(0, 0, 0, 0.1);
+    border-bottom: none;
     z-index: 1000;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.3s ease,
+                box-shadow 0.3s ease,
+                opacity 0.3s ease;
+}
+
+/* 导航栏滚动隐藏/显示动画 */
+.navbar.nav-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.navbar.nav-visible {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .navbar.scrolled {
     background-color: var(--bg-primary);
-    box-shadow: 0 2px 0 var(--terminal-green), var(--shadow-md);
+    box-shadow: 0 1px 0 rgba(var(--glow-rgb), 0.4),
+                0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .nav-container {
@@ -377,7 +436,12 @@ body::after {
     color: var(--text-primary);
     font-size: 1.2rem;
     /* cursor 继承自全局设置，无需重复声明 */
-    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 3px;
     transition: all 0.3s ease;
     font-family: 'Courier New', monospace;
