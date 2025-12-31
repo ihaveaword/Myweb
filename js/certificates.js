@@ -9,23 +9,37 @@
  * ================================================= */
 
 // ========== Matrix 代码雨效果 ==========
+// ========== Matrix 代码雨效果 ==========
 function initMatrixBackground() {
     const canvas = document.getElementById('matrix-bg');
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
-    
+    let intervalId = null;
+
     // 设置画布尺寸
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
 
     // Matrix 字符集
     const matrix = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/~`';
     const characters = matrix.split('');
 
     const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = Array(Math.floor(columns)).fill(1);
+    let columns = canvas.width / fontSize;
+    const drops = [];
+
+    function initDrops() {
+        columns = canvas.width / fontSize;
+        for (let i = 0; i < Math.floor(columns); i++) {
+            drops[i] = 1;
+        }
+    }
+    initDrops();
 
     // 绘制函数
     function draw() {
@@ -48,14 +62,33 @@ function initMatrixBackground() {
         }
     }
 
-    // 启动动画
-    setInterval(draw, 50);
+    function startAnimation() {
+        if (!intervalId) {
+            initDrops();
+            intervalId = setInterval(draw, 50);
+        }
+    }
 
-    // 响应窗口大小变化
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
+    function stopAnimation() {
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // 检查当前主题
+    function checkTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'light') {
+            stopAnimation();
+        } else {
+            startAnimation();
+        }
+    }
+
+    checkTheme();
+    document.addEventListener('themeChanged', checkTheme);
 }
 
 // ========== 证书筛选功能 ==========
@@ -75,7 +108,7 @@ function initCertificateFilter() {
             // 筛选证书卡片
             certCards.forEach(card => {
                 const category = card.getAttribute('data-category');
-                
+
                 if (filter === 'all' || category === filter) {
                     card.classList.remove('hidden');
                     setTimeout(() => {
@@ -116,7 +149,7 @@ function updateStats(filter) {
 // ========== 统计数字动画 ==========
 function animateCounters() {
     const counters = document.querySelectorAll('.stat-value');
-    
+
     counters.forEach(counter => {
         const target = parseInt(counter.textContent);
         const duration = 2000; // 2秒
@@ -148,7 +181,7 @@ function initModal() {
             const title = card.querySelector('.cert-title').textContent;
             const issuer = card.querySelector('.cert-issuer').textContent;
             const date = card.querySelector('.cert-date').textContent;
-            
+
             // 设置模态框内容
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('modalInfo').innerHTML = `
@@ -179,7 +212,7 @@ function initModal() {
 
     // 关闭模态框
     modalClose.addEventListener('click', closeModal);
-    
+
     // 点击背景关闭
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -207,7 +240,7 @@ function initThemeToggle() {
 
     const icon = themeToggle.querySelector('i');
     const currentTheme = localStorage.getItem('theme') || 'dark';
-    
+
     // 应用保存的主题
     document.documentElement.setAttribute('data-theme', currentTheme);
     updateThemeIcon(icon, currentTheme);
@@ -215,7 +248,7 @@ function initThemeToggle() {
     themeToggle.addEventListener('click', () => {
         const theme = document.documentElement.getAttribute('data-theme');
         const newTheme = theme === 'dark' ? 'light' : 'dark';
-        
+
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(icon, newTheme);
@@ -240,7 +273,7 @@ function initMobileMenu() {
     menuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
         const icon = menuToggle.querySelector('i');
-        
+
         if (navMenu.classList.contains('active')) {
             icon.className = 'fas fa-times';
         } else {
@@ -322,7 +355,7 @@ function initNavbarScroll() {
             navbar.classList.remove('scroll-down');
             navbar.classList.add('scroll-up');
         }
-        
+
         lastScroll = currentScroll;
     });
 }
@@ -330,7 +363,7 @@ function initNavbarScroll() {
 // ========== 添加新证书提示 ==========
 function initAddNewCard() {
     const addNewCard = document.querySelector('.cert-card.add-new');
-    
+
     if (addNewCard) {
         addNewCard.addEventListener('click', () => {
             alert(`📝 添加新证书提示：

@@ -2,7 +2,7 @@
 
 /* ========== 导航栏样式 ========== */
 .navbar {
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: var(--navbar-bg);
     border-bottom: 2px solid var(--terminal-green);
     position: fixed;
     top: 0;
@@ -62,7 +62,7 @@
     width: 100%;
     height: 2px;
     background: var(--terminal-green);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.5);
 }
 
 .nav-actions {
@@ -91,7 +91,7 @@
 .mobile-menu-toggle:hover {
     background: var(--terminal-green);
     color: var(--bg-primary);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.5);
 }
 
 .mobile-menu-toggle {
@@ -118,8 +118,8 @@
     background: repeating-linear-gradient(0deg,
             transparent,
             transparent 2px,
-            rgba(0, 255, 0, 0.03) 2px,
-            rgba(0, 255, 0, 0.03) 4px);
+            rgba(var(--glow-rgb), 0.03) 2px,
+            rgba(var(--glow-rgb), 0.03) 4px);
     pointer-events: none;
 }
 
@@ -128,7 +128,7 @@
     color: var(--terminal-green-bright);
     font-family: 'Courier New', monospace;
     margin-bottom: 1rem;
-    text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    text-shadow: 0 0 20px rgba(var(--glow-rgb), 0.8);
     animation: titleGlow 2s ease-in-out infinite;
 }
 
@@ -136,11 +136,11 @@
 
     0%,
     100% {
-        text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+        text-shadow: 0 0 20px rgba(var(--glow-rgb), 0.8);
     }
 
     50% {
-        text-shadow: 0 0 30px rgba(0, 255, 0, 1);
+        text-shadow: 0 0 30px rgba(var(--glow-rgb), 1);
     }
 }
 
@@ -194,15 +194,15 @@
 
 .timeline-btn:hover {
     border-color: var(--terminal-green);
-    background: rgba(0, 255, 0, 0.1);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    background: rgba(var(--glow-rgb), 0.1);
+    box-shadow: 0 0 15px rgba(var(--glow-rgb), 0.5);
 }
 
 .timeline-btn.active {
     background: var(--terminal-green);
     color: var(--terminal-bg);
     border-color: var(--terminal-green);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    box-shadow: 0 0 20px rgba(var(--glow-rgb), 0.8);
 }
 
 /* 主内容区域 */
@@ -216,7 +216,7 @@
     max-width: 1400px;
     margin: 0 auto 6rem auto;
     padding: 3rem;
-    background: linear-gradient(135deg, rgba(0, 255, 0, 0.02), rgba(0, 0, 0, 0.6));
+    background: linear-gradient(135deg, rgba(var(--glow-rgb), 0.02), rgba(0, 0, 0, 0.6));
     border: 2px solid var(--terminal-green-dark);
     border-radius: 8px;
     position: relative;
@@ -234,7 +234,7 @@
             transparent 0%,
             var(--terminal-green) 50%,
             transparent 100%);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 20px rgba(var(--glow-rgb), 0.5);
 }
 
 .university-header {
@@ -249,14 +249,14 @@
 .header-decoration {
     width: 100px;
     height: 100px;
-    background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 0, 0, 0.5));
+    background: linear-gradient(135deg, rgba(var(--glow-rgb), 0.1), rgba(0, 0, 0, 0.5));
     border: 3px solid var(--terminal-green);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 30px rgba(var(--glow-rgb), 0.3);
     animation: pulseGlow 3s ease-in-out infinite;
 }
 
@@ -264,12 +264,12 @@
 
     0%,
     100% {
-        box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+        box-shadow: 0 0 30px rgba(var(--glow-rgb), 0.3);
         transform: scale(1);
     }
 
     50% {
-        box-shadow: 0 0 50px rgba(0, 255, 0, 0.5);
+        box-shadow: 0 0 50px rgba(var(--glow-rgb), 0.5);
         transform: scale(1.05);
     }
 }
@@ -290,7 +290,7 @@
     margin: 0 0 0.5rem 0;
     text-transform: uppercase;
     letter-spacing: 3px;
-    text-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    text-shadow: 0 0 20px rgba(var(--glow-rgb), 0.5);
 }
 
 .university-subtitle {
@@ -307,7 +307,7 @@
     height: 2px;
     background: var(--terminal-green);
     margin-top: 1rem;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.5);
 }
 
 .university-section .memory-grid {
@@ -376,9 +376,9 @@
 
 .university-section .memory-box:hover {
     border-left-color: var(--terminal-green-bright);
-    box-shadow: -5px 0 15px rgba(0, 255, 0, 0.15);
+    box-shadow: -5px 0 15px rgba(var(--glow-rgb), 0.15);
     transform: translateY(-4px);
-    background: rgba(0, 255, 0, 0.08);
+    background: rgba(var(--glow-rgb), 0.08);
 }
 
 /* 时间线 */
@@ -399,7 +399,7 @@
             var(--terminal-green-bright) 0%,
             var(--terminal-green) 50%,
             var(--terminal-green-dark) 100%);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+    box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.6);
 }
 
 /* ========== 经典中线交替时间线布局（带照片） ========== */
@@ -548,8 +548,8 @@
     font-size: 2.5rem;
     color: var(--terminal-green-bright);
     box-shadow:
-        0 0 20px rgba(0, 255, 0, 0.6),
-        inset 0 0 20px rgba(0, 255, 0, 0.1);
+        0 0 20px rgba(var(--glow-rgb), 0.6),
+        inset 0 0 20px rgba(var(--glow-rgb), 0.1);
     position: relative;
     z-index: 10;
     animation: pulse 3s ease-in-out infinite;
@@ -559,8 +559,8 @@
 .marker-icon:hover {
     transform: scale(1.1);
     box-shadow:
-        0 0 30px rgba(0, 255, 0, 0.8),
-        inset 0 0 30px rgba(0, 255, 0, 0.2);
+        0 0 30px rgba(var(--glow-rgb), 0.8),
+        inset 0 0 30px rgba(var(--glow-rgb), 0.2);
 }
 
 /* 统一的脉冲动画 - 只使用绿色主题 */
@@ -568,18 +568,18 @@
 
     0%,
     100% {
-        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6), inset 0 0 20px rgba(0, 255, 0, 0.1);
+        box-shadow: 0 0 20px rgba(var(--glow-rgb), 0.6), inset 0 0 20px rgba(var(--glow-rgb), 0.1);
         border-color: var(--terminal-green);
     }
 
     50% {
-        box-shadow: 0 0 40px rgba(0, 255, 0, 1), inset 0 0 30px rgba(0, 255, 0, 0.3);
+        box-shadow: 0 0 40px rgba(var(--glow-rgb), 1), inset 0 0 30px rgba(var(--glow-rgb), 0.3);
         border-color: var(--terminal-green-bright);
     }
 }
 
 .timeline-content {
-    background: rgba(0, 255, 0, 0.05);
+    background: rgba(var(--glow-rgb), 0.05);
     border: 2px solid var(--terminal-green-dark);
     padding: 2rem;
     position: relative;
@@ -588,15 +588,15 @@
 }
 
 .timeline-content:hover {
-    background: rgba(0, 255, 0, 0.08);
+    background: rgba(var(--glow-rgb), 0.08);
     border-color: var(--terminal-green);
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.15);
+    box-shadow: 0 10px 30px rgba(var(--glow-rgb), 0.15);
 }
 
 .timeline-content:hover::before {
     background: var(--terminal-green);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.5);
 }
 
 .timeline-header {
@@ -664,24 +664,24 @@
 
 .memory-box:hover {
     border-color: var(--terminal-green);
-    background: rgba(0, 255, 0, 0.06);
+    background: rgba(var(--glow-rgb), 0.06);
     transform: translateY(-3px);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 15px rgba(var(--glow-rgb), 0.3);
     opacity: 1;
 }
 
 .memory-box:hover h3 {
     color: var(--terminal-green-bright);
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+    text-shadow: 0 0 10px rgba(var(--glow-rgb), 0.6);
 }
 
 .memory-box:hover i {
     color: var(--terminal-green-bright);
-    filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.8));
+    filter: drop-shadow(0 0 8px rgba(var(--glow-rgb), 0.8));
 }
 
 .memory-box:hover .memory-tags span {
-    background: rgba(0, 255, 0, 0.15);
+    background: rgba(var(--glow-rgb), 0.15);
     border-color: var(--terminal-green-bright);
     color: var(--terminal-green-bright);
 }
@@ -691,7 +691,7 @@
     color: var(--terminal-green-bright);
     display: block;
     margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+    text-shadow: 0 0 10px rgba(var(--glow-rgb), 0.6);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -767,7 +767,7 @@
 }
 
 .stat-box {
-    background: rgba(0, 255, 0, 0.05);
+    background: rgba(var(--glow-rgb), 0.05);
     border: 3px solid var(--terminal-green);
     padding: 2rem;
     text-align: center;
@@ -776,7 +776,7 @@
 
 .stat-box:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+    box-shadow: 0 0 30px rgba(var(--glow-rgb), 0.6);
 }
 
 .stat-box i {
@@ -792,7 +792,7 @@
     font-family: 'Courier New', monospace;
     font-weight: bold;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+    text-shadow: 0 0 10px rgba(var(--glow-rgb), 0.8);
 }
 
 .stat-label {
@@ -880,7 +880,7 @@
 
     .university-section .memory-box:hover {
         transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0, 255, 0, 0.15);
+        box-shadow: 0 8px 20px rgba(var(--glow-rgb), 0.15);
     }
 
     /* 导航栏移动端样式 */
@@ -1011,7 +1011,7 @@
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
-    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(var(--glow-rgb), 0.3);
 }
 
 .back-to-top.show {
@@ -1023,7 +1023,7 @@
 .back-to-top:hover {
     background: linear-gradient(135deg, var(--terminal-green-bright), var(--terminal-green));
     transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 6px 20px rgba(var(--glow-rgb), 0.5);
 }
 
 .back-to-top:active {
@@ -1040,7 +1040,7 @@
     background: linear-gradient(90deg, var(--terminal-green), var(--terminal-green-bright));
     z-index: 1001;
     transition: width 0.1s ease;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+    box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.8);
 }
 
 /* 平滑滚动 */
@@ -1081,14 +1081,14 @@ html {
 
 .stat-box:hover {
     transform: translateY(-5px);
-    background: rgba(0, 255, 0, 0.1);
+    background: rgba(var(--glow-rgb), 0.1);
     border-color: var(--terminal-green-bright);
-    box-shadow: 0 10px 25px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 10px 25px rgba(var(--glow-rgb), 0.3);
 }
 
 .stat-box:hover .stat-number {
     color: var(--terminal-green-bright);
-    text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+    text-shadow: 0 0 15px rgba(var(--glow-rgb), 0.8);
 }
 
 .stat-box:hover i {
@@ -1110,7 +1110,7 @@ html {
 /* ========== 照片画廊样式 ========== */
 .photo-gallery-section {
     padding: 4rem 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 255, 0, 0.05));
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(var(--glow-rgb), 0.05));
     border-top: 2px solid var(--terminal-green-dark);
     border-bottom: 2px solid var(--terminal-green-dark);
     margin: 4rem 0;
@@ -1150,15 +1150,15 @@ html {
 .filter-btn:hover {
     border-color: var(--terminal-green);
     color: var(--terminal-green);
-    background: rgba(0, 255, 0, 0.1);
+    background: rgba(var(--glow-rgb), 0.1);
     transform: translateY(-2px);
 }
 
 .filter-btn.active {
     border-color: var(--terminal-green-bright);
     color: var(--terminal-green-bright);
-    background: rgba(0, 255, 0, 0.15);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    background: rgba(var(--glow-rgb), 0.15);
+    box-shadow: 0 0 15px rgba(var(--glow-rgb), 0.3);
 }
 
 .filter-btn i {
@@ -1185,7 +1185,7 @@ html {
 .photo-item:hover {
     border-color: var(--terminal-green);
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(var(--glow-rgb), 0.2);
 }
 
 .photo-placeholder {
@@ -1194,7 +1194,7 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(0, 255, 0, 0.05), rgba(0, 0, 0, 0.3));
+    background: linear-gradient(135deg, rgba(var(--glow-rgb), 0.05), rgba(0, 0, 0, 0.3));
     color: var(--terminal-green-dim);
     font-family: 'Fira Code', monospace;
     position: relative;
@@ -1208,7 +1208,7 @@ html {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(var(--glow-rgb), 0.1), transparent);
     animation: shimmer 2s infinite;
 }
 
@@ -1264,7 +1264,7 @@ html {
     font-family: 'Fira Code', monospace;
     font-size: 0.9rem;
     padding: 1.5rem;
-    background: rgba(0, 255, 0, 0.05);
+    background: rgba(var(--glow-rgb), 0.05);
     border: 1px dashed var(--terminal-green-dark);
     border-radius: 5px;
     display: flex;

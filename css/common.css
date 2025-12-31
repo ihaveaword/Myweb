@@ -18,8 +18,10 @@
     --terminal-green-dim: #00cc00;
     --terminal-green-dark: #003300;
     --terminal-green-bright: #00ff41;
-    --terminal-shadow: rgba(0, 255, 0, 0.5);
-    --terminal-glow: 0 0 5px rgba(0, 255, 0, 0.5);
+    --terminal-shadow: rgba(var(--glow-rgb), 0.5);
+    --terminal-glow: 0 0 5px rgba(var(--glow-rgb), 0.5);
+    /* 核心发光色 RGB 值 (Theme Aware) */
+    --glow-rgb: 0, 255, 0;
 
     /* 自定义绿色光标集合 */
     --cursor-default: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect x="0" y="0" width="12" height="18" fill="%2300ff00" opacity="0.8"/></svg>'), auto;
@@ -35,9 +37,9 @@
     --accent-color: #00ff00;
     --accent-hover: #00ff41;
     --border-color: #00ff00;
-    --shadow-sm: 0 0 10px rgba(0, 255, 0, 0.3);
-    --shadow-md: 0 0 20px rgba(0, 255, 0, 0.4);
-    --shadow-lg: 0 0 30px rgba(0, 255, 0, 0.5);
+    --shadow-sm: 0 0 10px rgba(var(--glow-rgb), 0.3);
+    --shadow-md: 0 0 20px rgba(var(--glow-rgb), 0.4);
+    --shadow-lg: 0 0 30px rgba(var(--glow-rgb), 0.5);
     --navbar-bg: rgba(0, 0, 0, 0.95);
     --chat-user-bg: #001a00;
     --chat-ai-bg: #000f00;
@@ -50,40 +52,65 @@
     --sidebar-bg: rgba(10, 10, 10, 0.95);
     --sidebar-backdrop: blur(10px);
     --sidebar-border: 1px solid #00ff00;
-    --sidebar-shadow: 0 0 50px rgba(0, 255, 0, 0.2);
+    --sidebar-shadow: 0 0 50px rgba(var(--glow-rgb), 0.2);
 }
 
 /* 浅色主题 (Light Mode) - 磨砂玻璃风格 */
+/* 浅色主题 (Light Mode) - 米白简约风 (Rice White Minimalist) */
 [data-theme="light"] {
-    --bg-primary: #f0f2f5;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #e4e6eb;
+    /* 背景色：温润的米白色 */
+    --bg-primary: #F9F9F9;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #F0F2F5;
+
+    /* 文字颜色：柔和的深岩灰 */
     --text-primary: #333333;
     --text-secondary: #666666;
-    --accent-color: #007bff;
-    --accent-hover: #0056b3;
-    --border-color: #ddd;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
-    --navbar-bg: rgba(255, 255, 255, 0.85);
 
-    --terminal-green: #007bff;
-    --terminal-green-dim: #0056b3;
-    --terminal-green-bright: #004494;
-    --terminal-bg: #ffffff;
+    /* 强调色：纯粹黑白灰 */
+    --accent-color: #2C2C2C;
+    --accent-hover: #000000;
+
+    --border-color: #E0E0E0;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+    --navbar-bg: rgba(249, 249, 249, 0.9);
+
+    /* 终端特定颜色映射 - 转为极简黑灰 */
+    --terminal-green: #2C2C2C;
+    /* 主色调映射为深灰 */
+    --terminal-green-dim: #666666;
+    /* 装饰性元素颜色 */
+    --terminal-green-bright: #000000;
+    /* 高亮色 */
+    --terminal-bg: #FFFFFF;
+
     --cursor-default: auto;
     --cursor-pointer: pointer;
     --cursor-text: text;
 
     /* 侧边栏浅色变量 */
-    --control-bg: rgba(255, 255, 255, 0.9);
-    --control-color: #333;
-    --control-border: #ddd;
-    --sidebar-bg: rgba(255, 255, 255, 0.85);
+    --control-bg: rgba(255, 255, 255, 0.95);
+    --control-color: #333333;
+    --control-border: #E6E6E6;
+    --sidebar-bg: rgba(255, 255, 255, 0.95);
     --sidebar-backdrop: blur(20px);
-    --sidebar-border: 1px solid rgba(0, 0, 0, 0.1);
-    --sidebar-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    --sidebar-border: 1px solid rgba(0, 0, 0, 0.05);
+    --sidebar-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+
+    /* 浅色模式光晕变透明/同色 (Invisible Glows) */
+    --glow-rgb: 249, 249, 249;
+}
+
+/* 浅色模式下移除所有绿色光效 */
+[data-theme="light"] body::before,
+[data-theme="light"] body::after {
+    display: none !important;
+}
+
+[data-theme="light"] body {
+    text-shadow: none !important;
 }
 
 /* 暗色主题保持一致 */
@@ -96,9 +123,9 @@
     --accent-color: #00ff00;
     --accent-hover: #00ff41;
     --border-color: #00ff00;
-    --shadow-sm: 0 0 10px rgba(0, 255, 0, 0.3);
-    --shadow-md: 0 0 20px rgba(0, 255, 0, 0.4);
-    --shadow-lg: 0 0 30px rgba(0, 255, 0, 0.5);
+    --shadow-sm: 0 0 10px rgba(var(--glow-rgb), 0.3);
+    --shadow-md: 0 0 20px rgba(var(--glow-rgb), 0.4);
+    --shadow-lg: 0 0 30px rgba(var(--glow-rgb), 0.5);
     --navbar-bg: rgba(0, 0, 0, 0.95);
     --chat-user-bg: #001a00;
     --chat-ai-bg: #000f00;
@@ -125,7 +152,7 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
     position: relative;
     overflow-x: hidden;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    text-shadow: var(--terminal-glow);
 }
 
 /* ========== CRT 扫描线和屏幕光晕效果 ========== */
@@ -137,7 +164,7 @@ body::after {
     left: 0;
     bottom: 0;
     right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(var(--glow-rgb), 0.02), rgba(0, 0, 255, 0.06));
     z-index: 2;
     background-size: 100% 2px, 3px 100%;
     pointer-events: none;
@@ -176,7 +203,7 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 255, 0, 0.02);
+    background: rgba(var(--glow-rgb), 0.02);
     pointer-events: none;
     z-index: 9998;
     animation: flicker 0.15s infinite;
@@ -249,6 +276,11 @@ body::after {
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
+[data-theme="light"] .nav-logo a {
+    text-shadow: none !important;
+    color: var(--text-primary);
+}
+
 .nav-logo a::before {
     content: '[ ';
     color: var(--terminal-green-dim);
@@ -281,7 +313,7 @@ body::after {
 .nav-menu a:hover,
 .nav-menu a.active {
     color: var(--terminal-green-bright);
-    text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+    text-shadow: 0 0 8px rgba(var(--glow-rgb), 0.6);
 }
 
 /* Optional: Active indicator line from certificates.css if desired, 
@@ -294,7 +326,7 @@ body::after {
     width: 100%;
     height: 2px;
     background: var(--terminal-green);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.5);
 }
 
 .nav-link {
@@ -381,7 +413,7 @@ body::after {
 .btn-primary {
     background: transparent;
     color: var(--terminal-green);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.3);
 }
 
 .btn-primary::before {
@@ -397,7 +429,7 @@ body::after {
 .btn-primary:hover {
     background: var(--terminal-green);
     color: var(--terminal-bg);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    box-shadow: var(--terminal-glow);
     transform: translateY(-2px);
 }
 
@@ -417,7 +449,7 @@ body::after {
 
 .btn-secondary:hover {
     border-color: var(--terminal-green);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    box-shadow: var(--terminal-glow);
     transform: translateY(-2px);
 }
 
@@ -432,7 +464,7 @@ body::after {
     font-family: 'Courier New', monospace;
     text-transform: uppercase;
     letter-spacing: 3px;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+    text-shadow: var(--terminal-glow);
 }
 
 .section-title::before {
@@ -500,13 +532,13 @@ body::after {
 
     0%,
     100% {
-        text-shadow: 0 0 10px rgba(0, 255, 0, 0.8),
-            0 0 20px rgba(0, 255, 0, 0.5);
+        text-shadow: 0 0 10px rgba(var(--glow-rgb), 0.8),
+            0 0 20px rgba(var(--glow-rgb), 0.5);
     }
 
     50% {
-        text-shadow: 0 0 20px rgba(0, 255, 0, 1),
-            0 0 30px rgba(0, 255, 0, 0.7);
+        text-shadow: 0 0 20px rgba(var(--glow-rgb), 1),
+            0 0 30px rgba(var(--glow-rgb), 0.7);
     }
 }
 
@@ -840,11 +872,11 @@ textarea:disabled {
 }
 
 .sidebar-link:hover {
-    background-color: rgba(0, 255, 0, 0.1);
+    background-color: rgba(var(--glow-rgb), 0.1);
     color: var(--control-color);
     transform: translateX(10px);
     border-color: var(--control-color);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 15px rgba(var(--glow-rgb), 0.2);
 }
 
 /* Light Mode 适配 */

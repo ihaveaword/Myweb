@@ -7,28 +7,36 @@
  * ================================================= */
 
 // ========== Matrix 代码雨效果 ==========
+// ========== Matrix 代码雨效果 ==========
 function initMatrixRain() {
     const canvas = document.getElementById('matrixCanvas');
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
+    let intervalId = null;
 
     // 设置canvas尺寸
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
 
-    // 字符集 - 包含数字、字母和一些特殊字符
+    // 字符集
     const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@#$%^&*()_+-=[]{}|;:,.<>?/~`';
     const charArray = chars.split('');
-
     const fontSize = 14;
-    const columns = canvas.width / fontSize;
-
-    // 每列的Y位置
+    let columns = canvas.width / fontSize;
     const drops = [];
-    for (let i = 0; i < columns; i++) {
-        drops[i] = Math.random() * -100;
+
+    function initDrops() {
+        columns = canvas.width / fontSize;
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * -100;
+        }
     }
+    initDrops();
 
     function draw() {
         // 半透明黑色背景，产生拖尾效果
@@ -39,30 +47,49 @@ function initMatrixRain() {
         ctx.font = fontSize + 'px monospace';
 
         for (let i = 0; i < drops.length; i++) {
-            // 随机字符
             const text = charArray[Math.floor(Math.random() * charArray.length)];
             const x = i * fontSize;
             const y = drops[i] * fontSize;
 
             ctx.fillText(text, x, y);
 
-            // 随机重置
             if (y > canvas.height && Math.random() > 0.975) {
                 drops[i] = 0;
             }
-
             drops[i]++;
         }
     }
 
-    // 启动Matrix动画
-    setInterval(draw, 33);
+    function startAnimation() {
+        if (!intervalId) {
+            initDrops();
+            intervalId = setInterval(draw, 33);
+        }
+    }
 
-    // 窗口大小改变时重新设置canvas
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
+    function stopAnimation() {
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // 检查当前主题并决定是否启动
+    function checkTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'light') {
+            stopAnimation();
+        } else {
+            startAnimation();
+        }
+    }
+
+    // 初始化检查
+    checkTheme();
+
+    // 监听主题变化
+    document.addEventListener('themeChanged', checkTheme);
 }
 
 // ========== 导航链接波纹效果 ==========
