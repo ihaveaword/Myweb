@@ -72,6 +72,44 @@
         </div>
     </nav>
 
+    <!-- 悬浮控制台 (Floating Control Center) -->
+    <div class="floating-controls">
+        <button id="menuTrigger" class="control-btn" aria-label="Menu">
+            <div class="icon-state-normal"><i class="fas fa-bars"></i></div>
+            <div class="icon-state-hover"><i class="fas fa-arrow-right"></i></div>
+        </button>
+        <button id="backToTop" class="control-btn hidden" aria-label="Top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <!-- 侧边栏容器 (Sidebar) -->
+    <aside id="sidebar" class="sidebar sidebar-hidden">
+        <div class="sidebar-header">
+            <div class="sidebar-title">NAVIGATION</div>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li><a href="#home" class="sidebar-link"><i class="fas fa-home"></i> <span>./home</span></a></li>
+                <li><a href="#about" class="sidebar-link"><i class="fas fa-user"></i> <span>./about</span></a></li>
+                <li><a href="#student-life" class="sidebar-link"><i class="fas fa-graduation-cap"></i>
+                        <span>./memories</span></a></li>
+                <li><a href="#portfolio" class="sidebar-link"><i class="fas fa-code"></i> <span>./work</span></a></li>
+                <li><a href="#ai-chat" class="sidebar-link"><i class="fas fa-robot"></i> <span>./ai</span></a></li>
+                <li><a href="#contact" class="sidebar-link"><i class="fas fa-envelope"></i> <span>./contact</span></a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="sidebar-theme-toggle" id="sidebarThemeToggle">
+                <i class="fas fa-adjust"></i> <span>Toggle Theme</span>
+            </div>
+        </div>
+    </aside>
+
     <!-- 首屏区域 -->
     <section id="home" class="hero">
         <!-- Matrix代码雨背景 -->

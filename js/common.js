@@ -216,6 +216,83 @@ function showConsoleWelcome() {
     `, 'color: #00ff00; font-family: monospace;');
 }
 
+// ========== 侧边栏及悬浮控制台 ==========
+function initSidebarControl() {
+    const menuTrigger = document.getElementById('menuTrigger');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarClose = document.getElementById('sidebarClose');
+    const backToTop = document.getElementById('backToTop');
+    const sidebarThemeToggle = document.getElementById('sidebarThemeToggle');
+    const navLinks = document.querySelectorAll('.sidebar-link');
+
+    // 打开侧边栏
+    if (menuTrigger && sidebar) {
+        menuTrigger.addEventListener('click', (e) => {
+            e.stopPropagation(); // 防止立即触发document点击关闭
+            sidebar.classList.add('sidebar-visible');
+        });
+    }
+
+    // 关闭侧边栏
+    if (sidebarClose && sidebar) {
+        sidebarClose.addEventListener('click', () => {
+            sidebar.classList.remove('sidebar-visible');
+        });
+    }
+
+    // 点击外部关闭
+    document.addEventListener('click', (e) => {
+        if (sidebar && sidebar.classList.contains('sidebar-visible') &&
+            !sidebar.contains(e.target) &&
+            !menuTrigger.contains(e.target)) {
+            sidebar.classList.remove('sidebar-visible');
+        }
+    });
+
+    // 点击链接关闭
+    if (sidebar) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('sidebar-visible');
+            });
+        });
+    }
+
+    // 回到顶部按钮逻辑
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // 侧边栏主题切换
+    if (sidebarThemeToggle) {
+        sidebarThemeToggle.addEventListener('click', () => {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // 如果存在旧的主题切换按钮，也可以同步点击效果（可选）
+            console.log(`> Theme switched to ${newTheme}`);
+
+            // 触发自定义事件，以便其他组件响应
+            const event = new CustomEvent('themeChanged', { detail: { theme: newTheme } });
+            document.dispatchEvent(event);
+        });
+    }
+}
+
 // ========== 通用初始化 ==========
 function initCommon() {
     // 显示控制台欢迎信息
@@ -229,6 +306,9 @@ function initCommon() {
 
     // 初始化移动端菜单
     initMobileMenu();
+
+    // 初始化新的侧边栏控制
+    initSidebarControl();
 
     // 初始化平滑滚动
     initSmoothScroll();
