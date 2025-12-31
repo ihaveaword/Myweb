@@ -150,40 +150,7 @@ function initModal() {
     }
 }
 
-// ========== 主题切换功能 ==========
-function initThemeToggle() {
-    const themeToggle = document.querySelector('.theme-toggle');
-    if (!themeToggle) return;
-
-    const icon = themeToggle.querySelector('i');
-    // 默认主题改为 light（米白极简风格）
-    const currentTheme = localStorage.getItem('theme') || 'light';
-
-    // 应用保存的主题
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    updateThemeIcon(icon, currentTheme);
-
-    themeToggle.addEventListener('click', () => {
-        const theme = document.documentElement.getAttribute('data-theme');
-        const newTheme = theme === 'dark' ? 'light' : 'dark';
-
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(icon, newTheme);
-        
-        // 触发自定义事件，通知其他组件
-        const event = new CustomEvent('themeChanged', { detail: { theme: newTheme } });
-        document.dispatchEvent(event);
-    });
-
-    function updateThemeIcon(icon, theme) {
-        if (theme === 'dark') {
-            icon.className = 'fas fa-moon';
-        } else {
-            icon.className = 'fas fa-sun';
-        }
-    }
-}
+// 主题切换功能已移至 common.js，这里不再重复定义
 
 // ========== 移动端菜单 ==========
 function initMobileMenu() {
@@ -320,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initCertificateFilter();
     initModal();
-    initThemeToggle();
+    // 主题切换由 common.js 统一处理
     initMobileMenu();
     initScrollAnimations();
     initSmoothScroll();
