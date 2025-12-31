@@ -10,54 +10,54 @@
 function initMatrixRain() {
     const canvas = document.getElementById('matrixCanvas');
     if (!canvas) return;
-    
+
     const ctx = canvas.getContext('2d');
-    
+
     // 设置canvas尺寸
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
+
     // 字符集 - 包含数字、字母和一些特殊字符
     const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@#$%^&*()_+-=[]{}|;:,.<>?/~`';
     const charArray = chars.split('');
-    
+
     const fontSize = 14;
     const columns = canvas.width / fontSize;
-    
+
     // 每列的Y位置
     const drops = [];
     for (let i = 0; i < columns; i++) {
         drops[i] = Math.random() * -100;
     }
-    
+
     function draw() {
         // 半透明黑色背景，产生拖尾效果
         ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
+
         ctx.fillStyle = '#00ff00';
         ctx.font = fontSize + 'px monospace';
-        
+
         for (let i = 0; i < drops.length; i++) {
             // 随机字符
             const text = charArray[Math.floor(Math.random() * charArray.length)];
             const x = i * fontSize;
             const y = drops[i] * fontSize;
-            
+
             ctx.fillText(text, x, y);
-            
+
             // 随机重置
             if (y > canvas.height && Math.random() > 0.975) {
                 drops[i] = 0;
             }
-            
+
             drops[i]++;
         }
     }
-    
+
     // 启动Matrix动画
     setInterval(draw, 33);
-    
+
     // 窗口大小改变时重新设置canvas
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
@@ -68,9 +68,9 @@ function initMatrixRain() {
 // ========== 导航链接波纹效果 ==========
 function addRippleEffect() {
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             const ripple = document.createElement('span');
             ripple.className = 'nav-link-ripple';
             ripple.style.cssText = `
@@ -82,16 +82,16 @@ function addRippleEffect() {
                 transform: translate(-50%, -50%);
                 animation: ripple 0.6s ease-out;
             `;
-            
+
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             ripple.style.left = x + 'px';
             ripple.style.top = y + 'px';
-            
+
             this.appendChild(ripple);
-            
+
             setTimeout(() => {
                 ripple.remove();
             }, 600);
@@ -102,10 +102,10 @@ function addRippleEffect() {
 // ========== 终端打字机效果 ==========
 function typeWriter(element, text, speed = 50) {
     if (!element) return;
-    
+
     let i = 0;
     element.textContent = '';
-    
+
     function type() {
         if (i < text.length) {
             element.textContent += text.charAt(i);
@@ -113,7 +113,7 @@ function typeWriter(element, text, speed = 50) {
             setTimeout(type, speed);
         }
     }
-    
+
     type();
 }
 
@@ -121,7 +121,7 @@ function typeWriter(element, text, speed = 50) {
 function initThemeToggle() {
     const themeToggle = document.getElementById('themeToggle');
     if (!themeToggle) return;
-    
+
     const html = document.documentElement;
     const currentTheme = localStorage.getItem('theme') || 'dark';
     html.setAttribute('data-theme', currentTheme);
@@ -151,7 +151,7 @@ function initNavbarScroll() {
 function initMobileMenu() {
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const navMenu = document.getElementById('navMenu');
-    
+
     if (!mobileMenuToggle || !navMenu) return;
 
     mobileMenuToggle.addEventListener('click', () => {
@@ -199,7 +199,7 @@ function openStudentPage() {
     // 添加淡出效果
     document.body.style.transition = 'opacity 0.3s ease';
     document.body.style.opacity = '0';
-    
+
     setTimeout(() => {
         window.location.href = 'student-life.html';
     }, 300);
@@ -220,19 +220,19 @@ function showConsoleWelcome() {
 function initCommon() {
     // 显示控制台欢迎信息
     showConsoleWelcome();
-    
+
     // 初始化主题切换
     initThemeToggle();
-    
+
     // 初始化导航栏
     initNavbarScroll();
-    
+
     // 初始化移动端菜单
     initMobileMenu();
-    
+
     // 初始化平滑滚动
     initSmoothScroll();
-    
+
     console.log('✅ 公共模块初始化完成');
 }
 

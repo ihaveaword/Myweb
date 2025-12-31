@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>证书与荣誉 | Certificates & Honors - ZHY</title>
     <meta name="description" content="展示获得的专业认证、荣誉证书和学术成就">
     <meta name="keywords" content="HCIP-AI, 证书, 荣誉, 认证, 华北电力大学">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico/favicon-16x16.png">
-    
+
     <!-- 样式表 -->
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/certificates.css">
-    
+
     <!-- Font Awesome 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Matrix 代码雨背景 -->
     <canvas id="matrix-bg" class="matrix-bg"></canvas>
@@ -60,7 +62,7 @@
                 <div class="stat-item">
                     <i class="fas fa-certificate"></i>
                     <span class="stat-label">专业认证</span>
-                    <span class="stat-value" id="cert-count">4</span>
+                    <span class="stat-value" id="cert-count">5</span>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-trophy"></i>
@@ -108,7 +110,53 @@
     <section class="certificates-section">
         <div class="container">
             <div class="certificates-grid">
-                
+
+                <!-- 网络工程师中级资格证书 -->
+                <div class="cert-card" data-category="professional" data-year="2025">
+                    <div class="cert-header">
+                        <div class="cert-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="cert-badge verified">
+                            <i class="fas fa-certificate"></i> 国家级
+                        </div>
+                    </div>
+                    <div class="cert-body">
+                        <h3 class="cert-title">计算机技术与软件专业技术资格（网络工程师）</h3>
+                        <p class="cert-subtitle">Qualification of Computer and Software Professional</p>
+                        <p class="cert-issuer">
+                            <i class="fas fa-landmark"></i> 中华人民共和国人力资源和社会保障部 | 工业和信息化部
+                        </p>
+                        <p class="cert-date">
+                            <i class="fas fa-calendar"></i> 批准时间: 2025年11月08日
+                        </p>
+                        <p class="cert-id">
+                            <i class="fas fa-fingerprint"></i> 管理号: 31420251113062400419
+                        </p>
+                        <div class="cert-level">
+                            <i class="fas fa-layer-group"></i>
+                            <span class="level-badge intermediate">中级资格</span>
+                        </div>
+                        <div class="cert-description">
+                            <p>国家统一组织的计算机技术与软件专业技术资格（水平）考试认证</p>
+                            <ul class="cert-skills">
+                                <li>网络系统规划与设计</li>
+                                <li>网络工程实施与管理</li>
+                                <li>网络安全与故障排除</li>
+                                <li>网络协议与技术应用</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="cert-footer">
+                        <button class="cert-btn view-btn">
+                            <i class="fas fa-eye"></i> 查看证书
+                        </button>
+                        <button class="cert-btn verify-btn">
+                            <i class="fas fa-shield-alt"></i> 官方验证
+                        </button>
+                    </div>
+                </div>
+
                 <!-- HCIP-AI 认证 -->
                 <div class="cert-card" data-category="professional" data-year="2025">
                     <div class="cert-header">
@@ -255,7 +303,6 @@
                         </button>
                     </div>
                 </div>
-
 
                 <!-- CET-6 英语六级 -->
                 <div class="cert-card" data-category="language" data-year="2021">
@@ -471,6 +518,14 @@
                 <div class="timeline-item" data-year="2025">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
+                        <span class="timeline-year">2025.11</span>
+                        <h4>网络工程师（中级）</h4>
+                        <p>人社部 | 工信部 - 计算机技术与软件专业技术资格</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="2025">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
                         <span class="timeline-year">2025</span>
                         <h4>HCIP-AI-Ascend Developer 认证</h4>
                         <p>华为认证ICT高级工程师</p>
@@ -604,4 +659,5 @@
     <script src="js/common.js"></script>
     <script src="js/certificates.js"></script>
 </body>
+
 </html>

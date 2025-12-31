@@ -380,6 +380,39 @@ body {
     font-weight: 600;
 }
 
+/* 证书副标题（英文名称） */
+.cert-subtitle {
+    font-size: 0.9rem;
+    color: var(--terminal-green-dim);
+    font-style: italic;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+/* 资格等级标识 */
+.cert-level {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.level-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.level-badge.intermediate {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 152, 0, 0.2));
+    border: 1px solid rgba(255, 193, 7, 0.5);
+    color: #ffc107;
+    text-shadow: 0 0 5px rgba(255, 193, 7, 0.3);
+}
+
 .cert-issuer,
 .cert-date,
 .cert-id {
@@ -537,11 +570,10 @@ body {
     transform: translateX(-50%);
     width: 2px;
     height: 100%;
-    background: linear-gradient(to bottom, 
-        transparent,
-        rgba(0, 255, 0, 0.5),
-        transparent
-    );
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(0, 255, 0, 0.5),
+            transparent);
 }
 
 .timeline-item {
@@ -551,16 +583,45 @@ body {
     animation: fadeInUp 0.6s ease forwards;
 }
 
-.timeline-item:nth-child(1) { animation-delay: 0.1s; }
-.timeline-item:nth-child(2) { animation-delay: 0.2s; }
-.timeline-item:nth-child(3) { animation-delay: 0.3s; }
-.timeline-item:nth-child(4) { animation-delay: 0.4s; }
-.timeline-item:nth-child(5) { animation-delay: 0.5s; }
-.timeline-item:nth-child(6) { animation-delay: 0.6s; }
-.timeline-item:nth-child(7) { animation-delay: 0.7s; }
-.timeline-item:nth-child(8) { animation-delay: 0.8s; }
-.timeline-item:nth-child(9) { animation-delay: 0.9s; }
-.timeline-item:nth-child(10) { animation-delay: 1.0s; }
+.timeline-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.timeline-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.timeline-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.timeline-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.timeline-item:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.timeline-item:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.timeline-item:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.timeline-item:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+.timeline-item:nth-child(9) {
+    animation-delay: 0.9s;
+}
+
+.timeline-item:nth-child(10) {
+    animation-delay: 1.0s;
+}
 
 .timeline-marker {
     position: absolute;
@@ -754,12 +815,15 @@ body {
 
 /* ========== 动画 ========== */
 @keyframes glowPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
     }
+
     50% {
         text-shadow: 0 0 20px rgba(0, 255, 0, 0.8),
-                     0 0 30px rgba(0, 255, 0, 0.6);
+            0 0 30px rgba(0, 255, 0, 0.6);
     }
 }
 
@@ -767,6 +831,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -777,6 +842,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -788,6 +854,7 @@ body {
         transform: translateY(50px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
@@ -795,9 +862,12 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.1);
     }
@@ -809,15 +879,15 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 20px;
     }
-    
+
     .timeline::before {
         left: 30px;
     }
-    
+
     .timeline-marker {
         left: 30px;
     }
-    
+
     .timeline-content {
         width: calc(100% - 80px);
         margin-left: 80px !important;
@@ -825,6 +895,7 @@ body {
 }
 
 @media (max-width: 768px) {
+
     /* 导航栏移动端样式 */
     .nav-menu {
         position: fixed;
@@ -839,53 +910,53 @@ body {
         transition: left 0.3s ease;
         border-top: 2px solid var(--terminal-green);
     }
-    
+
     .nav-menu.active {
         left: 0;
     }
-    
+
     .mobile-menu-toggle {
         display: block;
     }
-    
+
     .page-title {
         font-size: 2rem;
     }
-    
+
     .stats-bar {
         flex-direction: column;
         gap: 20px;
         align-items: stretch;
     }
-    
+
     .stat-item {
         flex-direction: row;
         justify-content: space-between;
     }
-    
+
     .certificates-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .filter-controls {
         flex-direction: column;
     }
-    
+
     .filter-btn {
         width: 100%;
         justify-content: center;
     }
-    
+
     .timeline-content {
         width: calc(100% - 60px);
         margin-left: 60px !important;
     }
-    
+
     .modal-content {
         padding: 20px;
         max-width: 95%;
     }
-    
+
     .footer-content {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -896,19 +967,19 @@ body {
     .page-title {
         font-size: 1.5rem;
     }
-    
+
     .page-subtitle {
         font-size: 1rem;
     }
-    
+
     .cert-title {
         font-size: 1.2rem;
     }
-    
+
     .cert-footer {
         flex-direction: column;
     }
-    
+
     .section-title {
         font-size: 1.8rem;
     }
