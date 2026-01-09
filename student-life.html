@@ -7,19 +7,22 @@
     <!-- 关键：内联样式必须在所有外部资源之前，防止闪烁 -->
     <style>
         /* 浅色主题关键样式 - 在外部CSS加载前生效 */
-        html[data-theme="light"], html[data-theme="light"] body {
+        html[data-theme="light"],
+        html[data-theme="light"] body {
             background-color: #F9F9F9 !important;
             color: #333333 !important;
         }
+
         /* 深色主题关键样式 */
-        html:not([data-theme="light"]), html:not([data-theme="light"]) body {
+        html:not([data-theme="light"]),
+        html:not([data-theme="light"]) body {
             background-color: #000000;
             color: #00ff00;
         }
     </style>
     <!-- 主题初始化：在页面渲染前设置 -->
     <script>
-        (function() {
+        (function () {
             const theme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', theme);
         })();
@@ -65,7 +68,7 @@
             <div class="nav-logo">
                 <a href="index.html">root@ihave:~#</a>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">首页 | Home</a></li>
                 <li><a href="student-life.html" class="active">学生时代 | Student Life</a></li>
                 <li><a href="certificates.html">证书荣誉 | Certificates</a></li>
@@ -73,10 +76,10 @@
                 <li><a href="index.html#contact">联系 | Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle" aria-label="切换主题">
+                <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
                     <i class="fas fa-adjust"></i>
                 </button>
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="菜单">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="菜单">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
