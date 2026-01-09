@@ -98,6 +98,14 @@
     box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.5);
 }
 
+/* 确保移动端菜单按钮可点击 */
+.mobile-menu-toggle {
+    display: none;
+    position: relative;
+    z-index: 1001;
+    pointer-events: auto;
+}
+
 /* ========== 页面布局 ========== */
 body {
     background: var(--bg-primary);

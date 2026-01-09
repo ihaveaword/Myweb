@@ -154,12 +154,22 @@ function initModal() {
 
 // ========== 移动端菜单 ==========
 function initMobileMenu() {
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    // 使用 ID 选择器，与 common.js 保持一致
+    const menuToggle = document.getElementById('mobileMenuToggle') || document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.getElementById('navMenu') || document.querySelector('.nav-menu');
 
-    if (!menuToggle) return;
+    console.log('📱 Mobile menu init:', { menuToggle: !!menuToggle, navMenu: !!navMenu });
 
-    menuToggle.addEventListener('click', () => {
+    if (!menuToggle || !navMenu) {
+        console.warn('⚠️ Mobile menu elements not found');
+        return;
+    }
+
+    menuToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('📱 Menu toggle clicked');
+
         navMenu.classList.toggle('active');
         const icon = menuToggle.querySelector('i');
 
@@ -171,11 +181,12 @@ function initMobileMenu() {
     });
 
     // 点击菜单项后关闭菜单
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    const navLinks = navMenu.querySelectorAll('a');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
-            menuToggle.querySelector('i').className = 'fas fa-bars';
+            const icon = menuToggle.querySelector('i');
+            if (icon) icon.className = 'fas fa-bars';
         });
     });
 }
