@@ -290,13 +290,13 @@ body::after {
     backdrop-filter: blur(10px);
     /* 用柔和的渐变阴影代替硬边框 */
     box-shadow: 0 1px 0 rgba(var(--glow-rgb), 0.3),
-                0 4px 20px rgba(0, 0, 0, 0.1);
+        0 4px 20px rgba(0, 0, 0, 0.1);
     border-bottom: none;
     z-index: 1000;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                background-color 0.3s ease,
-                box-shadow 0.3s ease,
-                opacity 0.3s ease;
+        background-color 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease;
 }
 
 /* 导航栏滚动隐藏/显示动画 */
@@ -313,7 +313,7 @@ body::after {
 .navbar.scrolled {
     background-color: var(--bg-primary);
     box-shadow: 0 1px 0 rgba(var(--glow-rgb), 0.4),
-                0 8px 30px rgba(0, 0, 0, 0.15);
+        0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .nav-container {
@@ -713,6 +713,7 @@ body::after {
 @media (max-width: 768px) {
     .container {
         padding: 0 15px;
+        /* Slightly tighter padding on mobile */
     }
 
     .nav-container {

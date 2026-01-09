@@ -7,19 +7,22 @@
     <!-- 关键：内联样式必须在所有外部资源之前，防止闪烁 -->
     <style>
         /* 浅色主题关键样式 - 在外部CSS加载前生效 */
-        html[data-theme="light"], html[data-theme="light"] body {
+        html[data-theme="light"],
+        html[data-theme="light"] body {
             background-color: #F9F9F9 !important;
             color: #333333 !important;
         }
+
         /* 深色主题关键样式 */
-        html:not([data-theme="light"]), html:not([data-theme="light"]) body {
+        html:not([data-theme="light"]),
+        html:not([data-theme="light"]) body {
             background-color: #000000;
             color: #00ff00;
         }
     </style>
     <!-- 主题初始化：在页面渲染前设置 -->
     <script>
-        (function() {
+        (function () {
             const theme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', theme);
         })();
@@ -328,7 +331,7 @@
             <p class="section-subtitle">// My journey through the years of learning and growth</p>
 
             <div class="student-preview">
-                <div class="memory-card" onclick="openStudentPage()">
+                <div class="memory-card" id="academicJourneyCard">
                     <div class="memory-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
@@ -345,8 +348,7 @@
                 </div>
 
                 <div class="preview-grid">
-                    <div class="preview-item" data-category="study" onclick="window.location.href='student-life.html'"
-                        style="cursor: pointer;">
+                    <div class="preview-item" data-category="study" id="studyItem" style="cursor: pointer;">
                         <i class="fas fa-book-open"></i>
                         <span>Academic Life</span>
                     </div>
@@ -358,8 +360,8 @@
                         <i class="fas fa-user-friends"></i>
                         <span>Friendships</span>
                     </div>
-                    <div class="preview-item" data-category="achievements"
-                        onclick="window.location.href='certificates.html'" style="cursor: pointer;">
+                    <div class="preview-item" data-category="achievements" id="achievementsItem"
+                        style="cursor: pointer;">
                         <i class="fas fa-medal"></i>
                         <span>Honors & Certificates</span>
                     </div>
@@ -538,8 +540,7 @@
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <span class="contact-text" id="emailText">z13503876281@163.com</span>
-                        <button class="copy-btn" onclick="copyToClipboard('z13503876281@163.com', 'email')"
-                            title="Copy email">
+                        <button class="copy-btn" id="emailCopyBtn" title="Copy email">
                             <i class="fas fa-copy"></i>
                         </button>
                     </div>
@@ -614,6 +615,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
     <!-- Custom JS - 先加载公共脚本，再加载页面专用脚本 -->
     <script src="js/common.js"></script>
+    <script src="js/config.js"></script>
     <script src="js/index.js"></script>
 </body>
 
