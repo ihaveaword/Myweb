@@ -49,12 +49,12 @@
     <meta name="theme-color" content="#00ff00">
 
     <!-- Fonts -->
-    <!-- Google Fonts removed - using system fonts for faster loading -->
-    <!-- Original: https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap
-        rel="stylesheet">
+    <!-- Use system fonts for best performance -->
 
     <!-- Icons -->
-    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+    <!-- Font Awesome - 国内 CDN 优先，失败则使用本地备份 -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        onerror="this.onerror=null;this.href='vendor/fontawesome/css/all.min.css'">
 
     <!-- Custom CSS - 先加载公共样式，再加载页面专用样式 -->
     <link rel="stylesheet" href="css/common.css">
