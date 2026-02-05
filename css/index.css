@@ -665,8 +665,8 @@
     justify-content: space-around;
     margin: 2rem 0;
     padding: 1.5rem;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--terminal-green-dark);
+    background: transparent;
+    border: none;
 }
 
 .memory-stats span {
@@ -732,6 +732,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
 }
 
@@ -756,7 +757,7 @@
 }
 
 .preview-item::before {
-    content: '> ';
+    content: none;
     color: var(--terminal-green-dark);
     font-size: 1.2rem;
 }

@@ -1,0 +1,12 @@
+/* Gallery Card Link Wrapper */
+.gallery-card-link {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+    height: 100%;
+}
+
+.gallery-card-link:focus {
+    outline: 2px solid var(--terminal-green);
+    outline-offset: 2px;
+}
