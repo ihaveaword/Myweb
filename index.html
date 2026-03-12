@@ -50,7 +50,6 @@
     <link rel="manifest" href="favicon.ico/manifest.json">
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="msapplication-TileImage" content="favicon.ico/ms-icon-144x144.png">
-    <meta name="theme-color" content="#00ff00">
 
     <!-- Fonts -->
     <!-- Use system fonts for best performance -->
@@ -80,8 +79,8 @@
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="active">首页 | Home</a></li>
-                <li><a href="student-life.html">学生时代 | Student Life</a></li>
                 <li><a href="certificates.html">证书荣誉 | Certificates</a></li>
+                <li><a href="student-life.html">学生时代 | Student Life</a></li>
                 <li><a href="#portfolio">作品集 | Portfolio</a></li>
                 <li><a href="#contact">联系 | Contact</a></li>
             </ul>
@@ -142,16 +141,92 @@
         <div class="hero-container">
             <div class="hero-image">
                 <img src="images/证件照.jpg" alt="个人照片">
+                <h1 class="hero-title name-only">
+                    ZHY
+                </h1>
             </div>
             <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="greeting">$ whoami</span>
-                    <span class="name">ZHY</span>
-                </h1>
-                <p class="hero-subtitle">Computer Vision Researcher | AI Developer | HCIP Certified</p>
+                <!-- 精选核心荣誉与证书 -->
+                <div class="hero-honors">
+                    <h3 class="honors-title"></i> 核心证书与荣誉 (Top Honors & Certifications)</h3>
+
+                    <div class="hero-honors-list">
+                        <!-- 顶级专业认证 -->
+                        <div class="honor-item">
+                            <div class="honor-text">
+                                <span class="honor-name">HCIP-AI-Ascend Developer 高级工程师认证</span>
+                                <span class="honor-org">华为技术有限公司 | 行业领军认证</span>
+                            </div>
+                        </div>
+
+                        <div class="honor-item">
+                            <div class="honor-text">
+                                <span class="honor-name">计算机技术与软件专业技术（网络工程师）中级资格</span>
+                                <span class="honor-org">国家人社部 & 工信部 | 国家级</span>
+                            </div>
+                        </div>
+
+                        <div class="honor-item">
+                            <div class="honor-text">
+                                <span class="honor-name">AscendC 算子开发能力中级认证</span>
+                                <span class="honor-org">华为技术有限公司</span>
+                            </div>
+                        </div>
+
+                        <!-- 学术与奖项 -->
+                        <div class="honor-item">
+                            <div class="honor-text">
+                                <span class="honor-name">研究生一等学业奖学金 & 优秀研究生</span>
+                                <span class="honor-org">华北电力大学 | 综合成绩优异 (GPA: 90.26, Rank: 5/39)</span>
+                            </div>
+                        </div>
+
+                        <!-- 重要竞赛 -->
+                        <div class="honor-item">
+                            <div class="honor-text">
+                                <span class="honor-name">全国大学生嵌入式芯片与系统设计竞赛 (队长)</span>
+                                <span class="honor-org">北区三等奖 | 负责边缘硬件部署与算法调优</span>
+                            </div>
+                        </div>
+
+                        <div class="honor-item">
+                            <div class="honor-text">
+                                <span class="honor-name">第十三届中国青年创业创新大赛 (第十一届“创青春”大赛)</span>
+                                <span class="honor-org">河北赛区优秀奖 | 2024年12月</span>
+                            </div>
+                        </div>
+
+                        <!-- 核心科研成果 -->
+                        <div class="honor-item">
+                            <div class="honor-text">
+                                <span class="honor-name">学术论文：面向核电管接头螺纹缺陷检测方法研究</span>
+                                <span class="honor-org">大亚湾核电期刊 | 已录用</span>
+                            </div>
+                        </div>
+
+                        <div class="honor-item">
+                            <div class="honor-text">
+                                <span class="honor-name">学术论文：基于视觉-语言对比学习与多尺度特征融合的输电线路金具检测方法</span>
+                                <span class="honor-org">《高电压技术》期刊 (EI/核心) | 在投</span>
+                            </div>
+                        </div>
+
+                        <div class="honor-item">
+                            <div class="honor-text">
+                                <span class="honor-name">发明专利：一种基于视觉-语言预训练与多尺度特征融合的输电线路金具检测方法</span>
+                                <span class="honor-org">国家知识产权局 (CNIPA) | 在审</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="hero-cta">
-                    <a href="certificates.html" class="btn btn-primary">Certificates</a>
-                    <a href="#ai-chat" class="btn btn-secondary">AI Chat</a>
+                    <a href="certificates.html" class="btn btn-primary">
+                        <i class="fas fa-certificate"></i> 查看完整证书库
+                    </a>
+                    <a href="#ai-chat" class="btn btn-secondary">
+                        <i class="fas fa-robot"></i> AI Chat
+                    </a>
                 </div>
             </div>
         </div>
@@ -168,12 +243,12 @@
                         <div class="gallery-image-wrapper">
                             <img src="images/workspace.png" alt="Creative Workspace">
                             <div class="gallery-overlay">
-                                <span>CREATIVE_SPACE</span>
+                                <span>TECH_BLOG</span>
                             </div>
                         </div>
                         <div class="gallery-info">
-                            <h3>创意空间</h3>
-                            <p>Minimalist Setup</p>
+                            <h3>CSDN 技术专栏</h3>
+                            <p>Thoughts & Tutorials</p>
                         </div>
                     </div>
                 </a>
@@ -185,12 +260,12 @@
                         <div class="gallery-image-wrapper">
                             <img src="images/coding.png" alt="Coding Moments">
                             <div class="gallery-overlay">
-                                <span>WORK_FLOW</span>
+                                <span>OPEN_SOURCE</span>
                             </div>
                         </div>
                         <div class="gallery-info">
-                            <h3>我的工作时刻</h3>
-                            <p>Deep Focus Mode</p>
+                            <h3>GitHub 开源主页</h3>
+                            <p>Code & Contributions</p>
                         </div>
                     </div>
                 </a>
@@ -201,12 +276,12 @@
                         <div class="gallery-image-wrapper">
                             <img src="images/collaboration.png" alt="Team Collaboration">
                             <div class="gallery-overlay">
-                                <span>TEAM_LINK</span>
+                                <span>CONTACT_ME</span>
                             </div>
                         </div>
                         <div class="gallery-info">
-                            <h3>团队协作</h3>
-                            <p>Synergy & Connection</p>
+                            <h3>与我联系</h3>
+                            <p>Let's Build Together</p>
                         </div>
                     </div>
                 </a>
@@ -253,79 +328,156 @@
                         combining theoretical knowledge with practical implementation. I believe technology should not
                         only push boundaries but also solve real-world problems.</p>
 
-                    <!-- 技能分类展示 -->
-                    <!-- 技能矩阵 (Tag Matrix) -->
-                    <div class="skills-matrix">
-                        <!-- 视觉语言模型 & 目标检测 -->
-                        <div class="matrix-category">
-                            <h4 class="category-title text-zh">
-                                <i class="fas fa-brain"></i> 视觉语言模型 & 目标检测
-                            </h4>
-                            <h4 class="category-title text-en">
-                                <i class="fas fa-brain"></i> VLM & Object Detection
-                            </h4>
-                            <div class="matrix-tags">
-                                <span class="skill-tag primary">CLIP</span>
-                                <span class="skill-tag primary">YOLO-World</span>
-                                <span class="skill-tag primary">ViT</span>
-                                <span class="skill-tag primary">YOLO v5/v8/v11</span>
-                                <span class="skill-tag primary">Faster R-CNN</span>
-                                <span class="skill-tag primary">DETR</span>
-                                <span class="skill-tag secondary">Open-Vocabulary Detection</span>
-                            </div>
-                        </div>
+                    <!-- 实习经历 (Internship Experience) -->
+                    <div class="experience-section">
+                        <h4 class="category-title text-zh">
+                            <i class="fas fa-briefcase"></i> 实习经历
+                        </h4>
+                        <h4 class="category-title text-en">
+                            <i class="fas fa-briefcase"></i> Internship Experience
+                        </h4>
 
-                        <!-- 深度学习框架 & 开发语言 -->
-                        <div class="matrix-category">
-                            <h4 class="category-title text-zh">
-                                <i class="fas fa-code"></i> 框架 & 开发语言
-                            </h4>
-                            <h4 class="category-title text-en">
-                                <i class="fas fa-code"></i> Frameworks & Languages
-                            </h4>
-                            <div class="matrix-tags">
-                                <span class="skill-tag primary">PyTorch</span>
-                                <span class="skill-tag secondary">torchvision</span>
-                                <span class="skill-tag secondary">torchaudio</span>
-                                <span class="skill-tag primary">Python</span>
-                                <span class="skill-tag secondary">TensorFlow</span>
-                                <span class="skill-tag secondary">Mindspore</span>
-                                <span class="skill-tag secondary">C/C++</span>
+                        <div class="experience-card">
+                            <div class="experience-header">
+                                <div class="company-role">
+                                    <h5 class="text-zh">中广核核电运行有限公司 - 计算机视觉与边缘计算研发</h5>
+                                    <h5 class="text-en">CGN Nuclear Power Operations - CV & Edge Computing R&D</h5>
+                                    <span class="experience-date">2025/12 - 2026/03</span>
+                                </div>
+                                <div class="experience-meta">
+                                    <span class="text-zh"><i class="fas fa-user-tie"></i> 师从大国工匠陈永伟-杰青 |
+                                        数字仪控工匠工作室研发岗</span>
+                                    <span class="text-en"><i class="fas fa-user-tie"></i> Mentored by Chen Yongwei
+                                        (National Outstanding Youth) | Digital I&C Craftsman Studio R&D</span>
+                                </div>
+                            </div>
+                            <div class="experience-body">
+                                <div class="experience-item">
+                                    <p class="text-zh">
+                                        <strong>核电精密管螺纹缺陷检测研究</strong><br>针对核电螺纹检测痛点，研发旋转驱动全景采集系统，攻克视觉盲区；改进YOLOv11引入纹理增强TFE模块，在小样本高反光环境下实现mAP提升至92.7%，单帧推理仅1.5ms。在大亚湾核电发表内刊论文《核电管接头螺纹缺陷视觉检测方法研究》。
+                                    </p>
+                                    <p class="text-en">
+                                        <strong>Visual Defect Detection of Precision Pipe Threads</strong><br>Developed
+                                        a rotation-driven panoramic acquisition system to overcome visual blind spots;
+                                        improved YOLOv11 with the TFE module, increasing mAP to 92.7% in high-reflection
+                                        environments with 1.5ms inference. Published an internal journal paper at Daya
+                                        Bay Nuclear Power Plant.
+                                    </p>
+                                </div>
+                                <div class="experience-item">
+                                    <p class="text-zh">
+                                        <strong>多端AI部署与云平台建设</strong><br>主导多端AI部署架构。解决Android12+进程限制(Signal9)问题，基于Proot-Distro构建轻量化运行容器，实现手机端实时推理；利用TensorRT(FP16)在Jetson
+                                        Orin NX平台实现量化加速，封装一键启动工具与桌面快捷入口；搭建Argus云平台，通过Cloudflare &
+                                        Tailscale实现内网穿透与分布式组网支撑业务统一调用。
+                                    </p>
+                                    <p class="text-en">
+                                        <strong>Multi-terminal AI Deployment & Cloud Platform</strong><br>Resolved
+                                        Android 12+ Signal 9 issues using Proot-Distro for mobile inference; utilized
+                                        TensorRT (FP16) on Jetson Orin NX with visual startup tools; built the Argus
+                                        cloud platform with Cloudflare & Tailscale for distributed AI service
+                                        invocation.
+                                    </p>
+                                </div>
+                                <div class="experience-item">
+                                    <p class="text-zh">
+                                        <strong>综合工程实践与实验室管理</strong><br>深度参与国家级技能大师工作室申报工作，负责论文专利等百余项科研成果的整理、归纳与材料编撰。熟练运用FDM3D打印技术实现结构件设计与制造；主导资产数字化建档与标签自动化处理，通过脚本工具实现50+项精密设备的数字化管理与规范化标识，提升实验室运维效率。
+                                    </p>
+                                    <p class="text-en">
+                                        <strong>Engineering Practice & Lab Management</strong><br>Participated in
+                                        National Skill Master Studio applications, compiling 100+ research achievements.
+                                        Utilized FDM 3D printing for structural design; led digital archiving and
+                                        automated labeling for 50+ precision devices, improving O&M efficiency.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <!-- 开发工具 & 环境管理 -->
-                        <div class="matrix-category">
-                            <h4 class="category-title text-zh">
-                                <i class="fas fa-tools"></i> 效率工具 & 环境
-                            </h4>
-                            <h4 class="category-title text-en">
-                                <i class="fas fa-tools"></i> Dev Tools & Environment
-                            </h4>
-                            <div class="matrix-tags">
-                                <span class="skill-tag primary">Linux/MacOS</span>
-                                <span class="skill-tag primary">Docker</span>
-                                <span class="skill-tag secondary">Git/GitHub</span>
-                                <span class="skill-tag secondary">Conda</span>
-                                <span class="skill-tag secondary">VS Code</span>
-                                <span class="skill-tag secondary">Tmux</span>
-                                <span class="skill-tag secondary">Feishu</span>
-                            </div>
-                        </div>
+                    </div>
 
-                        <!-- 数据处理 & 可视化 -->
-                        <div class="matrix-category">
-                            <h4 class="category-title text-zh">
-                                <i class="fas fa-chart-line"></i> 数据 & 可视化
-                            </h4>
-                            <h4 class="category-title text-en">
-                                <i class="fas fa-chart-line"></i> Data & Visualization
-                            </h4>
-                            <div class="matrix-tags">
-                                <span class="skill-tag primary">OpenCV</span>
-                                <span class="skill-tag primary">Matplotlib</span>
-                                <span class="skill-tag secondary">Pillow</span>
-                                <span class="skill-tag secondary">Labelme</span>
-                                <span class="skill-tag secondary">CVAT</span>
+                    <!-- 专业技能 (Professional Skills) -->
+                    <div class="professional-skills-section">
+                        <h4 class="category-title text-zh">
+                            <i class="fas fa-laptop-code"></i> 专业技能
+                        </h4>
+                        <h4 class="category-title text-en">
+                            <i class="fas fa-laptop-code"></i> Professional Skills
+                        </h4>
+
+                        <div class="skills-card-container">
+                            <!-- 核心算法与模型 -->
+                            <div class="skill-card">
+                                <h5 class="skill-title text-zh"><i class="fas fa-brain"></i> 视觉语言与目标检测模型</h5>
+                                <h5 class="skill-title text-en"><i class="fas fa-brain"></i> VLM & Object Detection</h5>
+                                <p class="skill-desc text-zh">
+                                    <b>视觉语言模型 (VLM/VLP)：</b>深入理解 CLIP，Yolo-world，Vision Transformer (ViT)
+                                    等模型的原理与应用，具备多模态数据预处理、模型微调和推理能力。<br>
+                                    <b>目标检测 (Object Detection)：</b>熟练掌握 YOLO 系列 (v5/v8/v11)、Faster R-CNN、DETR
+                                    等主流检测算法。熟悉开放词汇检测 (Open-Vocabulary Detection, OVD) 理论，并具备丰富的课题实践经验。
+                                </p>
+                                <p class="skill-desc text-en">
+                                    <b>VLM / VLP:</b> Deep understanding of CLIP, YOLO-World, and Vision Transformer
+                                    (ViT) principles and applications, with expertise in multimodal data preprocessing,
+                                    model fine-tuning, and inference.<br>
+                                    <b>Object Detection:</b> Proficient in mainstream detection algorithms including
+                                    YOLO series (v5/v8/v11), Faster R-CNN, and DETR. Familiar with Open-Vocabulary
+                                    Detection (OVD) theory with hands-on research project experience.
+                                </p>
+                            </div>
+
+                            <!-- 语言与框架 -->
+                            <div class="skill-card">
+                                <h5 class="skill-title text-zh"><i class="fas fa-code"></i> 开发语言与深度学习框架</h5>
+                                <h5 class="skill-title text-en"><i class="fas fa-code"></i> Languages & Frameworks</h5>
+                                <p class="skill-desc text-zh">
+                                    <b>开发语言：</b>主用 Python，熟悉 C/C++（主要用于模型部署与性能优化）。<br>
+                                    <b>主流框架：</b>熟练掌握 PyTorch 及其生态圈（如 torchvision, torchaudio），并了解 TensorFlow 与 Mindspore
+                                    的基本应用。
+                                </p>
+                                <p class="skill-desc text-en">
+                                    <b>Languages:</b> Primarily Python, familiar with C/C++ specifically for edge
+                                    deployment and performance optimization.<br>
+                                    <b>Frameworks:</b> Proficient in PyTorch and its ecosystem (torchvision,
+                                    torchaudio), with foundational knowledge of TensorFlow and Mindspore.
+                                </p>
+                            </div>
+
+                            <!-- 部署与工程环境 -->
+                            <div class="skill-card">
+                                <h5 class="skill-title text-zh"><i class="fas fa-server"></i> 环境管理与版本控制</h5>
+                                <h5 class="skill-title text-en"><i class="fas fa-server"></i> Environment & Version
+                                    Control</h5>
+                                <p class="skill-desc text-zh">
+                                    <b>环境与容器化：</b>熟悉 Linux/MacOS 系统操作；熟练运用 Docker 进行开发与部署环境的容器化构建；熟悉使用 Conda/venv 管理
+                                    Python 环境及使用 Tmux 等终端工具。<br>
+                                    <b>工程与协同：</b>精通 Git 进行代码版本控制，熟悉 GitHub/GitLab、Lazygit 以及飞书工作流等研发协同模式。熟练使用 VS
+                                    Code、PyCharm 作为 IDE 进行项目开发，并使用 Jupyter Notebook/Lab 进行实验探究。
+                                </p>
+                                <p class="skill-desc text-en">
+                                    <b>Environment:</b> Familiar with Linux/macOS systems. Proficient in Docker for
+                                    containerized deployment setups, Conda/venv for Python environment isolation, and
+                                    terminal tools like Tmux.<br>
+                                    <b>Engineering & Collaboration:</b> Master of Git version control, fluent in
+                                    GitHub/GitLab, Lazygit, and project workflows. Highly experienced with IDEs like VS
+                                    Code and PyCharm, leveraging Jupyter Notebook/Lab for experimental validation.
+                                </p>
+                            </div>
+
+                            <!-- 数据处理与可视化 -->
+                            <div class="skill-card">
+                                <h5 class="skill-title text-zh"><i class="fas fa-chart-line"></i> 数据处理与可视化</h5>
+                                <h5 class="skill-title text-en"><i class="fas fa-chart-line"></i> Data & Visualization
+                                </h5>
+                                <p class="skill-desc text-zh">
+                                    <b>数据处理：</b>熟练使用 OpenCV、Pillow 等库进行图像数据增强与预处理工作；熟练掌握 Labelme、CVAT 等主流数据标注工具的运用。<br>
+                                    <b>结果可视化：</b>掌握 Matplotlib 与 OpenCV (cv2) 可视化方案，能够高效进行图像渲染、数据分布与实验对比结果的可视化分析。
+                                </p>
+                                <p class="skill-desc text-en">
+                                    <b>Data Processing:</b> Skilled in image data augmentation and preprocessing using
+                                    OpenCV and Pillow; experienced with visual annotation tools like Labelme and
+                                    CVAT.<br>
+                                    <b>Visualization:</b> Proficient in Matplotlib and OpenCV (cv2) for rendering image
+                                    outputs, statistical analysis charting, and evaluating comparative experimental
+                                    results.
+                                </p>
                             </div>
                         </div>
                     </div>

@@ -1302,21 +1302,3 @@ html[data-theme="dark"] .cert-icon.tech {
     color: #1a1a1a;
     text-shadow: none;
 }
-
-/* === 滚动条 === */
-[data-theme="light"] ::-webkit-scrollbar {
-    width: 6px;
-}
-
-[data-theme="light"] ::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-[data-theme="light"] ::-webkit-scrollbar-thumb {
-    background: #ddd;
-    border-radius: 3px;
-}
-
-[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
-    background: #ccc;
-}

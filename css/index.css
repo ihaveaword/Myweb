@@ -29,11 +29,11 @@
 }
 
 .hero-container {
-    max-width: 1200px;
+    max-width: 1100px;
     width: 100%;
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 5rem;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3.5rem;
     align-items: center;
     position: relative;
     z-index: 1;
@@ -42,7 +42,9 @@
 .hero-image {
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-image img {
@@ -55,10 +57,11 @@
     object-fit: cover;
     transition: transform 0.3s ease;
     filter: contrast(1.1) brightness(0.9);
+    margin-bottom: 1.5rem;
 }
 
 .hero-image img:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     box-shadow: 0 0 30px var(--terminal-shadow);
 }
 
@@ -66,37 +69,88 @@
     text-align: left;
 }
 
-.hero-title {
+.hero-title.name-only {
     font-size: 3.5rem;
-    margin-bottom: 1rem;
-    font-family: 'Courier New', monospace;
-}
-
-.greeting {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
-}
-
-.greeting::before {
-    content: '$ ';
-    color: var(--terminal-green);
-}
-
-.name {
-    display: block;
+    font-weight: 800;
+    margin: 0;
     color: var(--terminal-green-bright);
-    text-shadow: var(--terminal-glow);
-    animation: glow 2s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(var(--glow-rgb), 0.5);
+    letter-spacing: 4px;
+    text-align: center;
 }
 
-/* 浅色模式下去除名字发光动画 */
-[data-theme="light"] .name {
-    animation: none;
+/* 浅色模式下去除发光 */
+[data-theme="light"] .hero-title.name-only {
     text-shadow: none;
     color: var(--text-primary);
+}
+
+/* ========== 核心证书与荣誉 (Hero Honors) ========== */
+.hero-honors {
+    margin: 0 0 1.5rem 0;
+    background: rgba(var(--glow-rgb), 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    max-width: 650px;
+}
+
+.hero-honors:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(var(--glow-rgb), 0.1);
+}
+
+.honors-title {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin: 0 0 1.2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px dashed rgba(var(--glow-rgb), 0.3);
+    padding-bottom: 0.8rem;
+}
+
+[data-theme="light"] .honors-title {
+    border-bottom: 1px dashed #eaeaea;
+}
+
+.hero-honors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.honor-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.honor-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.honor-name {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+[data-theme="light"] .honor-name {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.honor-org {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .honor-org {
+    color: #666;
 }
 
 .hero-subtitle {
@@ -374,11 +428,7 @@
     border-left: 3px solid var(--terminal-green-dark);
 }
 
-.about-text p::before {
-    content: '// ';
-    color: var(--terminal-green-dark);
-    margin-left: -20px;
-}
+
 
 /* 英文段落样式 */
 .about-text p.text-en {
@@ -398,138 +448,176 @@
     border-radius: 2px;
 }
 
-/* 英文段落也使用 // 格式，不再使用 /* */
-*/ .about-text p.text-en::before {
-    content: '// ';
-    color: var(--terminal-green-dark);
-    margin-left: -20px;
+
+
+/* ========== 专业技能 (Professional Skills) ========== */
+.professional-skills-section {
+    margin: 2.5rem 0;
+    position: relative;
+    z-index: 10;
 }
 
-.about-text p.text-en::after {
-    content: none;
-}
-
-.skills {
+.skills-card-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
+    flex-direction: column;
+    gap: 1.2rem;
 }
 
-.skill-tag {
-    padding: 0.5rem 1rem;
-    background-color: transparent;
-    color: var(--terminal-green);
-    border: 1px solid var(--terminal-green);
-    border-radius: 0;
-    font-size: 0.9rem;
-    font-weight: 500;
-    font-family: 'Courier New', monospace;
+.skill-card {
+    background: rgba(var(--glow-rgb), 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
     transition: all 0.3s ease;
 }
 
-.skill-tag::before {
-    content: '#';
+.skill-card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(var(--glow-rgb), 0.1);
+    transform: translateX(5px);
 }
 
-.skill-tag:hover {
-    background-color: var(--terminal-green);
-    color: var(--terminal-bg);
-    box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.6);
+.skill-title {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin: 0 0 0.8rem 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* 技能分类 */
-/* ========== 技能矩阵 (Minimalist Tag Matrix) ========== */
-.skills-matrix {
-    margin-top: 2rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem 2rem;
+[data-theme="light"] .skill-title {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.skill-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 0;
+}
+
+[data-theme="light"] .skill-desc {
+    color: #555;
+    line-height: 1.8;
+}
+
+.skill-desc b {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+[data-theme="light"] .skill-desc b {
+    color: #333;
+}
+
+/* ========== 实习经历 ========== */
+.experience-section {
+    margin: 2.5rem 0;
+}
+
+.experience-card {
+    background: rgba(var(--glow-rgb), 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.experience-card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(var(--glow-rgb), 0.1);
+}
+
+.experience-header {
+    border-bottom: 1px dashed rgba(var(--glow-rgb), 0.3);
+    padding-bottom: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+[data-theme="light"] .experience-header {
+    border-bottom: 1px dashed #eaeaea;
+}
+
+.company-role {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.company-role h5 {
+    font-size: 1.15rem;
+    color: var(--accent-color);
+    margin: 0;
+    font-weight: 600;
+}
+
+[data-theme="light"] .company-role h5 {
+    color: #1a1a1a;
+}
+
+.experience-date {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--terminal-green);
+    background: rgba(var(--glow-rgb), 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+[data-theme="light"] .experience-date {
+    background: #f0f0f0;
+    color: #555;
+}
+
+.experience-meta {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.experience-item {
+    margin-bottom: 1.2rem;
+}
+
+.experience-item:last-child {
+    margin-bottom: 0;
+}
+
+.experience-item h6 {
+    display: none;
+    /* Just in case any old h6 remains */
+}
+
+.experience-item p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    margin-bottom: 0.8rem;
+    padding-left: 1.2rem;
+}
+
+.experience-item p strong {
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-right: 0.2rem;
+}
+
+[data-theme="light"] .experience-item p strong {
+    color: #333;
 }
 
 @media (max-width: 768px) {
-    .skills-matrix {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    .company-role {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
     }
-}
-
-.matrix-category {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.category-title {
-    color: var(--terminal-green);
-    font-family: 'Courier New', monospace;
-    font-size: 0.95rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 0.9;
-}
-
-.category-title i {
-    opacity: 0.7;
-}
-
-.matrix-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-}
-
-.skill-tag {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-size: 0.85rem;
-    padding: 0.3rem 0.9rem;
-    border-radius: 16px;
-    /* 更圆润的胶囊形状 */
-    transition: all 0.3s ease;
-    cursor: default;
-    border: none;
-    /* 移除边框 */
-}
-
-/* 高亮标签 (Primary) */
-.skill-tag.primary {
-    background-color: rgba(var(--glow-rgb), 0.08);
-    color: var(--terminal-green-bright);
-}
-
-.skill-tag.primary:hover {
-    background-color: rgba(var(--glow-rgb), 0.15);
-    transform: translateY(-1px);
-}
-
-/* 次要标签 (Secondary) */
-.skill-tag.secondary {
-    background-color: rgba(255, 255, 255, 0.03);
-    color: var(--text-secondary);
-}
-
-.skill-tag.secondary:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-    color: var(--text-primary);
-}
-
-/* Light Mode Adaptations */
-[data-theme="light"] .skill-tag.primary {
-    background-color: rgba(var(--glow-rgb), 0.08);
-    color: var(--accent-color);
-    font-weight: 500;
-}
-
-[data-theme="light"] .skill-tag.secondary {
-    background-color: rgba(0, 0, 0, 0.03);
-    color: var(--text-secondary);
-}
-
-[data-theme="light"] .skill-tag.secondary:hover {
-    background-color: rgba(0, 0, 0, 0.06);
-    color: var(--text-primary);
 }
 
 /* ========== 学生时代预览区域 ========== */
@@ -1831,34 +1919,58 @@
 }
 
 /* =========================================
-   浅色模式极简去边框覆盖 (Minimalist Borderless Overrides)
+   浅色模式极简去边框覆盖与视觉统一 (Light Mode Minimalist Overrides)
    ========================================= */
+
+/* 1. 统一所有大区块背景为基础米白，从而衬托上方纯白卡片 */
+[data-theme="light"] .hero,
+[data-theme="light"] .carousel-section,
+[data-theme="light"] .about,
+[data-theme="light"] .student-life,
+[data-theme="light"] .portfolio,
+[data-theme="light"] .ai-chat,
+[data-theme="light"] .footer,
+[data-theme="light"] .static-gallery-section {
+    background: var(--bg-primary) !important;
+}
+
+/* 2. 将内容卡片严格统一为大面积纯白、无边框、淡阴影 */
 [data-theme="light"] .memory-card,
-[data-theme="light"] .memory-stats,
+[data-theme="light"] .portfolio-item,
 [data-theme="light"] .chat-container,
+[data-theme="light"] .preview-item,
+[data-theme="light"] .experience-card,
+[data-theme="light"] .skill-card,
+[data-theme="light"] .hero-honors {
+    background: #fff !important;
+    border: none !important;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-theme="light"] .memory-card:hover,
+[data-theme="light"] .portfolio-item:hover,
+[data-theme="light"] .preview-item:hover,
+[data-theme="light"] .experience-card:hover,
+[data-theme="light"] .skill-card:hover,
+[data-theme="light"] .hero-honors:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+    background: #fff !important;
+    border: none !important;
+}
+
+/* 3. 子元素扁平化处理 */
+[data-theme="light"] .memory-stats,
 [data-theme="light"] .ai-chat,
 [data-theme="light"] .portfolio-details,
 [data-theme="light"] .project-links,
-[data-theme="light"] .footer,
 [data-theme="light"] .contact-item,
 [data-theme="light"] .chat-input-container {
     border: none !important;
     box-shadow: none !important;
-}
-
-/* 浅色模式下预览卡片样式修复 */
-[data-theme="light"] .preview-item {
-    background: var(--bg-secondary) !important;
-    border: 1px solid var(--border-color) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    transition: all 0.3s ease;
-}
-
-[data-theme="light"] .preview-item:hover {
-    background: var(--bg-tertiary) !important;
-    border-color: var(--accent-color) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
-    transform: translateY(-2px);
+    background: transparent !important;
 }
 
 [data-theme="light"] .preview-item i {
@@ -1990,12 +2102,22 @@
 }
 
 .gallery-overlay span {
-    color: var(--terminal-green-bright);
+    color: #ffffff;
     font-family: 'Courier New', monospace;
     font-weight: bold;
-    border: 1px solid var(--terminal-green);
-    padding: 0.5rem 1rem;
-    background: rgba(0, 0, 0, 0.8);
+    font-size: 1.25rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(var(--glow-rgb), 0.5);
+    background: transparent;
+    border: none;
+    padding: 0;
+    transform: translateY(15px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gallery-card:hover .gallery-overlay span {
+    transform: translateY(0);
 }
 
 .gallery-info {
@@ -2061,13 +2183,14 @@
 }
 
 [data-theme="light"] .gallery-overlay span {
-    color: #000;
-    background: #fff;
+    color: #ffffff;
+    background: transparent;
     border: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
     font-family: var(--font-sans);
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: 700;
+    letter-spacing: 3px;
 }
 
 /* Mobile Responsive */

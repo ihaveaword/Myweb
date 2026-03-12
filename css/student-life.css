@@ -165,7 +165,8 @@
     background: var(--bg-primary);
     padding: 1rem 20px;
     position: sticky;
-    top: 60px; /* 在主导航栏下方 */
+    top: 60px;
+    /* 在主导航栏下方 */
     z-index: 99;
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(var(--glow-rgb), 0.2);
@@ -1320,7 +1321,8 @@ html {
 }
 
 [data-theme="light"] .student-header::before {
-    display: none; /* 移除扫描线效果 */
+    display: none;
+    /* 移除扫描线效果 */
 }
 
 [data-theme="light"] .main-title {
@@ -1342,7 +1344,8 @@ html {
 }
 
 [data-theme="light"] .sub-title::before {
-    display: none; /* 移除 // 装饰 */
+    display: none;
+    /* 移除 // 装饰 */
 }
 
 /* === 时间线导航 - 极简按钮 === */
@@ -1411,7 +1414,8 @@ html {
 }
 
 [data-theme="light"] .header-line {
-    display: none; /* 移除装饰线 */
+    display: none;
+    /* 移除装饰线 */
 }
 
 /* === 记忆卡片 - 无边框美学 === */
@@ -1689,22 +1693,4 @@ html {
 
 [data-theme="light"] .glitch-text {
     animation: none;
-}
-
-/* === 滚动条极简化 === */
-[data-theme="light"] ::-webkit-scrollbar {
-    width: 6px;
-}
-
-[data-theme="light"] ::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-[data-theme="light"] ::-webkit-scrollbar-thumb {
-    background: #ddd;
-    border-radius: 3px;
-}
-
-[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
-    background: #ccc;
 }
