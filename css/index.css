@@ -702,6 +702,17 @@
     animation: float 3s ease-in-out infinite, colorShift 5s ease-in-out infinite;
 }
 
+/* 白天模式下图标改为和其他图标相同的深色 */
+html[data-theme="light"] .memory-icon {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #444 !important;
+    color: #444;
+    filter: none !important;
+    animation: float 3s ease-in-out infinite;
+}
+
 @keyframes colorShift {
 
     0%,
@@ -1006,6 +1017,11 @@
     filter: contrast(1.2) brightness(0.8) sepia(0.2) hue-rotate(90deg);
 }
 
+/* 不使用终端绿色滤镜的图片（如使用原始彩色封面图的项目） */
+.portfolio-image img.no-filter {
+    filter: none;
+}
+
 .portfolio-item:hover .portfolio-image img {
     transform: scale(1.1);
 }
@@ -1024,10 +1040,7 @@
 }
 
 .portfolio-info h3::before {
-    content: '$ ./';
-    color: var(--terminal-green);
-    font-size: 0.9em;
-    margin-right: 5px;
+    content: none;
 }
 
 .portfolio-info p {
@@ -1097,10 +1110,7 @@
 }
 
 .feature-list li::before {
-    content: '>';
-    position: absolute;
-    left: 0;
-    color: var(--terminal-green-dim);
+    content: none;
 }
 
 /* 项目链接 */
@@ -2209,6 +2219,15 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+}
+
+.about-header h4 {
+    font-size: 1.4rem;
+    /* 介于 h3(~1.5rem) 和 h4(~1.17rem) 之间 */
+    font-family: 'Courier New', monospace;
+    color: var(--terminal-green-bright);
+    font-weight: 600;
+    margin: 0;
 }
 
 .lang-toggle {

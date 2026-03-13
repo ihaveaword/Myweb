@@ -292,14 +292,15 @@
     <!-- 个人简介区域 -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">cat ./about.txt</h2>
+            <h2 class="section-title"><span class="title-zh">我的简历</span>
+            </h2>
             <div class="about-content">
                 <div class="about-image">
                     <img src="images/证件照.jpg" alt="个人照片">
                 </div>
                 <div class="about-text">
                     <div class="about-header">
-                        <h3>$ cat profile.md</h3>
+                        <h4>$ 自我介绍</h4>
                         <button class="lang-toggle" id="langToggle">
                             <span class="lang-option active" data-lang="zh">中文</span>
                             <span class="lang-divider">|</span>
@@ -489,43 +490,43 @@
     <!-- 学生时代区域 -->
     <section id="student-life" class="student-life">
         <div class="container">
-            <h2 class="section-title">cd ./memories/student_days/</h2>
-            <p class="section-subtitle">// My journey through the years of learning and growth</p>
+            <h2 class="section-title"><span class="title-zh">学生时代</span></h2>
+            <p class="section-subtitle">成长岁月的流金岁月</p>
 
             <div class="student-preview">
                 <div class="memory-card" id="academicJourneyCard">
                     <div class="memory-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3>Academic Journey</h3>
-                    <p>// Click to explore my student life timeline</p>
+                    <h3>学业历程</h3>
+                    <p>点击探索我的学生时代时间轴</p>
                     <div class="memory-stats">
-                        <span><i class="fas fa-book"></i> Years of Study</span>
-                        <span><i class="fas fa-trophy"></i> Achievements</span>
-                        <span><i class="fas fa-users"></i> Memories</span>
+                        <span><i class="fas fa-book"></i> 求学岁月</span>
+                        <span><i class="fas fa-trophy"></i> 荣誉成就</span>
+                        <span><i class="fas fa-users"></i> 美好回忆</span>
                     </div>
                     <button class="explore-btn">
-                        <i class="fas fa-terminal"></i> ./explore.sh
+                        <i class="fas fa-terminal"></i> 点击探索
                     </button>
                 </div>
 
                 <div class="preview-grid">
                     <div class="preview-item" data-category="study" id="studyItem" style="cursor: pointer;">
                         <i class="fas fa-book-open"></i>
-                        <span>Academic Life</span>
+                        <span>学业生活</span>
                     </div>
                     <div class="preview-item" data-category="activities">
                         <i class="fas fa-running"></i>
-                        <span>Activities</span>
+                        <span>课外活动</span>
                     </div>
                     <div class="preview-item" data-category="friends">
                         <i class="fas fa-user-friends"></i>
-                        <span>Friendships</span>
+                        <span>朋友情谊</span>
                     </div>
                     <div class="preview-item" data-category="achievements" id="achievementsItem"
                         style="cursor: pointer;">
                         <i class="fas fa-medal"></i>
-                        <span>Honors & Certificates</span>
+                        <span>荣誉与证书</span>
                     </div>
                 </div>
             </div>
@@ -535,7 +536,7 @@
     <!-- 作品展示区域 -->
     <section id="portfolio" class="portfolio">
         <div class="container">
-            <h2 class="section-title">ls -la ./projects/</h2>
+            <h2 class="section-title"><span class="title-zh">作品展示</span></h2>
             <div class="portfolio-grid">
                 <!-- 项目 1：个人作品集网站 -->
                 <div class="portfolio-item">
@@ -545,9 +546,9 @@
                     </div>
                     <div class="portfolio-info">
                         <h3>终端作品集 | Terminal Portfolio</h3>
-                        <p>// 复古终端风格个人作品集网站，集成Matrix代码雨效果和自定义光标系统</p>
+                        <p>复古终端风格个人作品集网站，集成Matrix代码雨效果和自定义光标系统</p>
                         <div class="portfolio-details">
-                            <p class="project-highlights">✨ 核心亮点：</p>
+                            <p class="project-highlights">核心亮点：</p>
                             <ul class="feature-list">
                                 <li>动态Matrix代码雨动画（Canvas API）</li>
                                 <li>自定义SVG光标系统（3种类型）</li>
@@ -583,16 +584,16 @@
                     </div>
                     <div class="portfolio-info">
                         <h3>桌面翻译工具 | ZDTrans</h3>
-                        <p>// 轻量级桌面翻译和文本润色工具，支持全局快捷键和系统托盘常驻</p>
+                        <p>轻量级桌面翻译和文本润色工具，支持全局快捷键和系统托盘常驻</p>
                         <div class="portfolio-details">
-                            <p class="project-highlights">✨ 核心功能：</p>
+                            <p class="project-highlights">核心功能：</p>
                             <ul class="feature-list">
-                                <li>🚀 全局快捷键：在任何应用中选中文字即可快速翻译</li>
-                                <li>💡 即时弹窗：翻译结果在鼠标附近弹出，无需切换窗口</li>
-                                <li>🎨 简洁美观：半透明无边框窗口，不干扰工作流</li>
-                                <li>🔧 灵活配置：支持多种API（OpenAI、DeepL、火山方舟豆包）</li>
-                                <li>🏷️ 关键词提示：为AI提供专业领域关键词，提高翻译准确度</li>
-                                <li>🖥️ 跨平台支持：Windows、macOS、Linux全平台运行</li>
+                                <li>全局快捷键：在任何应用中选中文字即可快速翻译</li>
+                                <li>即时弹窗：翻译结果在鼠标附近弹出，无需切换窗口</li>
+                                <li>简洁美观：半透明无边框窗口，不干扰工作流</li>
+                                <li>灵活配置：支持多种API（OpenAI、DeepL、火山方舟豆包）</li>
+                                <li>关键词提示：为AI提供专业领域关键词，提高翻译准确度</li>
+                                <li>跨平台支持：Windows、macOS、Linux全平台运行</li>
                             </ul>
                         </div>
                         <div class="portfolio-tags">
@@ -613,32 +614,35 @@
                     </div>
                 </div>
 
-                <!-- 项目 3：学习记录系统 -->
+                <!-- 项目 3：Eason 邮件批量发送助手 -->
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600"
-                            alt="Learning System">
+                        <img src="https://raw.githubusercontent.com/ihaveaword/Eason/main/picture/cover/Gemini_Generated_Image_d15x2id15x2id15x.png"
+                            alt="Eason Email Sender" class="no-filter">
                     </div>
                     <div class="portfolio-info">
-                        <h3>代码片段管理器 | Code Snippets Manager</h3>
-                        <p>// Personal code snippet management system with syntax highlighting</p>
+                        <h3>邮件批量发送助手 | Eason</h3>
+                        <p>原生 macOS 风格的邮件自动化工具，支持联系人采集与批量个性化发送</p>
                         <div class="portfolio-details">
-                            <p class="project-highlights">📚 Key Features:</p>
+                            <p class="project-highlights">核心功能：</p>
                             <ul class="feature-list">
-                                <li>Save and organize code snippets</li>
-                                <li>Multi-language syntax highlighting</li>
-                                <li>Search and filter functionality</li>
-                                <li>LocalStorage persistence</li>
+                                <li>自动采集邮箱联系人，智能去重，支持导出 TXT/CSV</li>
+                                <li>批量发送个性化邮件，支持图片/PDF附件</li>
+                                <li>批次发送机制，有效避免封号风险</li>
+                                <li>实时进度显示与日志反馈</li>
+                                <li>原生 macOS 风格 + 深色主题日志窗口</li>
                             </ul>
                         </div>
                         <div class="portfolio-tags">
-                            <span>JavaScript</span>
-                            <span>LocalStorage</span>
-                            <span>Highlight.js</span>
-                            <span>UI/UX</span>
+                            <span>Python</span>
+                            <span>macOS</span>
+                            <span>多线程</span>
+                            <span>邮件自动化</span>
                         </div>
-                        <div class="project-status">
-                            <span class="status-badge planned">Planned</span>
+                        <div class="project-links">
+                            <a href="https://github.com/ihaveaword/Eason" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -649,7 +653,7 @@
     <!-- AI对话界面区域 -->
     <section id="ai-chat" class="ai-chat">
         <div class="container">
-            <h2 class="section-title">./ai_assistant.sh</h2>
+            <h2 class="section-title"><span class="title-zh">AI 智能助手</span></h2>
             <p class="section-subtitle">// Talk with my AI assistant to learn more about me</p>
 
             <!-- 预设问题 -->

@@ -519,24 +519,72 @@ body::after {
 
 /* ========== 通用标题样式 ========== */
 .section-title {
-    font-size: 2.5rem;
     text-align: center;
     margin-bottom: 3rem;
     position: relative;
     padding-bottom: 1rem;
+    /* 中英文双行模式 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    /* 去除织承自旧式标题的属性 */
+    font-size: unset;
+    font-family: unset;
+    text-transform: none;
+    letter-spacing: normal;
+    color: inherit;
+    text-shadow: none;
+}
+
+/* 屏蔽 .section-title 本身的 === 免得与子元素冲突 */
+.section-title::before,
+.section-title::after {
+    content: none;
+}
+
+/* 主标题：中文大字 */
+.section-title .title-zh {
+    font-size: 2.5rem;
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
     color: var(--terminal-green-bright);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: none;
+    text-shadow: var(--terminal-glow);
+    display: block;
+}
+
+/* 副标题：英文小字（已隐藏） */
+.section-title .title-en-sub {
+    display: none;
+}
+
+.section-title .title-en-sub::before {
+    content: '=== ';
+}
+
+.section-title .title-en-sub::after {
+    content: ' ===';
+}
+
+/* 兼容：没有 .title-zh 子元素的旧式标题（如 certificates页） */
+.section-title:not(:has(.title-zh)) {
+    font-size: 2.5rem;
     font-family: 'Courier New', monospace;
+    color: var(--terminal-green-bright);
     text-transform: uppercase;
     letter-spacing: 3px;
     text-shadow: var(--terminal-glow);
+    display: block;
 }
 
-.section-title::before {
+.section-title:not(:has(.title-zh))::before {
     content: '=== ';
     color: var(--terminal-green);
 }
 
-.section-title::after {
+.section-title:not(:has(.title-zh))::after {
     content: ' ===';
     color: var(--terminal-green);
 }
