@@ -1,7 +1,26 @@
-/* ==================== 主页专用样式 ====================
- * 仅包含主页 (index.html) 特有的样式
+/* ==================== 首页专用样式文件 ====================
  * 依赖: common.css（必须先加载）
  * ================================================= */
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(var(--glow-rgb), 0.03) 2px,
+            rgba(var(--glow-rgb), 0.03) 4px);
+    pointer-events: none;
+}
+
+/* 浅色模式下去除扫描线 */
+[data-theme="light"] .about::before {
+    background: none;
+}
 
 /* ========== 首屏Hero区域 ========== */
 .hero {
@@ -242,7 +261,7 @@
 }
 
 .carousel-slide a:hover img {
-    filter: contrast(1.2) brightness(0.95) sepia(0.1) hue-rotate(90deg);
+    filter: contrast(1.1) brightness(1.0);
     transform: scale(1.02);
     transition: all 0.3s ease;
 }
@@ -255,7 +274,7 @@
     width: 100%;
     height: 500px;
     object-fit: cover;
-    filter: contrast(1.2) brightness(0.85) sepia(0.1) hue-rotate(90deg);
+    filter: contrast(1.1) brightness(0.95);
     transition: all 0.3s ease;
 }
 
@@ -375,6 +394,7 @@
             rgba(var(--glow-rgb), 0.03) 4px);
     pointer-events: none;
 }
+
 
 .about-content {
     display: grid;
@@ -642,6 +662,7 @@
             rgba(var(--glow-rgb), 0.03) 4px);
     pointer-events: none;
 }
+
 
 .student-preview {
     max-width: 1000px;
@@ -1014,7 +1035,8 @@ html[data-theme="light"] .memory-icon {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
-    filter: contrast(1.2) brightness(0.8) sepia(0.2) hue-rotate(90deg);
+    filter: contrast(1.1) brightness(0.95);
+    transition: transform 0.3s ease;
 }
 
 /* 不使用终端绿色滤镜的图片（如使用原始彩色封面图的项目） */
@@ -1523,9 +1545,8 @@ html[data-theme="light"] .memory-icon {
 
 /* ========== 页脚区域 ========== */
 .footer {
-    background-color: var(--bg-secondary);
-    padding: 4rem 0 2rem;
-    border-top: 3px solid var(--terminal-green);
+    padding: 5rem 0 3rem;
+    background-color: var(--bg-primary);
     position: relative;
 }
 
@@ -1543,6 +1564,7 @@ html[data-theme="light"] .memory-icon {
             transparent 20px);
     opacity: 0.3;
 }
+
 
 .footer-content {
     display: grid;
@@ -2451,4 +2473,11 @@ html[data-theme="light"] .memory-icon {
         font-size: 0.8rem;
         padding: 0.5rem 1rem;
     }
+}
+
+/* === 浅色模式严密封锁所有扫描线 === */
+html[data-theme="light"] .about::before,
+html[data-theme="light"] .student-life::before,
+html[data-theme="light"] .footer::before {
+    display: none !important;
 }

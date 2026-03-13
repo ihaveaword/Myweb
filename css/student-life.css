@@ -114,34 +114,18 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: repeating-linear-gradient(0deg,
-            transparent,
-            transparent 2px,
-            rgba(var(--glow-rgb), 0.03) 2px,
-            rgba(var(--glow-rgb), 0.03) 4px);
+    /* 扫描线已永久移除 — 背景横纹效果不再需要 */
     pointer-events: none;
 }
 
+/* 页面标题已去除终端特殊前缀与发光 */
 .page-title {
     font-size: 3rem;
     color: var(--terminal-green-bright);
     font-family: 'Courier New', monospace;
     margin-bottom: 1rem;
-    text-shadow: 0 0 20px rgba(var(--glow-rgb), 0.8);
-    animation: titleGlow 2s ease-in-out infinite;
 }
 
-@keyframes titleGlow {
-
-    0%,
-    100% {
-        text-shadow: 0 0 20px rgba(var(--glow-rgb), 0.8);
-    }
-
-    50% {
-        text-shadow: 0 0 30px rgba(var(--glow-rgb), 1);
-    }
-}
 
 .command-prompt {
     color: var(--terminal-green);
@@ -153,11 +137,6 @@
     font-family: 'Courier New', monospace;
     font-size: 1.1rem;
     opacity: 0.8;
-}
-
-.page-subtitle::before {
-    content: '// ';
-    color: var(--terminal-green-dark);
 }
 
 /* 时间线导航 - 目录式固定导航 */
@@ -1162,14 +1141,42 @@ html {
     margin-bottom: 3rem;
 }
 
+/* 针对横版照片的 2x2 布局 */
+.photo-grid.friends-layout {
+    grid-template-columns: 1fr 1fr;
+}
+
+.photo-grid.friends-layout .photo-item[data-category="friends"] img {
+    height: 350px;
+}
+
+@media (max-width: 768px) {
+    .photo-grid.friends-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-grid.friends-layout .photo-item[data-category="friends"] img {
+        height: 250px;
+    }
+}
+
 .photo-item {
-    background: rgba(var(--glow-rgb), 0.03);
+    background: transparent;
     border: 1px solid rgba(var(--glow-rgb), 0.2);
     transition: all 0.4s ease;
     cursor: pointer;
     overflow: hidden;
     opacity: 1;
     transform: scale(1);
+}
+
+/* 图片真实色彩，不加任何滤镜 */
+.photo-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    filter: none;
 }
 
 .photo-item:hover {
@@ -1215,7 +1222,8 @@ html {
 .photo-placeholder i {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--terminal-green-dark);
+    color: #444;
+    /* 改为中性深灰，不再默认发绿 */
 }
 
 .photo-placeholder span {
@@ -1298,6 +1306,92 @@ html {
         font-size: 2.5rem;
     }
 }
+
+/* =========================================
+   500px 画廊引导 CTA 按钮样式
+   ========================================= */
+.gallery-cta-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px dashed rgba(var(--glow-rgb), 0.2);
+}
+
+.external-gallery-btn {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.2rem 2.5rem;
+    background: rgba(var(--glow-rgb), 0.05);
+    border: 2px solid var(--terminal-green-dark);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.external-gallery-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(var(--glow-rgb), 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.external-gallery-btn:hover {
+    border-color: var(--terminal-green);
+    background: rgba(var(--glow-rgb), 0.1);
+    box-shadow: 0 0 30px rgba(var(--glow-rgb), 0.3), inset 0 0 10px rgba(var(--glow-rgb), 0.1);
+    transform: translateY(-5px);
+}
+
+.external-gallery-btn:hover::before {
+    left: 100%;
+}
+
+.external-gallery-btn .btn-icon {
+    font-size: 2.2rem;
+    color: var(--terminal-green-bright);
+    filter: drop-shadow(0 0 5px rgba(var(--glow-rgb), 0.5));
+}
+
+.external-gallery-btn .btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.external-gallery-btn .btn-title {
+    font-family: 'Fira Code', var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--terminal-green-bright);
+    text-shadow: 0 0 8px rgba(var(--glow-rgb), 0.4);
+    letter-spacing: 1px;
+}
+
+.external-gallery-btn .btn-desc {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--terminal-green-dim);
+    margin-top: 0.3rem;
+}
+
+.external-gallery-btn .btn-arrow {
+    font-size: 1.2rem;
+    color: var(--terminal-green);
+    transition: transform 0.3s ease;
+}
+
+.external-gallery-btn:hover .btn-arrow {
+    transform: translateX(10px);
+}
+
 
 /* =========================================
    浅色模式极简美学 (Light Mode Minimalist Aesthetic)
@@ -1693,4 +1787,123 @@ html {
 
 [data-theme="light"] .glitch-text {
     animation: none;
+}
+
+/* === 极简浅色模式：彻底移除终端残余 === */
+
+/* 1. 强制关闭所有扫描线覆盖层 */
+html[data-theme="light"] .student-header::before,
+html[data-theme="light"] .student-content::before,
+html[data-theme="light"] section::before,
+html[data-theme="light"] .photo-placeholder::before {
+    background: none !important;
+    display: none !important;
+}
+
+/* 2. 重置背景色与渐变 */
+html[data-theme="light"] .student-header {
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #f0f0f0;
+    padding-top: 8rem;
+    /* 稍微压缩顶部间距 */
+}
+
+/* 3. 页面大标题：从霓虹绿改为纯正深灰 */
+html[data-theme="light"] .page-title {
+    color: #1a1a1a !important;
+    text-shadow: none !important;
+    animation: none !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+html[data-theme="light"] .page-subtitle {
+    color: #666 !important;
+    text-shadow: none !important;
+    animation: none !important;
+    font-family: inherit;
+    opacity: 0.8;
+}
+
+/* 4. 关键：修正相机等画廊占位图标颜色 */
+html[data-theme="light"] .photo-placeholder {
+    background: #f8f8f8 !important;
+}
+
+html[data-theme="light"] .photo-placeholder i {
+    color: #444 !important;
+    /* 与毕业帽图标颜色一致 */
+    text-shadow: none !important;
+    opacity: 0.7;
+}
+
+html[data-theme="light"] .photo-placeholder span {
+    color: #444 !important;
+}
+
+/* 500px CTA Button Light Mode Overrides */
+html[data-theme="light"] .gallery-cta-container {
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="light"] .external-gallery-btn {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+html[data-theme="light"] .external-gallery-btn::before {
+    display: none !important;
+}
+
+html[data-theme="light"] .external-gallery-btn:hover {
+    border-color: rgba(0, 0, 0, 0.2) !important;
+    background: #ffffff !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+    transform: translateY(-4px) !important;
+}
+
+html[data-theme="light"] .external-gallery-btn .btn-icon {
+    color: #333 !important;
+    filter: none !important;
+}
+
+html[data-theme="light"] .external-gallery-btn .btn-title {
+    color: #1a1a1a !important;
+    text-shadow: none !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    letter-spacing: normal !important;
+}
+
+html[data-theme="light"] .external-gallery-btn .btn-desc {
+    color: #666 !important;
+}
+
+html[data-theme="light"] .external-gallery-btn .btn-arrow {
+    color: #333 !important;
+}
+
+/* 5. 顶部导航栏适配 */
+html[data-theme="light"] .student-nav {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+}
+
+html[data-theme="light"] .nav-btn {
+    color: #555 !important;
+    border-color: #ddd !important;
+    background: transparent !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    font-family: inherit;
+}
+
+html[data-theme="light"] .nav-btn:hover,
+html[data-theme="light"] .nav-btn.active {
+    color: #000 !important;
+    border-color: #000 !important;
+    background: #fff !important;
 }

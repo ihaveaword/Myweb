@@ -48,7 +48,8 @@
     <meta name="msapplication-TileImage" content="favicon.ico/ms-icon-144x144.png">
 
     <!-- Fonts -->
-    <!-- Use system fonts for best performance -->
+    <!-- JetBrains Mono for a more compact and professional terminal look -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
     <!-- Icons -->
     <!-- Font Awesome - 国内 CDN 优先，失败则使用本地备份 -->
@@ -89,9 +90,9 @@
     <header class="student-header">
         <div class="container">
             <h1 class="page-title">
-                <span class="command-prompt">$ cat</span> ./memories/student_days.log
+                学生时代 | Student Memories
             </h1>
-            <p class="page-subtitle">// A journey through learning, growth, and unforgettable moments</p>
+            <p class="page-subtitle">A journey through learning, growth, and unforgettable moments</p>
         </div>
     </header>
 
@@ -384,19 +385,13 @@
 
         <!-- 照片画廊 -->
         <div class="photo-gallery-section" id="section-gallery">
-            <h2 class="section-title">// Visual Memories Gallery</h2>
+            <h2 class="section-title">视觉画廊 | Visual Gallery</h2>
             <p class="gallery-subtitle">那些年，那些难忘的瞬间</p>
 
             <!-- 画廊分类筛选 -->
             <div class="gallery-filters">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-images"></i> 全部照片
-                </button>
-                <button class="filter-btn" data-filter="university">
-                    <i class="fas fa-graduation-cap"></i> 大学时光
-                </button>
-                <button class="filter-btn" data-filter="high">
-                    <i class="fas fa-school"></i> 高中岁月
+                <button class="filter-btn active" data-filter="student">
+                    <i class="fas fa-graduation-cap"></i> 学生岁月
                 </button>
                 <button class="filter-btn" data-filter="activities">
                     <i class="fas fa-running"></i> 活动瞬间
@@ -404,88 +399,113 @@
                 <button class="filter-btn" data-filter="friends">
                     <i class="fas fa-user-friends"></i> 友谊时光
                 </button>
+                <button class="filter-btn" data-filter="all">
+                    <i class="fas fa-images"></i> 全部照片
+                </button>
             </div>
 
-            <!-- 照片网格 -->
+            <!-- 照片网格 - 预设 4x4 精选画廊框架 -->
             <div class="photo-grid" id="photoGrid">
-                <!-- 占位照片卡片 -->
-                <div class="photo-item" data-category="university">
-                    <div class="photo-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <span>大学生活照片</span>
-                        <p>即将上传...</p>
-                    </div>
+
+                <!-- === 1. 学生岁月 (4张) === -->
+                <div class="photo-item" data-category="student">
+                    <img src="images/private-picture/IMG_9051.jpg" alt="学生岁月 03"
+                        style="width:100%; height:100%; object-fit:cover; display:block;">
                     <div class="photo-info">
-                        <h4>大学生活</h4>
-                        <span class="photo-date">2020-2024</span>
+                        <h4>最美校园 01</h4><span class="photo-date">青春记忆</span>
+                    </div>
+                </div>
+                <div class="photo-item" data-category="student">
+                    <img src="images/private-picture/IMG_9030.jpg" alt="学生岁月 02"
+                        style="width:100%; height:100%; object-fit:cover; display:block;">
+                    <div class="photo-info">
+                        <h4>最美校园 02</h4><span class="photo-date">青春记忆</span>
+                    </div>
+                </div>
+                <div class="photo-item" data-category="student">
+                    <img src="https://res.cloudinary.com/da9kntpo4/image/upload/v1773371888/IMG_9028_plrof2.jpg"
+                        alt="最美校园精选" style="width:100%; height:100%; object-fit:cover; display:block;">
+                    <div class="photo-info">
+                        <h4>最美校园 03</h4>
+                        <span class="photo-date">2020-2024 - Campus Life</span>
+                    </div>
+                </div>
+                <div class="photo-item" data-category="student">
+                    <img src="images/private-picture/IMG_9055.jpg" alt="学生岁月 04"
+                        style="width:100%; height:100%; object-fit:cover; display:block;">
+                    <div class="photo-info">
+                        <h4>最美校园 04</h4><span class="photo-date">青春记忆</span>
                     </div>
                 </div>
 
-                <div class="photo-item" data-category="high">
-                    <div class="photo-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <span>高中时光照片</span>
-                        <p>即将上传...</p>
-                    </div>
+                <!-- === 2. 活动瞬间 (4张) === -->
+                <div class="photo-item hidden" data-category="activities" style="display: none;">
+                    <img src="images/private-picture/IMG_7768.JPG" alt="风景与活动 01"
+                        style="width:100%; height:100%; object-fit:cover; display:block;">
                     <div class="photo-info">
-                        <h4>高中时光</h4>
-                        <span class="photo-date">2017-2020</span>
+                        <h4>风景与活动 01</h4>
+                        <span class="photo-date">Canon EOS R50</span>
+                    </div>
+                </div>
+                <div class="photo-item hidden" data-category="activities" style="display: none;">
+                    <div class="photo-placeholder"><i class="fas fa-running"></i><span>Activity Photo 2</span></div>
+                    <div class="photo-info">
+                        <h4>风景与活动 02</h4><span class="photo-date">待填充...</span>
+                    </div>
+                </div>
+                <div class="photo-item hidden" data-category="activities" style="display: none;">
+                    <div class="photo-placeholder"><i class="fas fa-running"></i><span>Activity Photo 3</span></div>
+                    <div class="photo-info">
+                        <h4>风景与活动 03</h4><span class="photo-date">待填充...</span>
+                    </div>
+                </div>
+                <div class="photo-item hidden" data-category="activities" style="display: none;">
+                    <div class="photo-placeholder"><i class="fas fa-running"></i><span>Activity Photo 4</span></div>
+                    <div class="photo-info">
+                        <h4>风景与活动 04</h4><span class="photo-date">待填充...</span>
                     </div>
                 </div>
 
-                <div class="photo-item" data-category="activities">
-                    <div class="photo-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <span>活动瞬间照片</span>
-                        <p>即将上传...</p>
-                    </div>
+                <!-- === 3. 友谊时光 (4张) === -->
+                <div class="photo-item hidden" data-category="friends" style="display: none;">
+                    <img src="images/private-picture/微信图片_20260226164906_49536_21.jpg" alt="友谊时光 01"
+                        style="width:100%; height:100%; object-fit:cover; display:block;">
                     <div class="photo-info">
-                        <h4>活动瞬间</h4>
-                        <span class="photo-date">精彩时刻</span>
+                        <h4>友谊合影 01</h4><span class="photo-date">珍贵瞬间</span>
                     </div>
                 </div>
-
-                <div class="photo-item" data-category="friends">
-                    <div class="photo-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <span>友谊合影照片</span>
-                        <p>即将上传...</p>
-                    </div>
+                <div class="photo-item hidden" data-category="friends" style="display: none;">
+                    <img src="images/private-picture/e2cc7dd165a2f61213f91dd7bc76c14a.jpg" alt="友谊时光 02"
+                        style="width:100%; height:100%; object-fit:cover; display:block;">
                     <div class="photo-info">
-                        <h4>友谊合影</h4>
-                        <span class="photo-date">珍贵回忆</span>
+                        <h4>友谊合影 02</h4><span class="photo-date">并肩同行</span>
                     </div>
                 </div>
-
-                <div class="photo-item" data-category="university">
-                    <div class="photo-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <span>毕业照片</span>
-                        <p>即将上传...</p>
-                    </div>
+                <div class="photo-item hidden" data-category="friends" style="display: none;">
+                    <img src="images/private-picture/a0f516caa8d1ae7356639139bad31938.jpg" alt="友谊时光 03"
+                        style="width:100%; height:100%; object-fit:cover; display:block;">
                     <div class="photo-info">
-                        <h4>毕业时刻</h4>
-                        <span class="photo-date">2024</span>
+                        <h4>友谊合影 03</h4><span class="photo-date">难忘回忆</span>
                     </div>
                 </div>
-
-                <div class="photo-item" data-category="activities">
-                    <div class="photo-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <span>比赛获奖照片</span>
-                        <p>即将上传...</p>
-                    </div>
+                <div class="photo-item hidden" data-category="friends" style="display: none;">
+                    <div class="photo-placeholder"><i class="fas fa-user-friends"></i><span>Friends Photo 4</span></div>
                     <div class="photo-info">
-                        <h4>获奖时刻</h4>
-                        <span class="photo-date">荣誉瞬间</span>
+                        <h4>友谊合影 04</h4><span class="photo-date">虚位以待...</span>
                     </div>
                 </div>
             </div>
-
-            <!-- 照片上传提示 -->
-            <div class="upload-hint">
-                <i class="fas fa-info-circle"></i>
-                <span>照片正在整理中，敬请期待更多精彩回忆...</span>
+            <!-- === 500px 画廊引导 CTA === -->
+            <div class="gallery-cta-container">
+                <a href="https://500px.com.cn/ihaveawoed" target="_blank" rel="noopener noreferrer"
+                    class="external-gallery-btn">
+                    <span class="btn-icon"><i class="fas fa-camera-retro"></i></span>
+                    <span class="btn-text">
+                        <span class="btn-title">更多作品请点击</span>
+                        <span class="btn-desc">前往 500px 个人主页查看高清摄影集</span>
+                    </span>
+                    <span class="btn-arrow"><i class="fas fa-arrow-right"></i></span>
+                </a>
             </div>
         </div>
 

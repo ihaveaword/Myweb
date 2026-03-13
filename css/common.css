@@ -145,11 +145,6 @@
     font-family: var(--font-mono) !important;
 }
 
-/* 浅色模式下移除所有绿色光效 */
-[data-theme="light"] body::before,
-[data-theme="light"] body::after {
-    display: none !important;
-}
 
 [data-theme="light"] body {
     text-shadow: none !important;
@@ -251,6 +246,7 @@ body::after {
     animation: flicker 0.15s infinite;
 }
 
+
 @keyframes flicker {
     0% {
         opacity: 0.97;
@@ -263,6 +259,15 @@ body::after {
     100% {
         opacity: 0.97;
     }
+}
+
+/* === 浅色模式：彻底禁用 CRT 扫描线和边缘光晕
+     CRITICAL: 此规则位于 body::before/::after 定义之后，确保层叠顺序正确 === */
+[data-theme="light"] body::before,
+[data-theme="light"] body::after {
+    display: none !important;
+    content: none !important;
+    animation: none !important;
 }
 
 /* ========== 通用容器 ========== */
@@ -326,11 +331,15 @@ body::after {
 }
 
 .nav-logo a {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
+    /* 稍微缩小一点以配合更紧凑的字体 */
     font-weight: 700;
     color: var(--accent-color);
     text-decoration: none;
-    font-family: 'Courier New', monospace;
+    font-family: 'JetBrains Mono', monospace;
+    /* 更换为更紧凑现代的字体 */
+    letter-spacing: -0.5px;
+    /* 进一步增加紧凑感 */
     text-shadow: var(--terminal-glow);
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
